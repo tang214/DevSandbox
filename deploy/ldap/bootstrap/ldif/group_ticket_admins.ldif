@@ -1,0 +1,7 @@
+dn: cn=TicketAdmins,ou=Groups,dc=burningflipside,dc=local
+changetype: add
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: TicketAdmins
+description: Ticket Administrators
+uniqueMember: cn=AFs,ou=Groups,dc=burningflipside,dc=local

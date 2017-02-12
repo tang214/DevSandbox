@@ -1,0 +1,7 @@
+dn: cn=DMVAdmins,ou=Groups,dc=burningflipside,dc=local
+changetype: add
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: DMVAdmins
+description: DMV Registration Administrators
+uniqueMember: cn=RegistrationAdmins,ou=Groups,dc=burningflipside,dc=local

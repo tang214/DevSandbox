@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+source ./bin/functions.sh
+
+selection="$1"
+
+if [ -z "$selection" ];then
+  bot "which instance to seed"
+  echo "1. mysql database"
+  echo "2. mongo database"
+  echo "3. browsercap cache"
+  echo "Select then press enter"
+  read selection
+fi
+
+case $selection in
+  1)
+    docker run --rm \
+      --name mysql.init \
+      -v `pwd`/.volumes/mysql:/var/lib/mysql/ \
+      -v `pwd`/deploy/mysql/data:/docker-entrypoint-initdb.d \
+      -p 3306:3306 \
+      -e MYSQL_RANDOM_ROOT_PASSWORD=1 \
+      burnerdev/mysql:5.7
+    ;;
+  2)
+    docker run --rm \
+      --name mongo.init \
+      -v `pwd`/.volumes/mongo/db:/data/db/ \
+      -v `pwd`/.volumes/mongo/configdb:/data/configdb/ \
+      -v `pwd`/deploy/mongo/data:/docker-entrypoint-initdb.d \
+      -p 27017:27017 \
+      burnerdev/mongo:3.4
+    ;;
+  3)
+    docker run --rm \
+      --name browscap.init \
+      -v `pwd`/src/common:/var/www/common \
+      -v `pwd`/.volumes/browser:/var/php_cache/browser \
+      burnerdev/nginx-php-fpm:php7 /usr/bin/php7 /var/www/common/cron.php
+    ;;
+  *)
+    die
+    ;;
+esac

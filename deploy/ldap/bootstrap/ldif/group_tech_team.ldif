@@ -1,0 +1,7 @@
+dn: cn=TechTeam,ou=Groups,dc=burningflipside,dc=local
+changetype: add
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: TechTeam
+description: Technology Team
+uniqueMember: uid=developer,ou=Users,dc=burningflipside,dc=local

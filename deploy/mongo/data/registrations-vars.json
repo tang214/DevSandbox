@@ -1,0 +1,5 @@
+{"_id":{"$oid":"54dac7c7e4b0749e7905674a"},"name":"year","value":"2017"}
+{"_id":{"$oid":"56aaaf30520c54bd580fe0e2"},"name":"tcRegDates","value":{"start":"6 Jan 2017","end":"1 Apr 2017"}}
+{"_id":{"$oid":"56aab509520c5447598d4f65"},"name":"dmvRegDates","value":{"start":"6 Jan 2017","end":"15 May 2017"}}
+{"_id":{"$oid":"56aadd1b520c54e2597a001f"},"name":"eventRegDates","value":{"start":"6 Feb 2017","end":"20 May 2017"}}
+{"_id":{"$oid":"56aab35d520c541e59415ee3"},"name":"artRegDates","value":{"start":"6 Jan 2017","end":"21 Apr 2017"}}

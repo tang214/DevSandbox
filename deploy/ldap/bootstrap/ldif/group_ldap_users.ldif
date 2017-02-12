@@ -1,0 +1,8 @@
+dn: cn=ldapusers,ou=Groups,dc=burningflipside,dc=local
+changetype: add
+objectClass: top
+objectClass: posixGroup
+cn: ldapusers
+gidNumber: 14564100
+description: Users with shell access to the system
+memberUid: developer

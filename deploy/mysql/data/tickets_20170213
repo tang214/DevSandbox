@@ -1,0 +1,783 @@
+# ************************************************************
+# Sequel Pro SQL dump
+# Version 4541
+#
+# http://www.sequelpro.com/
+# https://github.com/sequelpro/sequelpro
+#
+# Host: 127.0.0.1 (MySQL 5.7.17)
+# Database: tickets
+# Generation Time: 2017-02-13 14:14:04 +0000
+# ************************************************************
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+# Dump of table tblDonationTypes
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `tblDonationTypes`;
+
+CREATE TABLE `tblDonationTypes` (
+  `entityName` varchar(50) NOT NULL,
+  `thirdParty` tinyint(1) NOT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`entityName`),
+  UNIQUE KEY `entityName_UNIQUE` (`entityName`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+LOCK TABLES `tblDonationTypes` WRITE;
+/*!40000 ALTER TABLE `tblDonationTypes` DISABLE KEYS */;
+
+INSERT INTO `tblDonationTypes` (`entityName`, `thirdParty`, `url`)
+VALUES
+	('Tinderbox',1,'http://tinderbox.es');
+
+/*!40000 ALTER TABLE `tblDonationTypes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table tblEarlyEntryMap
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `tblEarlyEntryMap`;
+
+CREATE TABLE `tblEarlyEntryMap` (
+  `earlyEntrySetting` int(11) NOT NULL,
+  `earlyEntryDescription` varchar(255) NOT NULL,
+  PRIMARY KEY (`earlyEntrySetting`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+LOCK TABLES `tblEarlyEntryMap` WRITE;
+/*!40000 ALTER TABLE `tblEarlyEntryMap` DISABLE KEYS */;
+
+INSERT INTO `tblEarlyEntryMap` (`earlyEntrySetting`, `earlyEntryDescription`)
+VALUES
+	(-1,'Regular Entry (Thursday Morning)'),
+	(0,'Wednesday Afternoon (Theme Camp/Art) Early Entry'),
+	(1,'Wednesday Morning Infrastructure Setup'),
+	(2,'Tuesday Morning Infrastructure Setup');
+
+/*!40000 ALTER TABLE `tblEarlyEntryMap` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table tblLongText
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `tblLongText`;
+
+CREATE TABLE `tblLongText` (
+  `name` varchar(50) NOT NULL,
+  `value` longtext,
+  PRIMARY KEY (`name`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+LOCK TABLES `tblLongText` WRITE;
+/*!40000 ALTER TABLE `tblLongText` DISABLE KEYS */;
+
+INSERT INTO `tblLongText` (`name`, `value`)
+VALUES
+	('pdf_source','<style type=\"text/css\">body {\nfont-family: helvetica, arial, sans-serif;\nfont-size: 12px;\n}\n\n.h3 {\nfont-size: 1em;\nmargin: 1em 0 .25em 0;\nfont-style: italic;\n}\n\n.h3+* {\nmargin-top: 0;\n}\n\n.sidehead {\nwidth: 16%; \nfont-weight: bold; \ntext-align: right; \nvertical-align: top;\npadding: 0 1em 0 0;\nfont-weight: bold; \nfont-size: 1em;\n}\n\n.contactlabel {\nwidth: 16%; \ntext-align: right; \nvertical-align: top;\npadding: 0 1em 0 0;\n}\n\n.contactinfo {\ntext-align: left; \nvertical-align: top;\n\n}\n</style>\n<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:100%\">\n	<tbody>\n		<tr>\n			<td class=\"sidehead\">{$last}</td>\n			<td><center>\n			<h1 style=\"text-align:center\">Burning Flipside {$year}<br />\n			Ticket Request</h1></center>\n			</td>\n			<td style=\"width: 16%; text-align: center;\">\n			<p>{$barcode}</p>\n\n			<p><span style=\"font-size:18px; font-weight: bold;\">{$request_id}</span></p>\n			</td>\n		</tr>\n	</tbody>\n</table>\n\n<hr />\n<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:100%\">\n	<tbody>\n		<tr>\n			<td class=\"sidehead\">\n			<p>Instructions</p>\n			</td>\n			<td>\n			<ol>\n				<li><strong>Purchase</strong>&nbsp;a money order,&nbsp;cashier&#39;s check or teller&#39;s check for ${$total_due} made out to Austin Artistic Reconstruction.\n				<ul type=\"a\">\n					<li><strong>Write</strong>&nbsp;{$request_id} in the memo field</li>\n					<li><strong>Keep&nbsp;</strong>your payment receipt, you will need it for lost mail or returns.</li>\n					<li><strong>Sign</strong>&nbsp;your money order if a signature is required</li>\n				</ul>\n				</li>\n				<li><strong>Print</strong>&nbsp;this form on a sheet of 8.5x11 paper (standard letter-size paper).</li>\n				<li><strong>Mail</strong>&nbsp;this form (the whole page) with your payment in a stamped envelope with your return address on it. The envelope should be addressed to:</li>\n			</ol>\n\n			<table>\n				<tbody>\n					<tr>\n						<td class=\"contactlabel\">&nbsp;</td>\n						<td>Austin Artistic Reconstruction, Ticket Request<br />\n						P.O. Box 9987<br />\n						Austin, TX 78766</td>\n					</tr>\n				</tbody>\n			</table>\n\n			<ol start=\"3\">\n				<li><strong>Ensure</strong>&nbsp;that the postmark is no earlier than {$open_date} and not later than {$close_date}.</li>\n			</ol>\n\n			<p>NOTE: Tickets are limited. If we receive valid requests in excess of that limit, orders will be filled randomly from total requests. Any unfilled requests will be returned.</p>\n			</td>\n		</tr>\n	</tbody>\n</table>\n\n<hr />\n<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:100%\">\n	<tbody>\n		<tr>\n			<td class=\"sidehead\">\n			<p>Your Info</p>\n			</td>\n			<td>\n			<p class=\"h3\">Contact Info</p>\n\n			<table border=\"0\" cellpadding=\"1\" cellspacing=\"1\" style=\"width: 100%;\">\n				<tbody>\n					<tr>\n						<td class=\"contactlabel\">Address</td>\n						<td class=\"contactinfo\">{$address}</td>\n					</tr>\n					<tr>\n						<td class=\"contactlabel\">Email</td>\n						<td class=\"contactinfo\">{$email}</td>\n					</tr>\n					<tr>\n						<td class=\"contactlabel\">Phone</td>\n						<td class=\"contactinfo\">{$phone}</td>\n					</tr>\n				</tbody>\n			</table>\n\n			<p class=\"h3\">Tickets</p>\n\n			<p>{$ticket_table}</p>\n\n			<p class=\"h3\">Donations</p>\n\n			<p>{$donation_table}</p>\n\n			<p><em>Total Due</em></p>\n\n			<p><span style=\"font-size: 18px; font-weight: bold;\">${$total_due}</span></p>\n			</td>\n		</tr>\n	</tbody>\n</table>\n\n<hr />\n<p>Request Date: {$request_date}</p>\n'),
+	('ticket_pdf_source','<style type=\"text/css\">body {\nfont-family: helvetica, arial, sans-serif;\nfont-size: 12px;\n}\n\n.h3 {\nfont-size: 1em;\nmargin: 1em 0 .25em 0;\nfont-style: italic;\n}\n\n.h3+* {\nmargin-top: 0;\n}\n\n.sidehead {\nwidth: 16%; \nfont-weight: bold; \ntext-align: right; \nvertical-align: top;\npadding: 0 1em 0 0;\nfont-weight: bold; \nfont-size: 1em;\n}\n\n.contactlabel {\nwidth: 16%; \ntext-align: right; \nvertical-align: top;\npadding: 0 1em 0 0;\n}\n\n.contactinfo {\ntext-align: left; \nvertical-align: top;\n\n}\n</style>\n<h1 style=\"text-align:center\">Burning Flipside {$year}&nbsp;Will-Call Receipt</h1>\n\n<hr />\n<p style=\"text-align:center\">{$barcode}</p>\n\n<p style=\"text-align: center;\"><span style=\"text-align:center; font-size:18px; font-weight: bold;\">{$ticket_id}</span></p>\n\n<hr />\n<p><span style=\"font-size:10px;\">This document will make entry to Burning Flipside much faster. Simply print this document and present it at gate (our scanners cannot read barcodes from phone screens).</span></p>\n\n<p><span style=\"font-size:10px;\">This document does not, however, guarantee access to Burning Flipside. If multiple copies of this document are presented at&nbsp;the Burning Flipside gate only the first presenter will be given permission to enter.</span></p>\n\n<hr />\n<p style=\"text-align: center;\"><strong>You voluntarily assume any risk of serious injury or death by attending.</strong></p>\n\n<p>You must bring enough food, water, shelter, and first aid to survive a long weekend in rural Texas. Proper footwear and personal lighting are essential. You may encounter venomous snakes and insects, wild animals, thorns, and poison ivy. Extreme heat and flash flood conditions are possible. Be Aware.</p>\n\n<p>Vending, firearms, fireworks, rockets, and all other explosives prohibited. Commercial user of images taken at Burning Flipside is prohibited without prior written consent of Austin Artistic Reconstruction, LLC.</p>\n\n<p>You agree to abide by all rules in the Survival Guide. This is not a consumer event. Leave nothing behind when you leave the site.</p>\n\n<hr />\n<h2>Transfer Information</h2>\n\n<table>\n	<tbody>\n		<tr>\n			<td>\n			<p><span style=\"font-size:10px;\">This will-call receipt is currently in the name of {$name}.&nbsp;If you have received this will-call receipt from someone else and your name is not {$name}, please make sure to register the ticket in your name promptly. This will make gate formalities much faster, and will protect you from the same ticket code being sold to multiple people (your ticket code will change when you register it).&nbsp;If this ticket is for a minor, please see the section at the end of the document for specific minor documentation requirements.</span></p>\n\n			<p><span style=\"font-size:10px;\">To register the ticket in your name, do the following:</span></p>\n\n			<ol>\n				<li><span style=\"font-size:10px;\">If you don&#39;t already have an account at&nbsp;the burningflipside.com website, please create one; if you do have an account, log in.</span></li>\n				<li><span style=\"font-size:10px;\">Visit <a href=\"https://secure.burningflipside.com/tickets/transfer.php\">https://secure.burningflipside.com/tickets/transfer.php</a> or scan this QR code with your phone.</span></li>\n				<li><span style=\"font-size:10px;\">Follow the instructions on the page and enter the following code when prompted (scanning the QR code should enter it automatically):<br />\n				&nbsp;{$word_code}&nbsp;</span></li>\n			</ol>\n			</td>\n			<td>{$transfer_qr}</td>\n		</tr>\n	</tbody>\n</table>\n\n<hr />\n<h2>Loss, Theft, or Other Issues</h2>\n\n<p><span style=\"font-size:10px;\">The information on this document is enough information for a person to use this ticket to enter Burning Flipside. If you lose&nbsp;or have a copy of this document stolen from you please email <a href=\"mailto:tickets@burningflipside.com\">tickets@burningflipside.com</a> as soon as possible to report the&nbsp;loss or theft.</span></p>\n\n<hr />\n<h2>Minor Information</h2>\n\n<p><span style=\"font-size:10px;\">If this ticket is for a minor (any one under the age of 18), then the child must be accompanied by a legal guardian and this&nbsp;ticket must be accompanied by a signed minor affidavit or state-issued&nbsp;paperwork (such as a&nbsp;passport or state-issued birth certificate) naming the adult accompanying the minor as the legal guardian for the minor.</span></p>\n'),
+	('ticket_email_source','<script type=\"application/ld+json\">\n{\n  \"@context\": \"http://schema.org\",\n  \"@type\": \"EventReservation\",\n  \"reservationNumber\": \"{$short_id}\",\n  \"reservationStatus\": \"http://schema.org/Confirmed\",\n  \"underName\": {\n    \"@type\": \"Person\",\n    \"name\": \"{$firstName} {$lastName}\",\n    \"email\": \"{$email}\"\n  },\n  \"reservationFor\": {\n    \"@type\": \"Event\",\n    \"name\": \"Burning Flipside {year}\",\n    \"startDate\": \"2016-05-26T09:00:00-06:00\",\n    \"location\": {\n      \"@type\": \"Place\",\n      \"name\": \"Apache Passtures\",\n      \"address\": {\n        \"@type\": \"PostalAddress\",\n        \"streetAddress\": \"Co Rd 428\",\n        \"addressLocality\": \"Rockdale\",\n        \"addressRegion\": \"TX\",\n        \"postalCode\": \"76567\",\n        \"addressCountry\": \"US\"\n      }\n    }\n  },\n  \"ticketNumber\": \"{$short_id}\",\n  \"numSeats\": \"1\"\n}\n</script>\n<h1>Burning Flipside {$year} ticket information</h1>\n\n<p>Woohoo, {$firstName}, you&#39;re going to Flipside!</p>\n\n<p>There&#39;s lot of information here to make your arrival process smoother.</p>\n\n<p>Your control center for your ticket is at</p>\n\n<p><code>https://secure.burningflipside.com/tickets/index.php</code></p>\n\n<p>You can use this to check your ticket code and status, correct errors, print out a &quot;will-call receipt&quot; to speed things up at Gate, or transfer your ticket.</p>\n\n<p>Important note: all tickets this year are will-call. No paper tickets are being mailed.</p>\n\n<h2>Survival Guide</h2>\n\n<p>Please read the Survival Guide at http://burningflipside.com/sg</p>\n\n<h2>Minors</h2>\n\n<p>If you&#39;re bringing minors to the event, please make sure that you bring their will-call receipts and documentation of legal guardianship. See your Survival Guide for more details and approved methods of documenting guardianship.</p>\n\n<h2>Transfers</h2>\n\n<p>If you decide not to attend Flipside or find you have an extra ticket, we strongly encourage you to pass along your ticket with those still seeking tickets. NotnotBob&#39;s List, a third-party forum unaffiliated with AAR, LLC is one place helping folks get Flipside tickets.</p>\n\n<p>If you are offering your ticket to someone, they may ask for your ticket&#39;s verification code, which is</p>\n\n<p><code>{$short_id}</code></p>\n\n<p>This gives the recipient enough information to make sure that you are offering a valid ticket, but not enough to complete a transfer.</p>\n\n<p>If you are ready to transfer your ticket, there are a few ways to handle it.</p>\n\n<p>1. Recommended: initiate the transfer from <code>https://secure.burningflipside.com/tickets/index.php</code><br />\n2. Give the recipient your printed will-call receipt<br />\n3. Send or read the recipient your full ticket code. This gives anyone enough information to transfer the ticket into their name, so be careful with this information. Your full ticket code is</p>\n\n<p><code>{$word_code}</code></p>\n\n<p>To complete the transfer, the recipient can register this at&nbsp;</p>\n\n<p><code>https://secure.burningflipside.com/tickets/transfer.php</code></p>\n\n<p>We remind you that our community disapproves of scalping tickets at higher prices than their face value, as that goes against the spirit of the event.</p>\n'),
+	('ticket_transfer_email_source','<h1 style=\"text-align: center;\">Burning Flipside {$year} ticket transfer information</h1>\n\n<p>Hello!</p>\n\n<p>You are receiving this message because {$name} is transferring a ticket to you.</p>\n\n<p>In order to complete the transfer, please do the following:</p>\n\n<p>1. If you have a user account at the burningflipside.com website, log in. If you don&#39;t, please create a new user account at</p>\n\n<p><code>http://profiles.burningflipside.com/</code></p>\n\n<p>2. Once you&#39;ve logged in, please go to&nbsp;</p>\n\n<p><code>https://secure.burningflipside.com/tickets/transfer.php</code></p>\n\n<p>to enter the ID code for the ticket you are registering. Your ticket ID is:</p>\n\n<p><code>{$word_code}</code></p>\n\n<p>Once you have transferred the ticket, you will receive an e-mail message confirming that you are ticketed, and a PDF with your ticket information, which you should print out and bring with you to the event.</p>\n\n<p>Please make sure to complete the transfer process promptly. This protects you from someone attempting to transfer the same ticket to multiple people. If you can&#39;t go to Flipside, it also makes it possible for you to transfer the ticket to someone else.</p>\n');
+
+/*!40000 ALTER TABLE `tblLongText` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table tblPoolMap
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `tblPoolMap`;
+
+CREATE TABLE `tblPoolMap` (
+  `pool_id` int(11) NOT NULL AUTO_INCREMENT,
+  `group_name` varchar(255) NOT NULL,
+  `pool_name` varchar(255) NOT NULL,
+  PRIMARY KEY (`pool_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+LOCK TABLES `tblPoolMap` WRITE;
+/*!40000 ALTER TABLE `tblPoolMap` DISABLE KEYS */;
+
+INSERT INTO `tblPoolMap` (`pool_id`, `group_name`, `pool_name`)
+VALUES
+	(1,'AAR','Secondary Sales'),
+	(2,'TicketAdmins','BMOrg'),
+	(3,'AAR','Crit Vols');
+
+/*!40000 ALTER TABLE `tblPoolMap` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table tblRequestDonation
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `tblRequestDonation`;
+
+CREATE TABLE `tblRequestDonation` (
+  `donation_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `request_id` varchar(20) NOT NULL,
+  `year` int(11) NOT NULL,
+  `type` varchar(20) NOT NULL,
+  `amount` float NOT NULL,
+  `disclose` tinyint(1) NOT NULL,
+  `test` tinyint(1) NOT NULL,
+  PRIMARY KEY (`donation_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+# Dump of table tblRequestedTickets
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `tblRequestedTickets`;
+
+CREATE TABLE `tblRequestedTickets` (
+  `requested_ticket_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `request_id` varchar(20) NOT NULL,
+  `year` int(11) NOT NULL,
+  `first` varchar(255) NOT NULL,
+  `last` varchar(255) NOT NULL,
+  `type` char(1) NOT NULL,
+  `assigned_id` varchar(32) DEFAULT NULL,
+  `test` tinyint(1) NOT NULL,
+  PRIMARY KEY (`requested_ticket_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+# Dump of table tblRequestIDs
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `tblRequestIDs`;
+
+CREATE TABLE `tblRequestIDs` (
+  `request_id` varchar(20) NOT NULL,
+  `mail` varchar(255) NOT NULL,
+  PRIMARY KEY (`request_id`),
+  UNIQUE KEY `mail` (`mail`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+# Dump of table tblRequestStatus
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `tblRequestStatus`;
+
+CREATE TABLE `tblRequestStatus` (
+  `status_id` int(11) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`status_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+LOCK TABLES `tblRequestStatus` WRITE;
+/*!40000 ALTER TABLE `tblRequestStatus` DISABLE KEYS */;
+
+INSERT INTO `tblRequestStatus` (`status_id`, `name`, `description`)
+VALUES
+	(0,'Pending','No mailed ticket request was received for the ticket registration. (Before ticket request processing is complete, all submitted ticket registrations show Pending status.)'),
+	(1,'Received','We received your request, and that it was not returned as an invalid request for postmark, insufficient or incorrect payment, personal check, or other reason listed above.'),
+	(2,'Problem',''),
+	(3,'Returned-Invalid','We received your request but it will not be ticketed and we are returning the request and payment to you.'),
+	(4,'Returned-Lottery','Your request was pulled in this year\'s random deselection soft lottery.'),
+	(5,'Canceled','You notified the ticket team that you were canceling your registration and not mailing in a request for tickets.'),
+	(6,'Ticketed','A ticket number has been assigned; this will replace \"Received\" status as we move through the ticket distribution process.');
+
+/*!40000 ALTER TABLE `tblRequestStatus` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table tblTicketRequest
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `tblTicketRequest`;
+
+CREATE TABLE `tblTicketRequest` (
+  `request_id` varchar(20) NOT NULL,
+  `year` int(11) NOT NULL,
+  `givenName` varchar(255) NOT NULL,
+  `sn` varchar(255) NOT NULL,
+  `mail` varchar(255) NOT NULL,
+  `street` varchar(255) NOT NULL,
+  `l` varchar(255) NOT NULL,
+  `st` varchar(255) NOT NULL,
+  `zip` varchar(255) NOT NULL,
+  `mobile` varchar(30) NOT NULL,
+  `modifiedBy` varchar(255) NOT NULL,
+  `modifiedByIP` varchar(255) NOT NULL,
+  `modifiedOn` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `c` varchar(10) NOT NULL,
+  `total_due` float NOT NULL,
+  `total_received` float NOT NULL,
+  `crit_vol` tinyint(1) NOT NULL,
+  `protected` tinyint(1) NOT NULL,
+  `status` int(11) NOT NULL,
+  `private_status` int(11) NOT NULL,
+  `comments` varchar(255) NOT NULL,
+  `bucket` int(11) NOT NULL DEFAULT '-1',
+  `revisions` longtext NOT NULL,
+  `test` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`request_id`,`year`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+# Dump of table tblTickets
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `tblTickets`;
+
+CREATE TABLE `tblTickets` (
+  `hash` varchar(32) NOT NULL,
+  `year` int(11) NOT NULL,
+  `firstName` varchar(255) DEFAULT NULL,
+  `lastName` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `request_id` varchar(20) DEFAULT NULL,
+  `assigned` tinyint(1) NOT NULL,
+  `void` tinyint(1) NOT NULL,
+  `sold` tinyint(1) NOT NULL,
+  `used` tinyint(1) NOT NULL,
+  `discretionary` tinyint(1) NOT NULL,
+  `type` char(1) NOT NULL,
+  `guardian_first` varchar(255) DEFAULT NULL,
+  `guardian_last` varchar(255) DEFAULT NULL,
+  `pool_id` int(11) NOT NULL DEFAULT '-1',
+  `previous_hash` varchar(32) DEFAULT NULL,
+  `physical_ticket_id` varchar(32) DEFAULT NULL,
+  `comments` text,
+  `last_updated_by` varchar(255) NOT NULL,
+  `last_updated_dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_updated_ip` varchar(255) NOT NULL,
+  `used_dt` timestamp NULL DEFAULT NULL,
+  `rand` int(11) NOT NULL,
+  `test` tinyint(1) NOT NULL DEFAULT '0',
+  `transferInProgress` tinyint(1) NOT NULL DEFAULT '0',
+  `earlyEntryWindow` int(11) NOT NULL DEFAULT '-1',
+  `soldDT` datetime DEFAULT NULL,
+  `discretionaryOrig` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`hash`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+
+# Dump of table tblTicketsHistory
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `tblTicketsHistory`;
+
+CREATE TABLE `tblTicketsHistory` (
+  `hash` varchar(32) NOT NULL,
+  `year` int(11) NOT NULL,
+  `firstName` varchar(255) DEFAULT NULL,
+  `lastName` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `request_id` varchar(20) DEFAULT NULL,
+  `assigned` tinyint(1) NOT NULL,
+  `void` tinyint(1) NOT NULL,
+  `sold` tinyint(1) NOT NULL,
+  `used` tinyint(1) NOT NULL,
+  `discretionary` tinyint(1) NOT NULL,
+  `type` char(1) NOT NULL,
+  `guardian_first` varchar(255) DEFAULT NULL,
+  `guardian_last` varchar(255) DEFAULT NULL,
+  `pool_id` int(11) NOT NULL DEFAULT '-1',
+  `previous_hash` varchar(32) DEFAULT NULL,
+  `physical_ticket_id` varchar(32) DEFAULT NULL,
+  `comments` text,
+  `last_updated_by` varchar(255) NOT NULL,
+  `last_updated_dt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_updated_ip` varchar(255) NOT NULL,
+  `used_dt` timestamp NULL DEFAULT NULL,
+  `rand` int(11) NOT NULL,
+  `test` tinyint(1) NOT NULL DEFAULT '0',
+  `transferInProgress` tinyint(1) DEFAULT NULL,
+  `earlyEntryWindow` int(11) DEFAULT NULL,
+  `soldDT` datetime DEFAULT NULL,
+  `discretionaryOrig` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`hash`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+
+# Dump of table tblTicketTypes
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `tblTicketTypes`;
+
+CREATE TABLE `tblTicketTypes` (
+  `typeCode` char(1) NOT NULL,
+  `description` varchar(45) NOT NULL,
+  `cost` float NOT NULL,
+  `max_per_request` int(10) unsigned NOT NULL,
+  `is_minor` tinyint(1) NOT NULL,
+  PRIMARY KEY (`typeCode`),
+  UNIQUE KEY `typeCode_UNIQUE` (`typeCode`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+LOCK TABLES `tblTicketTypes` WRITE;
+/*!40000 ALTER TABLE `tblTicketTypes` DISABLE KEYS */;
+
+INSERT INTO `tblTicketTypes` (`typeCode`, `description`, `cost`, `max_per_request`, `is_minor`)
+VALUES
+	('A','Adult',111,2,0),
+	('C','Child (0 - 6)',0,2,1),
+	('K','Kid (7 - 13)',33,2,1),
+	('T','Teen (14 - 17)',111,2,1);
+
+/*!40000 ALTER TABLE `tblTicketTypes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table tblVariables
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `tblVariables`;
+
+CREATE TABLE `tblVariables` (
+  `name` varchar(50) NOT NULL,
+  `value` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`name`),
+  UNIQUE KEY `name_UNIQUE` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+LOCK TABLES `tblVariables` WRITE;
+/*!40000 ALTER TABLE `tblVariables` DISABLE KEYS */;
+
+INSERT INTO `tblVariables` (`name`, `value`)
+VALUES
+	('currentEarlyEntry','-1'),
+	('enabled','0'),
+	('mail_start_date','2017-01-06'),
+	('max_buckets','9'),
+	('max_tickets_per_request','6'),
+	('request_start_date','2017-01-06'),
+	('request_stop_date','2017-01-20'),
+	('test_mode','0'),
+	('year','2017');
+
+/*!40000 ALTER TABLE `tblVariables` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table vproblemmoneywrongstatus
+# ------------------------------------------------------------
+
+DROP VIEW IF EXISTS `vproblemmoneywrongstatus`;
+
+CREATE TABLE `vproblemmoneywrongstatus` (
+   `request_id` VARCHAR(20) NOT NULL,
+   `year` INT(11) NOT NULL,
+   `givenName` VARCHAR(255) NOT NULL,
+   `sn` VARCHAR(255) NOT NULL,
+   `mail` VARCHAR(255) NOT NULL,
+   `street` VARCHAR(255) NOT NULL,
+   `l` VARCHAR(255) NOT NULL,
+   `st` VARCHAR(255) NOT NULL,
+   `zip` VARCHAR(255) NOT NULL,
+   `mobile` VARCHAR(30) NOT NULL,
+   `modifiedBy` VARCHAR(255) NOT NULL,
+   `modifiedByIP` VARCHAR(255) NOT NULL,
+   `modifiedOn` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
+   `c` VARCHAR(10) NOT NULL,
+   `total_due` FLOAT NOT NULL,
+   `total_received` FLOAT NOT NULL,
+   `crit_vol` TINYINT(1) NOT NULL,
+   `protected` TINYINT(1) NOT NULL,
+   `status` INT(11) NOT NULL,
+   `private_status` INT(11) NOT NULL,
+   `comments` VARCHAR(255) NOT NULL,
+   `bucket` INT(11) NOT NULL DEFAULT '-1',
+   `revisions` LONGTEXT NOT NULL,
+   `test` TINYINT(1) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM;
+
+
+
+# Dump of table vproblempendingwcomments
+# ------------------------------------------------------------
+
+DROP VIEW IF EXISTS `vproblempendingwcomments`;
+
+CREATE TABLE `vproblempendingwcomments` (
+   `request_id` VARCHAR(20) NOT NULL,
+   `year` INT(11) NOT NULL,
+   `givenName` VARCHAR(255) NOT NULL,
+   `sn` VARCHAR(255) NOT NULL,
+   `mail` VARCHAR(255) NOT NULL,
+   `street` VARCHAR(255) NOT NULL,
+   `l` VARCHAR(255) NOT NULL,
+   `st` VARCHAR(255) NOT NULL,
+   `zip` VARCHAR(255) NOT NULL,
+   `mobile` VARCHAR(30) NOT NULL,
+   `modifiedBy` VARCHAR(255) NOT NULL,
+   `modifiedByIP` VARCHAR(255) NOT NULL,
+   `modifiedOn` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
+   `c` VARCHAR(10) NOT NULL,
+   `total_due` FLOAT NOT NULL,
+   `total_received` FLOAT NOT NULL,
+   `crit_vol` TINYINT(1) NOT NULL,
+   `protected` TINYINT(1) NOT NULL,
+   `status` INT(11) NOT NULL,
+   `private_status` INT(11) NOT NULL,
+   `comments` VARCHAR(255) NOT NULL,
+   `bucket` INT(11) NOT NULL DEFAULT '-1',
+   `revisions` LONGTEXT NOT NULL,
+   `test` TINYINT(1) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM;
+
+
+
+# Dump of table vproblemreceivedincorrect
+# ------------------------------------------------------------
+
+DROP VIEW IF EXISTS `vproblemreceivedincorrect`;
+
+CREATE TABLE `vproblemreceivedincorrect` (
+   `request_id` VARCHAR(20) NOT NULL,
+   `year` INT(11) NOT NULL,
+   `givenName` VARCHAR(255) NOT NULL,
+   `sn` VARCHAR(255) NOT NULL,
+   `mail` VARCHAR(255) NOT NULL,
+   `street` VARCHAR(255) NOT NULL,
+   `l` VARCHAR(255) NOT NULL,
+   `st` VARCHAR(255) NOT NULL,
+   `zip` VARCHAR(255) NOT NULL,
+   `mobile` VARCHAR(30) NOT NULL,
+   `modifiedBy` VARCHAR(255) NOT NULL,
+   `modifiedByIP` VARCHAR(255) NOT NULL,
+   `modifiedOn` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
+   `c` VARCHAR(10) NOT NULL,
+   `total_due` FLOAT NOT NULL,
+   `total_received` FLOAT NOT NULL,
+   `crit_vol` TINYINT(1) NOT NULL,
+   `protected` TINYINT(1) NOT NULL,
+   `status` INT(11) NOT NULL,
+   `private_status` INT(11) NOT NULL,
+   `comments` VARCHAR(255) NOT NULL,
+   `bucket` INT(11) NOT NULL DEFAULT '-1',
+   `revisions` LONGTEXT NOT NULL,
+   `test` TINYINT(1) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM;
+
+
+
+# Dump of table vproblems
+# ------------------------------------------------------------
+
+DROP VIEW IF EXISTS `vproblems`;
+
+CREATE TABLE `vproblems` (
+   `request_id` VARCHAR(20) NOT NULL DEFAULT '',
+   `year` INT(11) NOT NULL DEFAULT '0',
+   `givenName` VARCHAR(255) NOT NULL DEFAULT '',
+   `sn` VARCHAR(255) NOT NULL DEFAULT '',
+   `mail` VARCHAR(255) NOT NULL DEFAULT '',
+   `street` VARCHAR(255) NOT NULL DEFAULT '',
+   `l` VARCHAR(255) NOT NULL DEFAULT '',
+   `st` VARCHAR(255) NOT NULL DEFAULT '',
+   `zip` VARCHAR(255) NOT NULL DEFAULT '',
+   `mobile` VARCHAR(30) NOT NULL DEFAULT '',
+   `modifiedBy` VARCHAR(255) NOT NULL DEFAULT '',
+   `modifiedByIP` VARCHAR(255) NOT NULL DEFAULT '',
+   `modifiedOn` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
+   `c` VARCHAR(10) NOT NULL DEFAULT '',
+   `total_due` FLOAT NOT NULL DEFAULT '0',
+   `total_received` FLOAT NOT NULL DEFAULT '0',
+   `crit_vol` TINYINT(4) NOT NULL DEFAULT '0',
+   `protected` TINYINT(4) NOT NULL DEFAULT '0',
+   `status` INT(11) NOT NULL DEFAULT '0',
+   `private_status` INT(11) NOT NULL DEFAULT '0',
+   `comments` VARCHAR(255) NOT NULL DEFAULT '',
+   `bucket` INT(11) NOT NULL DEFAULT '0',
+   `revisions` LONGTEXT NOT NULL,
+   `test` TINYINT(4) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM;
+
+
+
+# Dump of table vproblemstatus
+# ------------------------------------------------------------
+
+DROP VIEW IF EXISTS `vproblemstatus`;
+
+CREATE TABLE `vproblemstatus` (
+   `request_id` VARCHAR(20) NOT NULL,
+   `year` INT(11) NOT NULL,
+   `givenName` VARCHAR(255) NOT NULL,
+   `sn` VARCHAR(255) NOT NULL,
+   `mail` VARCHAR(255) NOT NULL,
+   `street` VARCHAR(255) NOT NULL,
+   `l` VARCHAR(255) NOT NULL,
+   `st` VARCHAR(255) NOT NULL,
+   `zip` VARCHAR(255) NOT NULL,
+   `mobile` VARCHAR(30) NOT NULL,
+   `modifiedBy` VARCHAR(255) NOT NULL,
+   `modifiedByIP` VARCHAR(255) NOT NULL,
+   `modifiedOn` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
+   `c` VARCHAR(10) NOT NULL,
+   `total_due` FLOAT NOT NULL,
+   `total_received` FLOAT NOT NULL,
+   `crit_vol` TINYINT(1) NOT NULL,
+   `protected` TINYINT(1) NOT NULL,
+   `status` INT(11) NOT NULL,
+   `private_status` INT(11) NOT NULL,
+   `comments` VARCHAR(255) NOT NULL,
+   `bucket` INT(11) NOT NULL DEFAULT '-1',
+   `revisions` LONGTEXT NOT NULL,
+   `test` TINYINT(1) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM;
+
+
+
+# Dump of table vrequestwtickets
+# ------------------------------------------------------------
+
+DROP VIEW IF EXISTS `vrequestwtickets`;
+
+CREATE TABLE `vrequestwtickets` (
+   `request_id` VARCHAR(20) NOT NULL,
+   `year` INT(11) NOT NULL,
+   `requested_ticket_id` INT(10) UNSIGNED NOT NULL DEFAULT '0',
+   `first` VARCHAR(255) NOT NULL,
+   `last` VARCHAR(255) NOT NULL,
+   `type` CHAR(1) NOT NULL,
+   `assigned_id` VARCHAR(32) NULL DEFAULT NULL,
+   `bucket` INT(11) NOT NULL DEFAULT '-1',
+   `crit_vol` TINYINT(1) NOT NULL,
+   `protected` TINYINT(1) NOT NULL,
+   `requestor_first` VARCHAR(255) NOT NULL,
+   `requestor_last` VARCHAR(255) NOT NULL,
+   `mail` VARCHAR(255) NOT NULL,
+   `street` VARCHAR(255) NOT NULL,
+   `l` VARCHAR(255) NOT NULL,
+   `st` VARCHAR(255) NOT NULL,
+   `zip` VARCHAR(255) NOT NULL,
+   `c` VARCHAR(10) NOT NULL,
+   `private_status` INT(11) NOT NULL,
+   `status` INT(11) NOT NULL,
+   `test` TINYINT(1) NOT NULL
+) ENGINE=MyISAM;
+
+
+
+
+
+# Replace placeholder table for vproblempendingwcomments with correct view syntax
+# ------------------------------------------------------------
+
+DROP TABLE `vproblempendingwcomments`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vproblempendingwcomments`
+AS SELECT
+   `tblticketrequest`.`request_id` AS `request_id`,
+   `tblticketrequest`.`year` AS `year`,
+   `tblticketrequest`.`givenName` AS `givenName`,
+   `tblticketrequest`.`sn` AS `sn`,
+   `tblticketrequest`.`mail` AS `mail`,
+   `tblticketrequest`.`street` AS `street`,
+   `tblticketrequest`.`l` AS `l`,
+   `tblticketrequest`.`st` AS `st`,
+   `tblticketrequest`.`zip` AS `zip`,
+   `tblticketrequest`.`mobile` AS `mobile`,
+   `tblticketrequest`.`modifiedBy` AS `modifiedBy`,
+   `tblticketrequest`.`modifiedByIP` AS `modifiedByIP`,
+   `tblticketrequest`.`modifiedOn` AS `modifiedOn`,
+   `tblticketrequest`.`c` AS `c`,
+   `tblticketrequest`.`total_due` AS `total_due`,
+   `tblticketrequest`.`total_received` AS `total_received`,
+   `tblticketrequest`.`crit_vol` AS `crit_vol`,
+   `tblticketrequest`.`protected` AS `protected`,
+   `tblticketrequest`.`status` AS `status`,
+   `tblticketrequest`.`private_status` AS `private_status`,
+   `tblticketrequest`.`comments` AS `comments`,
+   `tblticketrequest`.`bucket` AS `bucket`,
+   `tblticketrequest`.`revisions` AS `revisions`,
+   `tblticketrequest`.`test` AS `test`
+FROM `tblticketrequest` where ((`tblticketrequest`.`private_status` = 0) and (not((`tblticketrequest`.`comments` like '%Manually Created%'))) and (`tblticketrequest`.`comments` <> ''));
+
+
+# Replace placeholder table for vproblemreceivedincorrect with correct view syntax
+# ------------------------------------------------------------
+
+DROP TABLE `vproblemreceivedincorrect`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vproblemreceivedincorrect`
+AS SELECT
+   `tblticketrequest`.`request_id` AS `request_id`,
+   `tblticketrequest`.`year` AS `year`,
+   `tblticketrequest`.`givenName` AS `givenName`,
+   `tblticketrequest`.`sn` AS `sn`,
+   `tblticketrequest`.`mail` AS `mail`,
+   `tblticketrequest`.`street` AS `street`,
+   `tblticketrequest`.`l` AS `l`,
+   `tblticketrequest`.`st` AS `st`,
+   `tblticketrequest`.`zip` AS `zip`,
+   `tblticketrequest`.`mobile` AS `mobile`,
+   `tblticketrequest`.`modifiedBy` AS `modifiedBy`,
+   `tblticketrequest`.`modifiedByIP` AS `modifiedByIP`,
+   `tblticketrequest`.`modifiedOn` AS `modifiedOn`,
+   `tblticketrequest`.`c` AS `c`,
+   `tblticketrequest`.`total_due` AS `total_due`,
+   `tblticketrequest`.`total_received` AS `total_received`,
+   `tblticketrequest`.`crit_vol` AS `crit_vol`,
+   `tblticketrequest`.`protected` AS `protected`,
+   `tblticketrequest`.`status` AS `status`,
+   `tblticketrequest`.`private_status` AS `private_status`,
+   `tblticketrequest`.`comments` AS `comments`,
+   `tblticketrequest`.`bucket` AS `bucket`,
+   `tblticketrequest`.`revisions` AS `revisions`,
+   `tblticketrequest`.`test` AS `test`
+FROM `tblticketrequest` where ((`tblticketrequest`.`total_due` <> `tblticketrequest`.`total_received`) and (`tblticketrequest`.`private_status` = 1));
+
+
+# Replace placeholder table for vproblems with correct view syntax
+# ------------------------------------------------------------
+
+DROP TABLE `vproblems`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vproblems`
+AS SELECT
+   `vproblempendingwcomments`.`request_id` AS `request_id`,
+   `vproblempendingwcomments`.`year` AS `year`,
+   `vproblempendingwcomments`.`givenName` AS `givenName`,
+   `vproblempendingwcomments`.`sn` AS `sn`,
+   `vproblempendingwcomments`.`mail` AS `mail`,
+   `vproblempendingwcomments`.`street` AS `street`,
+   `vproblempendingwcomments`.`l` AS `l`,
+   `vproblempendingwcomments`.`st` AS `st`,
+   `vproblempendingwcomments`.`zip` AS `zip`,
+   `vproblempendingwcomments`.`mobile` AS `mobile`,
+   `vproblempendingwcomments`.`modifiedBy` AS `modifiedBy`,
+   `vproblempendingwcomments`.`modifiedByIP` AS `modifiedByIP`,
+   `vproblempendingwcomments`.`modifiedOn` AS `modifiedOn`,
+   `vproblempendingwcomments`.`c` AS `c`,
+   `vproblempendingwcomments`.`total_due` AS `total_due`,
+   `vproblempendingwcomments`.`total_received` AS `total_received`,
+   `vproblempendingwcomments`.`crit_vol` AS `crit_vol`,
+   `vproblempendingwcomments`.`protected` AS `protected`,
+   `vproblempendingwcomments`.`status` AS `status`,
+   `vproblempendingwcomments`.`private_status` AS `private_status`,
+   `vproblempendingwcomments`.`comments` AS `comments`,
+   `vproblempendingwcomments`.`bucket` AS `bucket`,
+   `vproblempendingwcomments`.`revisions` AS `revisions`,
+   `vproblempendingwcomments`.`test` AS `test`
+FROM `vproblempendingwcomments` union select `vproblemstatus`.`request_id` AS `request_id`,`vproblemstatus`.`year` AS `year`,`vproblemstatus`.`givenName` AS `givenName`,`vproblemstatus`.`sn` AS `sn`,`vproblemstatus`.`mail` AS `mail`,`vproblemstatus`.`street` AS `street`,`vproblemstatus`.`l` AS `l`,`vproblemstatus`.`st` AS `st`,`vproblemstatus`.`zip` AS `zip`,`vproblemstatus`.`mobile` AS `mobile`,`vproblemstatus`.`modifiedBy` AS `modifiedBy`,`vproblemstatus`.`modifiedByIP` AS `modifiedByIP`,`vproblemstatus`.`modifiedOn` AS `modifiedOn`,`vproblemstatus`.`c` AS `c`,`vproblemstatus`.`total_due` AS `total_due`,`vproblemstatus`.`total_received` AS `total_received`,`vproblemstatus`.`crit_vol` AS `crit_vol`,`vproblemstatus`.`protected` AS `protected`,`vproblemstatus`.`status` AS `status`,`vproblemstatus`.`private_status` AS `private_status`,`vproblemstatus`.`comments` AS `comments`,`vproblemstatus`.`bucket` AS `bucket`,`vproblemstatus`.`revisions` AS `revisions`,`vproblemstatus`.`test` AS `test` from `vproblemstatus` union select `vproblemmoneywrongstatus`.`request_id` AS `request_id`,`vproblemmoneywrongstatus`.`year` AS `year`,`vproblemmoneywrongstatus`.`givenName` AS `givenName`,`vproblemmoneywrongstatus`.`sn` AS `sn`,`vproblemmoneywrongstatus`.`mail` AS `mail`,`vproblemmoneywrongstatus`.`street` AS `street`,`vproblemmoneywrongstatus`.`l` AS `l`,`vproblemmoneywrongstatus`.`st` AS `st`,`vproblemmoneywrongstatus`.`zip` AS `zip`,`vproblemmoneywrongstatus`.`mobile` AS `mobile`,`vproblemmoneywrongstatus`.`modifiedBy` AS `modifiedBy`,`vproblemmoneywrongstatus`.`modifiedByIP` AS `modifiedByIP`,`vproblemmoneywrongstatus`.`modifiedOn` AS `modifiedOn`,`vproblemmoneywrongstatus`.`c` AS `c`,`vproblemmoneywrongstatus`.`total_due` AS `total_due`,`vproblemmoneywrongstatus`.`total_received` AS `total_received`,`vproblemmoneywrongstatus`.`crit_vol` AS `crit_vol`,`vproblemmoneywrongstatus`.`protected` AS `protected`,`vproblemmoneywrongstatus`.`status` AS `status`,`vproblemmoneywrongstatus`.`private_status` AS `private_status`,`vproblemmoneywrongstatus`.`comments` AS `comments`,`vproblemmoneywrongstatus`.`bucket` AS `bucket`,`vproblemmoneywrongstatus`.`revisions` AS `revisions`,`vproblemmoneywrongstatus`.`test` AS `test` from `vproblemmoneywrongstatus` union select `vproblemreceivedincorrect`.`request_id` AS `request_id`,`vproblemreceivedincorrect`.`year` AS `year`,`vproblemreceivedincorrect`.`givenName` AS `givenName`,`vproblemreceivedincorrect`.`sn` AS `sn`,`vproblemreceivedincorrect`.`mail` AS `mail`,`vproblemreceivedincorrect`.`street` AS `street`,`vproblemreceivedincorrect`.`l` AS `l`,`vproblemreceivedincorrect`.`st` AS `st`,`vproblemreceivedincorrect`.`zip` AS `zip`,`vproblemreceivedincorrect`.`mobile` AS `mobile`,`vproblemreceivedincorrect`.`modifiedBy` AS `modifiedBy`,`vproblemreceivedincorrect`.`modifiedByIP` AS `modifiedByIP`,`vproblemreceivedincorrect`.`modifiedOn` AS `modifiedOn`,`vproblemreceivedincorrect`.`c` AS `c`,`vproblemreceivedincorrect`.`total_due` AS `total_due`,`vproblemreceivedincorrect`.`total_received` AS `total_received`,`vproblemreceivedincorrect`.`crit_vol` AS `crit_vol`,`vproblemreceivedincorrect`.`protected` AS `protected`,`vproblemreceivedincorrect`.`status` AS `status`,`vproblemreceivedincorrect`.`private_status` AS `private_status`,`vproblemreceivedincorrect`.`comments` AS `comments`,`vproblemreceivedincorrect`.`bucket` AS `bucket`,`vproblemreceivedincorrect`.`revisions` AS `revisions`,`vproblemreceivedincorrect`.`test` AS `test` from `vproblemreceivedincorrect`;
+
+
+# Replace placeholder table for vproblemstatus with correct view syntax
+# ------------------------------------------------------------
+
+DROP TABLE `vproblemstatus`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vproblemstatus`
+AS SELECT
+   `tblticketrequest`.`request_id` AS `request_id`,
+   `tblticketrequest`.`year` AS `year`,
+   `tblticketrequest`.`givenName` AS `givenName`,
+   `tblticketrequest`.`sn` AS `sn`,
+   `tblticketrequest`.`mail` AS `mail`,
+   `tblticketrequest`.`street` AS `street`,
+   `tblticketrequest`.`l` AS `l`,
+   `tblticketrequest`.`st` AS `st`,
+   `tblticketrequest`.`zip` AS `zip`,
+   `tblticketrequest`.`mobile` AS `mobile`,
+   `tblticketrequest`.`modifiedBy` AS `modifiedBy`,
+   `tblticketrequest`.`modifiedByIP` AS `modifiedByIP`,
+   `tblticketrequest`.`modifiedOn` AS `modifiedOn`,
+   `tblticketrequest`.`c` AS `c`,
+   `tblticketrequest`.`total_due` AS `total_due`,
+   `tblticketrequest`.`total_received` AS `total_received`,
+   `tblticketrequest`.`crit_vol` AS `crit_vol`,
+   `tblticketrequest`.`protected` AS `protected`,
+   `tblticketrequest`.`status` AS `status`,
+   `tblticketrequest`.`private_status` AS `private_status`,
+   `tblticketrequest`.`comments` AS `comments`,
+   `tblticketrequest`.`bucket` AS `bucket`,
+   `tblticketrequest`.`revisions` AS `revisions`,
+   `tblticketrequest`.`test` AS `test`
+FROM `tblticketrequest` where (`tblticketrequest`.`private_status` = 2);
+
+
+# Replace placeholder table for vrequestwtickets with correct view syntax
+# ------------------------------------------------------------
+
+DROP TABLE `vrequestwtickets`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vrequestwtickets`
+AS SELECT
+   `tblrequestedtickets`.`request_id` AS `request_id`,
+   `tblrequestedtickets`.`year` AS `year`,
+   `tblrequestedtickets`.`requested_ticket_id` AS `requested_ticket_id`,
+   `tblrequestedtickets`.`first` AS `first`,
+   `tblrequestedtickets`.`last` AS `last`,
+   `tblrequestedtickets`.`type` AS `type`,
+   `tblrequestedtickets`.`assigned_id` AS `assigned_id`,
+   `tblticketrequest`.`bucket` AS `bucket`,
+   `tblticketrequest`.`crit_vol` AS `crit_vol`,
+   `tblticketrequest`.`protected` AS `protected`,
+   `tblticketrequest`.`givenName` AS `requestor_first`,
+   `tblticketrequest`.`sn` AS `requestor_last`,
+   `tblticketrequest`.`mail` AS `mail`,
+   `tblticketrequest`.`street` AS `street`,
+   `tblticketrequest`.`l` AS `l`,
+   `tblticketrequest`.`st` AS `st`,
+   `tblticketrequest`.`zip` AS `zip`,
+   `tblticketrequest`.`c` AS `c`,
+   `tblticketrequest`.`private_status` AS `private_status`,
+   `tblticketrequest`.`status` AS `status`,
+   `tblrequestedtickets`.`test` AS `test`
+FROM (`tblrequestedtickets` join `tblticketrequest` on(((`tblrequestedtickets`.`year` = `tblticketrequest`.`year`) and (`tblrequestedtickets`.`request_id` = `tblticketrequest`.`request_id`))));
+
+
+# Replace placeholder table for vproblemmoneywrongstatus with correct view syntax
+# ------------------------------------------------------------
+
+DROP TABLE `vproblemmoneywrongstatus`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vproblemmoneywrongstatus`
+AS SELECT
+   `tblticketrequest`.`request_id` AS `request_id`,
+   `tblticketrequest`.`year` AS `year`,
+   `tblticketrequest`.`givenName` AS `givenName`,
+   `tblticketrequest`.`sn` AS `sn`,
+   `tblticketrequest`.`mail` AS `mail`,
+   `tblticketrequest`.`street` AS `street`,
+   `tblticketrequest`.`l` AS `l`,
+   `tblticketrequest`.`st` AS `st`,
+   `tblticketrequest`.`zip` AS `zip`,
+   `tblticketrequest`.`mobile` AS `mobile`,
+   `tblticketrequest`.`modifiedBy` AS `modifiedBy`,
+   `tblticketrequest`.`modifiedByIP` AS `modifiedByIP`,
+   `tblticketrequest`.`modifiedOn` AS `modifiedOn`,
+   `tblticketrequest`.`c` AS `c`,
+   `tblticketrequest`.`total_due` AS `total_due`,
+   `tblticketrequest`.`total_received` AS `total_received`,
+   `tblticketrequest`.`crit_vol` AS `crit_vol`,
+   `tblticketrequest`.`protected` AS `protected`,
+   `tblticketrequest`.`status` AS `status`,
+   `tblticketrequest`.`private_status` AS `private_status`,
+   `tblticketrequest`.`comments` AS `comments`,
+   `tblticketrequest`.`bucket` AS `bucket`,
+   `tblticketrequest`.`revisions` AS `revisions`,
+   `tblticketrequest`.`test` AS `test`
+FROM `tblticketrequest` where ((`tblticketrequest`.`private_status` not in (1,2,3,4,5,6)) and (`tblticketrequest`.`total_received` <> 0));
+
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

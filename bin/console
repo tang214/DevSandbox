@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+source ./bin/functions.sh
+
+selection="$1"
+
+if [ -z "$selection" ];then
+  bot "which instance to connect"
+  echo "1. ldap.burningflipside.local"
+  echo "2. mysql.burningflipside.local"
+  echo "3. mongo.burningflipside.local"
+  echo "4. www.burningflipside.local"
+  echo "5. wiki.burningflipside.local"
+  echo "6. profiles.burningflipside.local"
+  echo "7. secure.burningflipside.local"
+  echo "Select then press enter"
+  read selection
+fi
+
+case $selection in
+  1)
+    instance=ldap
+    ;;
+  2)
+    instance=mysql
+    ;;
+  3)
+    instance=mongo
+    ;;
+  4)
+    instance=www
+    ;;
+  5)
+    instance=wiki
+    ;;
+  6)
+    instance=profiles
+    ;;
+  7)
+    instance=secure
+    ;;
+  *)
+    die
+    ;;
+esac
+
+docker exec -it $instance.burningflipside.local /bin/bash

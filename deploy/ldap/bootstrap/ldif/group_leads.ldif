@@ -1,0 +1,7 @@
+dn: cn=Leads,ou=Groups,dc=burningflipside,dc=local
+changetype: add
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: Leads
+description: Burning Flipside Leadsdescription: Burning Flipside Leads
+uniqueMember: cn=AFs,ou=Groups,dc=burningflipside,dc=local

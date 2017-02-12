@@ -1,0 +1,7 @@
+dn: cn=CampAdmins,ou=Groups,dc=burningflipside,dc=local
+changetype: add
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: CampAdmins
+description: Theme Camp Registration Administrators
+uniqueMember: cn=RegistrationAdmins,ou=Groups,dc=burningflipside,dc=local

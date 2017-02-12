@@ -1,0 +1,10 @@
+dn: ou=Groups,dc=burningflipside,dc=local
+changetype: add
+objectClass: organizationalUnit
+ou: Groups
+description: Groups for managing system authorization
+
+dn: ou=Users,dc=burningflipside,dc=local
+changetype: add
+objectClass: organizationalUnit
+ou: Users

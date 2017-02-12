@@ -1,0 +1,7 @@
+dn: cn=VolunteerAdmins,ou=Groups,dc=burningflipside,dc=local
+changetype: add
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: VolunteerAdmins
+description: Volunteer Administrators
+uniqueMember: cn=AFs,ou=Groups,dc=burningflipside,dc=local

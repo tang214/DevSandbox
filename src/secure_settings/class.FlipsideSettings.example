@@ -1,0 +1,112 @@
+<?php
+date_default_timezone_set('America/Chicago');
+class FlipsideSettings
+{
+    public static $global = array(
+      'use_minified' => false,
+      'use_cdn' => false,
+      'login_url' => 'https://localhost:3300/login.php',
+      'logout_url' => 'https://localhost:3300/logout.php',
+      'register_url' => 'https://localhost:3300/register.php',
+      'reset_url' => 'https://localhost:3300/reset.php',
+      'about_url' => 'https://localhost:3100/about',
+      'about_menu' => array(
+          'Burning Flipside' => 'https://localhost:3100/about/event',
+          'AAR, LLC' => 'https://localhost:3100/organization/aar',
+          'Privacy Policy' => 'https://localhost:3100/about/privacy'
+      ),
+      'event_url' => 'https://localhost:3100/about/event',
+      'aar_url' => 'https://localhost:3100/organization/aar',
+      'privacy_url' =>  'https://localhost:3100/about/privacy',
+      'profiles_url' => 'https://localhost:3300'
+    );
+    public static $sites = array(
+      'WWW'=>'https://localhost:3100/',
+      'Pyropedia'=>'https://localhost:3200/',
+      'Profiles'=>'https://localhost:3300/',
+      'Secure'=>'https://localhost:3400/'
+    );
+    public static $authProviders = array(
+        'Auth\\LDAPAuthenticator' => array(
+            'current'       => true,
+            'pending'       => false,
+            'supplement'    => false,
+            'host'          => 'ldap://172.25.0.101',
+            'base'          => 'dc=burningflipside,dc=local',
+            'user_base'     => 'ou=Users,dc=burningflipside,dc=local',
+            'group_base'    => 'ou=Groups,dc=burningflipside,dc=local',
+            'ro_bind_dn'    => 'cn=admin,dc=burningflipside,dc=local',
+            'ro_bind_pass'  => 'p@s5w0rd',
+            'rw_bind_dn'    => 'cn=readonly,dc=burningflipside,dc=local',
+            'rw_bind_pass'  => 'p@s5w0rd'
+        ),
+        'Auth\\SQLAuthenticator' => array(
+            'current' => false,
+            'pending' => true,
+            'supplement' => false,
+            'pending_data_set' => 'profiles',
+            'pending_user_table' => 'registration'
+        )
+    );
+    public static $email_providers = array(
+      //'Email\\AmazonSES' => array(
+      //    'ini' => '/var/www/secure_settings/aws.ini'
+      //)
+      'Email\\SMTPServer' => array(
+          'host' => 'YOURSMTPEMAILHOST',
+          'port' => 465,
+          'encryption' => 'ssl',
+          'username' => 'YOURSMPTEMAILUSER',
+          'password' => 'YOURSMPTEMAILPASS'
+      )
+    );
+    public static $dataset = array(
+        'tickets' => array(
+            'type' => 'SQLDataSet',
+            'params' => array(
+                'dsn'  => 'mysql:host=172.25.0.102;dbname=tickets',
+                'host' => '172.25.0.102',
+                'user' => 'tickets',
+                'pass' => 'p@s5w0rd'
+            )
+        ),
+        'authentication' => array(
+            'type' => 'SQLDataSet',
+            'params' => array(
+                'dsn' => 'sqlite:/var/www/auth.sq3'
+            )
+        ),
+        'registration' => array(
+            'type' => 'MongoDataSet',
+            'params' => array(
+                'host' => '172.25.0.103',
+                'db'   => 'registrations',
+            )
+        ),
+        'profiles' => array(
+            'type' => 'SQLDataSet',
+            'params' => array(
+                'dsn'  => 'mysql:host=172.25.0.102;dbname=registration',
+                'host' => '172.25.0.102',
+                'user' => 'registration',
+                'pass' => 'p@s5w0rd'
+            )
+        ),
+        'fvs' => array(
+            'type' => 'MongoDataSet',
+            'params' => array(
+                'host' => '172.25.0.103',
+                'db'   => 'volunteer',
+            )
+        ),
+        'email' => array(
+            'type' => 'MongoDataSet',
+            'params' => array(
+                'host' => '172.25.0.103',
+                'db'   => 'email',
+            )
+        )
+    );
+}
+/* vim: set tabstop=4 shiftwidth=4 expandtab: */
+?>

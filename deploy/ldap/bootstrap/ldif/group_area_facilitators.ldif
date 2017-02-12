@@ -1,0 +1,7 @@
+dn: cn=AFs,ou=Groups,dc=burningflipside,dc=local
+changetype: add
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: AFs
+description: Area Facilitators
+uniqueMember: cn=AAR,ou=Groups,dc=burningflipside,dc=local

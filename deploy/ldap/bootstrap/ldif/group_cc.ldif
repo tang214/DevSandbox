@@ -1,0 +1,7 @@
+dn: cn=CC,ou=Groups,dc=burningflipside,dc=local
+changetype: add
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: CC
+description: Members of the Combustion Chamber
+uniqueMember: cn=AAR,ou=Groups,dc=burningflipside,dc=local

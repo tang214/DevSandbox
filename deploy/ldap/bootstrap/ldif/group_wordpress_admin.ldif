@@ -1,0 +1,7 @@
+dn: cn=WordPressAdmins,ou=Groups,dc=burningflipside,dc=local
+changetype: add
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: WordPressAdmins
+description: Wordpress Administrators
+uniqueMember: cn=AFs,ou=Groups,dc=burningflipside,dc=local

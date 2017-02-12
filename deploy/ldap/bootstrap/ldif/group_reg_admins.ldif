@@ -1,0 +1,7 @@
+dn: cn=RegistrationAdmins,ou=Groups,dc=burningflipside,dc=local
+changetype: add
+objectClass: groupOfUniqueNames
+objectClass: top
+cn: RegistrationAdmins
+description: Registration Administrators
+uniqueMember: cn=AFs,ou=Groups,dc=burningflipside,dc=local

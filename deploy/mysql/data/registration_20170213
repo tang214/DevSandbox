@@ -1,0 +1,218 @@
+# ************************************************************
+# Sequel Pro SQL dump
+# Version 4541
+#
+# http://www.sequelpro.com/
+# https://github.com/sequelpro/sequelpro
+#
+# Host: 127.0.0.1 (MySQL 5.7.17)
+# Database: registration
+# Generation Time: 2017-02-13 14:11:44 +0000
+# ************************************************************
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+# Dump of table area
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `area`;
+
+CREATE TABLE `area` (
+  `short_name` varchar(30) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`short_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+LOCK TABLES `area` WRITE;
+/*!40000 ALTER TABLE `area` DISABLE KEYS */;
+
+INSERT INTO `area` (`short_name`, `name`)
+VALUES
+	('360','360/24/7'),
+	('AAR','AAR'),
+	('Art','Art'),
+	('CityPlanning','City Planning'),
+	('Comm','Communications'),
+	('Genesis','Genesis'),
+	('Safety','Safety'),
+	('SignOff','Site Sign-Off'),
+	('SiteOps','Site-Ops'),
+	('SitePrep','Site-Prep'),
+	('VC','Volunteer Coordinator');
+
+/*!40000 ALTER TABLE `area` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table captcha
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `captcha`;
+
+CREATE TABLE `captcha` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `question` varchar(255) DEFAULT NULL,
+  `hint` varchar(255) DEFAULT NULL,
+  `answer` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+LOCK TABLES `captcha` WRITE;
+/*!40000 ALTER TABLE `captcha` DISABLE KEYS */;
+
+INSERT INTO `captcha` (`id`, `question`, `hint`, `answer`)
+VALUES
+	(1,'What does MOOP stand for?','','matter out of place');
+
+/*!40000 ALTER TABLE `captcha` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table position
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `position`;
+
+CREATE TABLE `position` (
+  `short_name` varchar(30) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `area` varchar(30) NOT NULL,
+  PRIMARY KEY (`short_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+LOCK TABLES `position` WRITE;
+/*!40000 ALTER TABLE `position` DISABLE KEYS */;
+
+INSERT INTO `position` (`short_name`, `name`, `area`)
+VALUES
+	('360AF','360/24/7 AF','360'),
+	('Admin','City Planning Admin','CityPlanning'),
+	('ArtAF','Art AF','Art'),
+	('ArtHype','Art Hype','Art'),
+	('ArtInstallationLogistics','Art Installation Logistics','Art'),
+	('BurnableArt','Burnable Art','Art'),
+	('BurnNightCoordinator','Burn Night Coordinator','Art'),
+	('Cartelle','Cartelle','SiteOps'),
+	('Cartography','Cartography','CityPlanning'),
+	('ChurchNightCoordinator','Church Night Coordinator','360'),
+	('Clean-up','Clean-up Lead','SignOff'),
+	('CommAF','Communications AF','Comm'),
+	('CommonsHost','Commons Host','Art'),
+	('Content','Website Content','Comm'),
+	('CPAF','City Planning AF','CityPlanning'),
+	('DaFT','DaFT','Art'),
+	('Director','Director','AAR'),
+	('Disinfo','Disinformation Kiosk','Art'),
+	('DMV','DMV','Art'),
+	('EarthGuardians','Earth Guardian Lead','SignOff'),
+	('Echelon','Echelon','Safety'),
+	('Edjumication','Edjumication','360'),
+	('EffigyAreaLighting','Effigy Area Lighting','Art'),
+	('EmailLists','Email List Wrangler','Comm'),
+	('EquipmentLibrarian','Equipment Librarian','360'),
+	('EVL','Equipment Vendor Liaison','SiteOps'),
+	('Exodus','Exodus','SignOff'),
+	('Fire','Fire Safety Lead','Safety'),
+	('Flagging','Flags/Camp Boundaries','CityPlanning'),
+	('Flame','Flame / Announce','Comm'),
+	('Fuel','Fuel','SiteOps'),
+	('Genesis_AF','Genesis AF','Genesis'),
+	('GraphicArts','Graphic Arts','Art'),
+	('Greeters','Greeters Lead','Genesis'),
+	('Guardians','Guardians','Safety'),
+	('Ice','Ice Lead','SiteOps'),
+	('Interzone','InterZone Coordinator','Genesis'),
+	('LandSearch','Land Search','SitePrep'),
+	('MediaLiaison','Media Liaison','Comm'),
+	('Meteorology','Meteorology','Safety'),
+	('Off-Season','Off-Season Event Planning','360'),
+	('Parking','Parking Lead','Genesis'),
+	('PETs','PETs Lead','Safety'),
+	('Placement','Placement','CityPlanning'),
+	('Power','Power / Electrical','SiteOps'),
+	('PrePost','Pre / Post Ops','SiteOps'),
+	('Procession','Procession Coordinator','Art'),
+	('provisional','Provisional Director','AAR'),
+	('Pyrotechnics','Pyrotechnics','Art'),
+	('RadioComm','Radio Communications','SiteOps'),
+	('Rangers','Ranger Lead','Safety'),
+	('Recycling','Recycling Lead','SignOff'),
+	('RegionalArt','Regional Art Ambassador','Art'),
+	('Roads','Roads','SitePrep'),
+	('safesigns','Safety Signs','SiteOps'),
+	('SafetyAF','Safety AF','Safety'),
+	('SafetyFencing','Safety Fencing','SiteOps'),
+	('SafetyLighting','Safety Lighting','CityPlanning'),
+	('safetylights','Safety Lighting','SiteOps'),
+	('SafetySignage','Boundaries and Safety Signage','Safety'),
+	('Sanctuary','Sanctuary','Safety'),
+	('Sanitation','Sanitation','SitePrep'),
+	('ShavenApes','Shaven Apes Lead','SiteOps'),
+	('Sign-OffAF','Site Sign-Off AF','SignOff'),
+	('Signage','City and Street Signage','CityPlanning'),
+	('Site-OpsAF','Site-Ops AF','SiteOps'),
+	('SitePrepAF','Site Prep AF','SitePrep'),
+	('SocialMedia','Social Media','Comm'),
+	('Sound','Sound Marshal','Safety'),
+	('specops','Special Operations','SiteOps'),
+	('Sticket','Sticket Wrangler','Art'),
+	('SurvivalGuide','Survival Guide','Comm'),
+	('ThemeCampLiaison','Theme Camp Liaison','CityPlanning'),
+	('Ticket','Ticket Distribution','Comm'),
+	('ToolsAndSupplies','Work Weekend Tools and Supplies','SitePrep'),
+	('Towing','Towing Lead','Genesis'),
+	('Transpo','Load In/Out Transpo','SiteOps'),
+	('vas','Volunteer Assistance Squad','VC'),
+	('VC','Volunteer Coordinator','VC'),
+	('WaiverWrangler','Waiver Wrangler','SitePrep'),
+	('WarehouseManager','Warehouse Manager','360'),
+	('Website','Website Admin','Comm'),
+	('WorkWeekendComm','Work Weekend Communications','SitePrep');
+
+/*!40000 ALTER TABLE `position` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table registration
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `registration`;
+
+CREATE TABLE `registration` (
+  `hash` varchar(255) DEFAULT NULL,
+  `data` varchar(4096) DEFAULT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE KEY `hash` (`hash`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+# Dump of table reset
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `reset`;
+
+CREATE TABLE `reset` (
+  `hash` varchar(255) DEFAULT NULL,
+  `uid` varchar(255) DEFAULT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE KEY `hash` (`hash`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

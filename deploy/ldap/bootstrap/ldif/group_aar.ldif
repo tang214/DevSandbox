@@ -1,0 +1,7 @@
+dn: cn=AAR,ou=Groups,dc=burningflipside,dc=local
+changetype: add
+objectClass: top
+objectClass: groupOfUniqueNames
+cn: AAR
+description: Board Members of AAR
+uniqueMember: uid=developer,ou=Users,dc=burningflipside,dc=local
