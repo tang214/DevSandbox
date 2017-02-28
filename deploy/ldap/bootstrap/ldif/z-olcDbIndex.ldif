@@ -1,0 +1,24 @@
+# # Add indexes
+dn: olcDatabase={1}hdb,cn=config
+changetype:  modify
+replace: olcDbIndex
+olcDbIndex: cn eq
+olcDbIndex: uid eq
+olcDbIndex: mail eq
+olcDbIndex: memberOf eq
+olcDbIndex: entryCSN eq
+olcDbIndex: entryUUID eq
+olcDbIndex: objectClass eq
+
+# olcDbIndex: sn pres,sub,eq
+# olcDbIndex: uid pres,sub,eq
+# olcDbIndex: displayName pres,sub,eq
+# olcDbIndex: mail,givenName eq,subinitial
+# olcDbIndex: memberOf pres,sub,eq
+# olcDbIndex: entryCSN pres,sub,eq
+# olcDbIndex: entryUUID pres,sub,eq
+# olcDbIndex: objectClass pres,sub,eq
+# olcDbIndex: default sub
+# olcDbIndex: uidNumber eq
+# olcDbIndex: gidNumber eq
+# olcDbIndex: dc eq
