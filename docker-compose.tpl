@@ -4,7 +4,7 @@ services:
 
   ldap:
     container_name: ldap.burningflipside.local
-    image: burnerdev/openldap:1.1.7
+    image: burnerdev/openldap:1.1.8
     volumes:
       - /BURNINGFLIPSIDE/.volumes/ldap/database:/var/lib/ldap
       - /BURNINGFLIPSIDE/.volumes/ldap/config:/etc/ldap/slapd.d
