@@ -6,6 +6,7 @@ This repo uses Docker Compose so you should have Docker installed on your workst
 
 ## prerequisites
 1. [Install Docker](https://www.docker.com/products/overview)
+1. [Install Docker Compose](https://docs.docker.com/compose/install/)
 1. [Sign up for GitHub Account](https://github.com)
 1. [Fork our repos](https://help.github.com/articles/fork-a-repo/)
   * https://github.com/BurningFlipside/CommonCode
