@@ -582,31 +582,31 @@ DROP TABLE `vproblempendingwcomments`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vproblempendingwcomments`
 AS SELECT
-   `tblticketrequest`.`request_id` AS `request_id`,
-   `tblticketrequest`.`year` AS `year`,
-   `tblticketrequest`.`givenName` AS `givenName`,
-   `tblticketrequest`.`sn` AS `sn`,
-   `tblticketrequest`.`mail` AS `mail`,
-   `tblticketrequest`.`street` AS `street`,
-   `tblticketrequest`.`l` AS `l`,
-   `tblticketrequest`.`st` AS `st`,
-   `tblticketrequest`.`zip` AS `zip`,
-   `tblticketrequest`.`mobile` AS `mobile`,
-   `tblticketrequest`.`modifiedBy` AS `modifiedBy`,
-   `tblticketrequest`.`modifiedByIP` AS `modifiedByIP`,
-   `tblticketrequest`.`modifiedOn` AS `modifiedOn`,
-   `tblticketrequest`.`c` AS `c`,
-   `tblticketrequest`.`total_due` AS `total_due`,
-   `tblticketrequest`.`total_received` AS `total_received`,
-   `tblticketrequest`.`crit_vol` AS `crit_vol`,
-   `tblticketrequest`.`protected` AS `protected`,
-   `tblticketrequest`.`status` AS `status`,
-   `tblticketrequest`.`private_status` AS `private_status`,
-   `tblticketrequest`.`comments` AS `comments`,
-   `tblticketrequest`.`bucket` AS `bucket`,
-   `tblticketrequest`.`revisions` AS `revisions`,
-   `tblticketrequest`.`test` AS `test`
-FROM `tblticketrequest` where ((`tblticketrequest`.`private_status` = 0) and (not((`tblticketrequest`.`comments` like '%Manually Created%'))) and (`tblticketrequest`.`comments` <> ''));
+   `tblTicketRequest`.`request_id` AS `request_id`,
+   `tblTicketRequest`.`year` AS `year`,
+   `tblTicketRequest`.`givenName` AS `givenName`,
+   `tblTicketRequest`.`sn` AS `sn`,
+   `tblTicketRequest`.`mail` AS `mail`,
+   `tblTicketRequest`.`street` AS `street`,
+   `tblTicketRequest`.`l` AS `l`,
+   `tblTicketRequest`.`st` AS `st`,
+   `tblTicketRequest`.`zip` AS `zip`,
+   `tblTicketRequest`.`mobile` AS `mobile`,
+   `tblTicketRequest`.`modifiedBy` AS `modifiedBy`,
+   `tblTicketRequest`.`modifiedByIP` AS `modifiedByIP`,
+   `tblTicketRequest`.`modifiedOn` AS `modifiedOn`,
+   `tblTicketRequest`.`c` AS `c`,
+   `tblTicketRequest`.`total_due` AS `total_due`,
+   `tblTicketRequest`.`total_received` AS `total_received`,
+   `tblTicketRequest`.`crit_vol` AS `crit_vol`,
+   `tblTicketRequest`.`protected` AS `protected`,
+   `tblTicketRequest`.`status` AS `status`,
+   `tblTicketRequest`.`private_status` AS `private_status`,
+   `tblTicketRequest`.`comments` AS `comments`,
+   `tblTicketRequest`.`bucket` AS `bucket`,
+   `tblTicketRequest`.`revisions` AS `revisions`,
+   `tblTicketRequest`.`test` AS `test`
+FROM `tblTicketRequest` where ((`tblTicketRequest`.`private_status` = 0) and (not((`tblTicketRequest`.`comments` like '%Manually Created%'))) and (`tblTicketRequest`.`comments` <> ''));
 
 
 # Replace placeholder table for vproblemreceivedincorrect with correct view syntax
@@ -616,31 +616,31 @@ DROP TABLE `vproblemreceivedincorrect`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vproblemreceivedincorrect`
 AS SELECT
-   `tblticketrequest`.`request_id` AS `request_id`,
-   `tblticketrequest`.`year` AS `year`,
-   `tblticketrequest`.`givenName` AS `givenName`,
-   `tblticketrequest`.`sn` AS `sn`,
-   `tblticketrequest`.`mail` AS `mail`,
-   `tblticketrequest`.`street` AS `street`,
-   `tblticketrequest`.`l` AS `l`,
-   `tblticketrequest`.`st` AS `st`,
-   `tblticketrequest`.`zip` AS `zip`,
-   `tblticketrequest`.`mobile` AS `mobile`,
-   `tblticketrequest`.`modifiedBy` AS `modifiedBy`,
-   `tblticketrequest`.`modifiedByIP` AS `modifiedByIP`,
-   `tblticketrequest`.`modifiedOn` AS `modifiedOn`,
-   `tblticketrequest`.`c` AS `c`,
-   `tblticketrequest`.`total_due` AS `total_due`,
-   `tblticketrequest`.`total_received` AS `total_received`,
-   `tblticketrequest`.`crit_vol` AS `crit_vol`,
-   `tblticketrequest`.`protected` AS `protected`,
-   `tblticketrequest`.`status` AS `status`,
-   `tblticketrequest`.`private_status` AS `private_status`,
-   `tblticketrequest`.`comments` AS `comments`,
-   `tblticketrequest`.`bucket` AS `bucket`,
-   `tblticketrequest`.`revisions` AS `revisions`,
-   `tblticketrequest`.`test` AS `test`
-FROM `tblticketrequest` where ((`tblticketrequest`.`total_due` <> `tblticketrequest`.`total_received`) and (`tblticketrequest`.`private_status` = 1));
+   `tblTicketRequest`.`request_id` AS `request_id`,
+   `tblTicketRequest`.`year` AS `year`,
+   `tblTicketRequest`.`givenName` AS `givenName`,
+   `tblTicketRequest`.`sn` AS `sn`,
+   `tblTicketRequest`.`mail` AS `mail`,
+   `tblTicketRequest`.`street` AS `street`,
+   `tblTicketRequest`.`l` AS `l`,
+   `tblTicketRequest`.`st` AS `st`,
+   `tblTicketRequest`.`zip` AS `zip`,
+   `tblTicketRequest`.`mobile` AS `mobile`,
+   `tblTicketRequest`.`modifiedBy` AS `modifiedBy`,
+   `tblTicketRequest`.`modifiedByIP` AS `modifiedByIP`,
+   `tblTicketRequest`.`modifiedOn` AS `modifiedOn`,
+   `tblTicketRequest`.`c` AS `c`,
+   `tblTicketRequest`.`total_due` AS `total_due`,
+   `tblTicketRequest`.`total_received` AS `total_received`,
+   `tblTicketRequest`.`crit_vol` AS `crit_vol`,
+   `tblTicketRequest`.`protected` AS `protected`,
+   `tblTicketRequest`.`status` AS `status`,
+   `tblTicketRequest`.`private_status` AS `private_status`,
+   `tblTicketRequest`.`comments` AS `comments`,
+   `tblTicketRequest`.`bucket` AS `bucket`,
+   `tblTicketRequest`.`revisions` AS `revisions`,
+   `tblTicketRequest`.`test` AS `test`
+FROM `tblTicketRequest` where ((`tblTicketRequest`.`total_due` <> `tblTicketRequest`.`total_received`) and (`tblTicketRequest`.`private_status` = 1));
 
 
 # Replace placeholder table for vproblems with correct view syntax
@@ -684,31 +684,31 @@ DROP TABLE `vproblemstatus`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vproblemstatus`
 AS SELECT
-   `tblticketrequest`.`request_id` AS `request_id`,
-   `tblticketrequest`.`year` AS `year`,
-   `tblticketrequest`.`givenName` AS `givenName`,
-   `tblticketrequest`.`sn` AS `sn`,
-   `tblticketrequest`.`mail` AS `mail`,
-   `tblticketrequest`.`street` AS `street`,
-   `tblticketrequest`.`l` AS `l`,
-   `tblticketrequest`.`st` AS `st`,
-   `tblticketrequest`.`zip` AS `zip`,
-   `tblticketrequest`.`mobile` AS `mobile`,
-   `tblticketrequest`.`modifiedBy` AS `modifiedBy`,
-   `tblticketrequest`.`modifiedByIP` AS `modifiedByIP`,
-   `tblticketrequest`.`modifiedOn` AS `modifiedOn`,
-   `tblticketrequest`.`c` AS `c`,
-   `tblticketrequest`.`total_due` AS `total_due`,
-   `tblticketrequest`.`total_received` AS `total_received`,
-   `tblticketrequest`.`crit_vol` AS `crit_vol`,
-   `tblticketrequest`.`protected` AS `protected`,
-   `tblticketrequest`.`status` AS `status`,
-   `tblticketrequest`.`private_status` AS `private_status`,
-   `tblticketrequest`.`comments` AS `comments`,
-   `tblticketrequest`.`bucket` AS `bucket`,
-   `tblticketrequest`.`revisions` AS `revisions`,
-   `tblticketrequest`.`test` AS `test`
-FROM `tblticketrequest` where (`tblticketrequest`.`private_status` = 2);
+   `tblTicketRequest`.`request_id` AS `request_id`,
+   `tblTicketRequest`.`year` AS `year`,
+   `tblTicketRequest`.`givenName` AS `givenName`,
+   `tblTicketRequest`.`sn` AS `sn`,
+   `tblTicketRequest`.`mail` AS `mail`,
+   `tblTicketRequest`.`street` AS `street`,
+   `tblTicketRequest`.`l` AS `l`,
+   `tblTicketRequest`.`st` AS `st`,
+   `tblTicketRequest`.`zip` AS `zip`,
+   `tblTicketRequest`.`mobile` AS `mobile`,
+   `tblTicketRequest`.`modifiedBy` AS `modifiedBy`,
+   `tblTicketRequest`.`modifiedByIP` AS `modifiedByIP`,
+   `tblTicketRequest`.`modifiedOn` AS `modifiedOn`,
+   `tblTicketRequest`.`c` AS `c`,
+   `tblTicketRequest`.`total_due` AS `total_due`,
+   `tblTicketRequest`.`total_received` AS `total_received`,
+   `tblTicketRequest`.`crit_vol` AS `crit_vol`,
+   `tblTicketRequest`.`protected` AS `protected`,
+   `tblTicketRequest`.`status` AS `status`,
+   `tblTicketRequest`.`private_status` AS `private_status`,
+   `tblTicketRequest`.`comments` AS `comments`,
+   `tblTicketRequest`.`bucket` AS `bucket`,
+   `tblTicketRequest`.`revisions` AS `revisions`,
+   `tblTicketRequest`.`test` AS `test`
+FROM `tblTicketRequest` where (`tblTicketRequest`.`private_status` = 2);
 
 
 # Replace placeholder table for vrequestwtickets with correct view syntax
@@ -718,28 +718,28 @@ DROP TABLE `vrequestwtickets`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vrequestwtickets`
 AS SELECT
-   `tblrequestedtickets`.`request_id` AS `request_id`,
-   `tblrequestedtickets`.`year` AS `year`,
-   `tblrequestedtickets`.`requested_ticket_id` AS `requested_ticket_id`,
-   `tblrequestedtickets`.`first` AS `first`,
-   `tblrequestedtickets`.`last` AS `last`,
-   `tblrequestedtickets`.`type` AS `type`,
-   `tblrequestedtickets`.`assigned_id` AS `assigned_id`,
-   `tblticketrequest`.`bucket` AS `bucket`,
-   `tblticketrequest`.`crit_vol` AS `crit_vol`,
-   `tblticketrequest`.`protected` AS `protected`,
-   `tblticketrequest`.`givenName` AS `requestor_first`,
-   `tblticketrequest`.`sn` AS `requestor_last`,
-   `tblticketrequest`.`mail` AS `mail`,
-   `tblticketrequest`.`street` AS `street`,
-   `tblticketrequest`.`l` AS `l`,
-   `tblticketrequest`.`st` AS `st`,
-   `tblticketrequest`.`zip` AS `zip`,
-   `tblticketrequest`.`c` AS `c`,
-   `tblticketrequest`.`private_status` AS `private_status`,
-   `tblticketrequest`.`status` AS `status`,
-   `tblrequestedtickets`.`test` AS `test`
-FROM (`tblrequestedtickets` join `tblticketrequest` on(((`tblrequestedtickets`.`year` = `tblticketrequest`.`year`) and (`tblrequestedtickets`.`request_id` = `tblticketrequest`.`request_id`))));
+   `tblRequestedTickets`.`request_id` AS `request_id`,
+   `tblRequestedTickets`.`year` AS `year`,
+   `tblRequestedTickets`.`requested_ticket_id` AS `requested_ticket_id`,
+   `tblRequestedTickets`.`first` AS `first`,
+   `tblRequestedTickets`.`last` AS `last`,
+   `tblRequestedTickets`.`type` AS `type`,
+   `tblRequestedTickets`.`assigned_id` AS `assigned_id`,
+   `tblTicketRequest`.`bucket` AS `bucket`,
+   `tblTicketRequest`.`crit_vol` AS `crit_vol`,
+   `tblTicketRequest`.`protected` AS `protected`,
+   `tblTicketRequest`.`givenName` AS `requestor_first`,
+   `tblTicketRequest`.`sn` AS `requestor_last`,
+   `tblTicketRequest`.`mail` AS `mail`,
+   `tblTicketRequest`.`street` AS `street`,
+   `tblTicketRequest`.`l` AS `l`,
+   `tblTicketRequest`.`st` AS `st`,
+   `tblTicketRequest`.`zip` AS `zip`,
+   `tblTicketRequest`.`c` AS `c`,
+   `tblTicketRequest`.`private_status` AS `private_status`,
+   `tblTicketRequest`.`status` AS `status`,
+   `tblRequestedTickets`.`test` AS `test`
+FROM (`tblRequestedTickets` join `tblTicketRequest` on(((`tblRequestedTickets`.`year` = `tblTicketRequest`.`year`) and (`tblRequestedTickets`.`request_id` = `tblTicketRequest`.`request_id`))));
 
 
 # Replace placeholder table for vproblemmoneywrongstatus with correct view syntax
@@ -749,31 +749,31 @@ DROP TABLE `vproblemmoneywrongstatus`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vproblemmoneywrongstatus`
 AS SELECT
-   `tblticketrequest`.`request_id` AS `request_id`,
-   `tblticketrequest`.`year` AS `year`,
-   `tblticketrequest`.`givenName` AS `givenName`,
-   `tblticketrequest`.`sn` AS `sn`,
-   `tblticketrequest`.`mail` AS `mail`,
-   `tblticketrequest`.`street` AS `street`,
-   `tblticketrequest`.`l` AS `l`,
-   `tblticketrequest`.`st` AS `st`,
-   `tblticketrequest`.`zip` AS `zip`,
-   `tblticketrequest`.`mobile` AS `mobile`,
-   `tblticketrequest`.`modifiedBy` AS `modifiedBy`,
-   `tblticketrequest`.`modifiedByIP` AS `modifiedByIP`,
-   `tblticketrequest`.`modifiedOn` AS `modifiedOn`,
-   `tblticketrequest`.`c` AS `c`,
-   `tblticketrequest`.`total_due` AS `total_due`,
-   `tblticketrequest`.`total_received` AS `total_received`,
-   `tblticketrequest`.`crit_vol` AS `crit_vol`,
-   `tblticketrequest`.`protected` AS `protected`,
-   `tblticketrequest`.`status` AS `status`,
-   `tblticketrequest`.`private_status` AS `private_status`,
-   `tblticketrequest`.`comments` AS `comments`,
-   `tblticketrequest`.`bucket` AS `bucket`,
-   `tblticketrequest`.`revisions` AS `revisions`,
-   `tblticketrequest`.`test` AS `test`
-FROM `tblticketrequest` where ((`tblticketrequest`.`private_status` not in (1,2,3,4,5,6)) and (`tblticketrequest`.`total_received` <> 0));
+   `tblTicketRequest`.`request_id` AS `request_id`,
+   `tblTicketRequest`.`year` AS `year`,
+   `tblTicketRequest`.`givenName` AS `givenName`,
+   `tblTicketRequest`.`sn` AS `sn`,
+   `tblTicketRequest`.`mail` AS `mail`,
+   `tblTicketRequest`.`street` AS `street`,
+   `tblTicketRequest`.`l` AS `l`,
+   `tblTicketRequest`.`st` AS `st`,
+   `tblTicketRequest`.`zip` AS `zip`,
+   `tblTicketRequest`.`mobile` AS `mobile`,
+   `tblTicketRequest`.`modifiedBy` AS `modifiedBy`,
+   `tblTicketRequest`.`modifiedByIP` AS `modifiedByIP`,
+   `tblTicketRequest`.`modifiedOn` AS `modifiedOn`,
+   `tblTicketRequest`.`c` AS `c`,
+   `tblTicketRequest`.`total_due` AS `total_due`,
+   `tblTicketRequest`.`total_received` AS `total_received`,
+   `tblTicketRequest`.`crit_vol` AS `crit_vol`,
+   `tblTicketRequest`.`protected` AS `protected`,
+   `tblTicketRequest`.`status` AS `status`,
+   `tblTicketRequest`.`private_status` AS `private_status`,
+   `tblTicketRequest`.`comments` AS `comments`,
+   `tblTicketRequest`.`bucket` AS `bucket`,
+   `tblTicketRequest`.`revisions` AS `revisions`,
+   `tblTicketRequest`.`test` AS `test`
+FROM `tblTicketRequest` where ((`tblTicketRequest`.`private_status` not in (1,2,3,4,5,6)) and (`tblTicketRequest`.`total_received` <> 0));
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
