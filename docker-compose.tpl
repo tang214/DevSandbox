@@ -99,7 +99,7 @@ services:
     ports:
       - "3300:443"
     depends_on:
-      - ldapdb
+      - ldap
       - mysql
       - mongo
     restart: always
