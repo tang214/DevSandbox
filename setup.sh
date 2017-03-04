@@ -51,7 +51,7 @@ if [ ! -f 'src/secure_settings/aws.ini' ]; then
 fi
 
 action "fetch ldap image"
-docker pull burnerdev/openldap:1.1.7; ok
+docker pull burnerdev/openldap:1.1.8; ok
 
 action "fetch mongo image"
 docker pull burnerdev/mongo:3.4; ok

@@ -43,7 +43,7 @@ services:
 
   # www:
   #   container_name: www.burningflipside.local
-  #   image: burnerdev/nginx-php-fpm:php7
+  #   image: burnerdev/php:7.1-apache
   #   env_file:
   #     - secrets/envvars
   #     - secrets/www/envvars
@@ -65,7 +65,7 @@ services:
 
   # wiki:
   #   container_name: wiki.burningflipside.local
-  #   image: burnerdev/nginx-php-fpm:php7
+  #   image: burnerdev/php:7.1-apache
   #   env_file:
   #     - secrets/envvars
   #     - secrets/wiki/envvars
@@ -86,7 +86,7 @@ services:
 
   profiles:
     container_name: profiles.burningflipside.local
-    image: burnerdev/nginx-php-fpm:php7
+    image: burnerdev/php:7.1-apache
     env_file:
       - secrets/envvars
       - secrets/profiles/envvars
@@ -99,7 +99,7 @@ services:
     ports:
       - "3300:443"
     depends_on:
-      - ldapdb
+      - ldap
       - mysql
       - mongo
     restart: always
@@ -109,7 +109,7 @@ services:
 
   secure:
     container_name: secure.burningflipside.local
-    image: burnerdev/nginx-php-fpm:php7
+    image: burnerdev/php:7.1-apache
     env_file:
       - secrets/envvars
       - secrets/secure/envvars
