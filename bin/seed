@@ -21,6 +21,7 @@ case $selection in
       -v `pwd`/deploy/mysql/data:/docker-entrypoint-initdb.d \
       -p 3306:3306 \
       -e MYSQL_RANDOM_ROOT_PASSWORD=1 \
+      -e SEED_ONLY=1 \
       burnerdev/mysql:5.7
     ;;
   2)
@@ -30,6 +31,7 @@ case $selection in
       -v `pwd`/.volumes/mongo/configdb:/data/configdb/ \
       -v `pwd`/deploy/mongo/data:/docker-entrypoint-initdb.d \
       -p 27017:27017 \
+      -e SEED_ONLY=1 \
       burnerdev/mongo:3.4
     ;;
   3)

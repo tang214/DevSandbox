@@ -180,4 +180,11 @@ if [ "$1" = 'mysqld' -a -z "$wantHelp" ]; then
 	fi
 fi
 
-exec "$@"
+# if seed only do not start process
+if [ ! -z "$SEED_ONLY" ]; then
+	echo
+	echo 'MySQL seed process done.'
+	echo
+else
+	exec "$@"
+fi	

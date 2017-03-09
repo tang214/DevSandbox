@@ -98,4 +98,11 @@ if [ "$1" = 'mongod' -a -z "$wantHelp" ]; then
 	fi
 fi
 
-exec "$@"
+# if seed only do not start process
+if [ ! -z "$SEED_ONLY" ]; then
+	echo
+	echo 'MongoDB seed process done.'
+	echo
+else
+	exec "$@"
+fi	
