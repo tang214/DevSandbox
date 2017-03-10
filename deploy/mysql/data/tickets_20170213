@@ -632,7 +632,7 @@ CREATE TABLE `vRequestWTickets` (
 
 DROP TABLE `vProblemReceivedWComments`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vproblemreceivedwcomments`
+CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vProblemReceivedWComments`
 AS SELECT
    `tblTicketRequest`.`request_id` AS `request_id`,
    `tblTicketRequest`.`year` AS `year`,
@@ -666,7 +666,7 @@ FROM `tblTicketRequest` where ((`tblTicketRequest`.`private_status` = 1) and (no
 
 DROP TABLE `vProblemStatus`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vproblemstatus`
+CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vProblemStatus`
 AS SELECT
    `tblTicketRequest`.`request_id` AS `request_id`,
    `tblTicketRequest`.`year` AS `year`,
@@ -700,7 +700,7 @@ FROM `tblTicketRequest` where (`tblTicketRequest`.`private_status` = 2);
 
 DROP TABLE `vProblemMoneyWrongStatus`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vproblemmoneywrongstatus`
+CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vProblemMoneyWrongStatus`
 AS SELECT
    `tblTicketRequest`.`request_id` AS `request_id`,
    `tblTicketRequest`.`year` AS `year`,
@@ -734,7 +734,7 @@ FROM `tblTicketRequest` where ((`tblTicketRequest`.`private_status` not in (1,2,
 
 DROP TABLE `vProblemReceivedIncorrect`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vproblemreceivedincorrect`
+CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vProblemReceivedIncorrect`
 AS SELECT
    `tblTicketRequest`.`request_id` AS `request_id`,
    `tblTicketRequest`.`year` AS `year`,
@@ -802,7 +802,7 @@ FROM `tblTicketRequest` where ((`tblTicketRequest`.`private_status` = 0) and (no
 
 DROP TABLE `vRequestWTickets`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vrequestwtickets`
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vRequestWTickets`
 AS SELECT
    `tblRequestedTickets`.`request_id` AS `request_id`,
    `tblRequestedTickets`.`year` AS `year`,
@@ -833,7 +833,7 @@ FROM (`tblRequestedTickets` join `tblTicketRequest` on(((`tblRequestedTickets`.`
 
 DROP TABLE `vProblems`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vproblems`
+CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vProblems`
 AS SELECT
    `vProblemPendingWComments`.`request_id` AS `request_id`,
    `vProblemPendingWComments`.`year` AS `year`,
@@ -859,7 +859,7 @@ AS SELECT
    `vProblemPendingWComments`.`bucket` AS `bucket`,
    `vProblemPendingWComments`.`revisions` AS `revisions`,
    `vProblemPendingWComments`.`test` AS `test`
-FROM `vProblemPendingWComments` union select `vproblemstatus`.`request_id` AS `request_id`,`vproblemstatus`.`year` AS `year`,`vproblemstatus`.`givenName` AS `givenName`,`vproblemstatus`.`sn` AS `sn`,`vproblemstatus`.`mail` AS `mail`,`vproblemstatus`.`street` AS `street`,`vproblemstatus`.`l` AS `l`,`vproblemstatus`.`st` AS `st`,`vproblemstatus`.`zip` AS `zip`,`vproblemstatus`.`mobile` AS `mobile`,`vproblemstatus`.`modifiedBy` AS `modifiedBy`,`vproblemstatus`.`modifiedByIP` AS `modifiedByIP`,`vproblemstatus`.`modifiedOn` AS `modifiedOn`,`vproblemstatus`.`c` AS `c`,`vproblemstatus`.`total_due` AS `total_due`,`vproblemstatus`.`total_received` AS `total_received`,`vproblemstatus`.`crit_vol` AS `crit_vol`,`vproblemstatus`.`protected` AS `protected`,`vproblemstatus`.`status` AS `status`,`vproblemstatus`.`private_status` AS `private_status`,`vproblemstatus`.`comments` AS `comments`,`vproblemstatus`.`bucket` AS `bucket`,`vproblemstatus`.`revisions` AS `revisions`,`vproblemstatus`.`test` AS `test` from `vproblemstatus` union select `vproblemmoneywrongstatus`.`request_id` AS `request_id`,`vproblemmoneywrongstatus`.`year` AS `year`,`vproblemmoneywrongstatus`.`givenName` AS `givenName`,`vproblemmoneywrongstatus`.`sn` AS `sn`,`vproblemmoneywrongstatus`.`mail` AS `mail`,`vproblemmoneywrongstatus`.`street` AS `street`,`vproblemmoneywrongstatus`.`l` AS `l`,`vproblemmoneywrongstatus`.`st` AS `st`,`vproblemmoneywrongstatus`.`zip` AS `zip`,`vproblemmoneywrongstatus`.`mobile` AS `mobile`,`vproblemmoneywrongstatus`.`modifiedBy` AS `modifiedBy`,`vproblemmoneywrongstatus`.`modifiedByIP` AS `modifiedByIP`,`vproblemmoneywrongstatus`.`modifiedOn` AS `modifiedOn`,`vproblemmoneywrongstatus`.`c` AS `c`,`vproblemmoneywrongstatus`.`total_due` AS `total_due`,`vproblemmoneywrongstatus`.`total_received` AS `total_received`,`vproblemmoneywrongstatus`.`crit_vol` AS `crit_vol`,`vproblemmoneywrongstatus`.`protected` AS `protected`,`vproblemmoneywrongstatus`.`status` AS `status`,`vproblemmoneywrongstatus`.`private_status` AS `private_status`,`vproblemmoneywrongstatus`.`comments` AS `comments`,`vproblemmoneywrongstatus`.`bucket` AS `bucket`,`vproblemmoneywrongstatus`.`revisions` AS `revisions`,`vproblemmoneywrongstatus`.`test` AS `test` from `vproblemmoneywrongstatus` union select `vproblemreceivedincorrect`.`request_id` AS `request_id`,`vproblemreceivedincorrect`.`year` AS `year`,`vproblemreceivedincorrect`.`givenName` AS `givenName`,`vproblemreceivedincorrect`.`sn` AS `sn`,`vproblemreceivedincorrect`.`mail` AS `mail`,`vproblemreceivedincorrect`.`street` AS `street`,`vproblemreceivedincorrect`.`l` AS `l`,`vproblemreceivedincorrect`.`st` AS `st`,`vproblemreceivedincorrect`.`zip` AS `zip`,`vproblemreceivedincorrect`.`mobile` AS `mobile`,`vproblemreceivedincorrect`.`modifiedBy` AS `modifiedBy`,`vproblemreceivedincorrect`.`modifiedByIP` AS `modifiedByIP`,`vproblemreceivedincorrect`.`modifiedOn` AS `modifiedOn`,`vproblemreceivedincorrect`.`c` AS `c`,`vproblemreceivedincorrect`.`total_due` AS `total_due`,`vproblemreceivedincorrect`.`total_received` AS `total_received`,`vproblemreceivedincorrect`.`crit_vol` AS `crit_vol`,`vproblemreceivedincorrect`.`protected` AS `protected`,`vproblemreceivedincorrect`.`status` AS `status`,`vproblemreceivedincorrect`.`private_status` AS `private_status`,`vproblemreceivedincorrect`.`comments` AS `comments`,`vproblemreceivedincorrect`.`bucket` AS `bucket`,`vproblemreceivedincorrect`.`revisions` AS `revisions`,`vproblemreceivedincorrect`.`test` AS `test` from `vproblemreceivedincorrect`;
+FROM `vProblemPendingWComments` union select `vProblemStatus`.`request_id` AS `request_id`,`vProblemStatus`.`year` AS `year`,`vProblemStatus`.`givenName` AS `givenName`,`vProblemStatus`.`sn` AS `sn`,`vProblemStatus`.`mail` AS `mail`,`vProblemStatus`.`street` AS `street`,`vProblemStatus`.`l` AS `l`,`vProblemStatus`.`st` AS `st`,`vProblemStatus`.`zip` AS `zip`,`vProblemStatus`.`mobile` AS `mobile`,`vProblemStatus`.`modifiedBy` AS `modifiedBy`,`vProblemStatus`.`modifiedByIP` AS `modifiedByIP`,`vProblemStatus`.`modifiedOn` AS `modifiedOn`,`vProblemStatus`.`c` AS `c`,`vProblemStatus`.`total_due` AS `total_due`,`vProblemStatus`.`total_received` AS `total_received`,`vProblemStatus`.`crit_vol` AS `crit_vol`,`vProblemStatus`.`protected` AS `protected`,`vProblemStatus`.`status` AS `status`,`vProblemStatus`.`private_status` AS `private_status`,`vProblemStatus`.`comments` AS `comments`,`vProblemStatus`.`bucket` AS `bucket`,`vProblemStatus`.`revisions` AS `revisions`,`vProblemStatus`.`test` AS `test` from `vProblemStatus` union select `vproblemmoneywrongstatus`.`request_id` AS `request_id`,`vproblemmoneywrongstatus`.`year` AS `year`,`vproblemmoneywrongstatus`.`givenName` AS `givenName`,`vproblemmoneywrongstatus`.`sn` AS `sn`,`vproblemmoneywrongstatus`.`mail` AS `mail`,`vproblemmoneywrongstatus`.`street` AS `street`,`vproblemmoneywrongstatus`.`l` AS `l`,`vproblemmoneywrongstatus`.`st` AS `st`,`vproblemmoneywrongstatus`.`zip` AS `zip`,`vproblemmoneywrongstatus`.`mobile` AS `mobile`,`vproblemmoneywrongstatus`.`modifiedBy` AS `modifiedBy`,`vproblemmoneywrongstatus`.`modifiedByIP` AS `modifiedByIP`,`vproblemmoneywrongstatus`.`modifiedOn` AS `modifiedOn`,`vproblemmoneywrongstatus`.`c` AS `c`,`vproblemmoneywrongstatus`.`total_due` AS `total_due`,`vproblemmoneywrongstatus`.`total_received` AS `total_received`,`vproblemmoneywrongstatus`.`crit_vol` AS `crit_vol`,`vproblemmoneywrongstatus`.`protected` AS `protected`,`vproblemmoneywrongstatus`.`status` AS `status`,`vproblemmoneywrongstatus`.`private_status` AS `private_status`,`vproblemmoneywrongstatus`.`comments` AS `comments`,`vproblemmoneywrongstatus`.`bucket` AS `bucket`,`vproblemmoneywrongstatus`.`revisions` AS `revisions`,`vproblemmoneywrongstatus`.`test` AS `test` from `vproblemmoneywrongstatus` union select `vproblemreceivedincorrect`.`request_id` AS `request_id`,`vproblemreceivedincorrect`.`year` AS `year`,`vproblemreceivedincorrect`.`givenName` AS `givenName`,`vproblemreceivedincorrect`.`sn` AS `sn`,`vproblemreceivedincorrect`.`mail` AS `mail`,`vproblemreceivedincorrect`.`street` AS `street`,`vproblemreceivedincorrect`.`l` AS `l`,`vproblemreceivedincorrect`.`st` AS `st`,`vproblemreceivedincorrect`.`zip` AS `zip`,`vproblemreceivedincorrect`.`mobile` AS `mobile`,`vproblemreceivedincorrect`.`modifiedBy` AS `modifiedBy`,`vproblemreceivedincorrect`.`modifiedByIP` AS `modifiedByIP`,`vproblemreceivedincorrect`.`modifiedOn` AS `modifiedOn`,`vproblemreceivedincorrect`.`c` AS `c`,`vproblemreceivedincorrect`.`total_due` AS `total_due`,`vproblemreceivedincorrect`.`total_received` AS `total_received`,`vproblemreceivedincorrect`.`crit_vol` AS `crit_vol`,`vproblemreceivedincorrect`.`protected` AS `protected`,`vproblemreceivedincorrect`.`status` AS `status`,`vproblemreceivedincorrect`.`private_status` AS `private_status`,`vproblemreceivedincorrect`.`comments` AS `comments`,`vproblemreceivedincorrect`.`bucket` AS `bucket`,`vproblemreceivedincorrect`.`revisions` AS `revisions`,`vproblemreceivedincorrect`.`test` AS `test` from `vproblemreceivedincorrect`;
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
