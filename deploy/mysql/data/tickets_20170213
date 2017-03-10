@@ -129,7 +129,7 @@ LOCK TABLES `tblQuestions` WRITE;
 
 INSERT INTO `tblQuestions` (`id`, `displayString`, `answerFormat`, `answers`)
 VALUES
-	(1,'Trash is accepted at recycling.','[\"bool\"]','[false]'),
+	(1,'Trash is accepted at recycling.','[\"bool\"]','[false]');
 
 /*!40000 ALTER TABLE `tblQuestions` ENABLE KEYS */;
 UNLOCK TABLES;
