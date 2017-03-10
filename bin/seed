@@ -39,7 +39,7 @@ case $selection in
       --name browscap.init \
       -v `pwd`/src/common:/var/www/common \
       -v `pwd`/.volumes/browser:/var/php_cache/browser \
-      burnerdev/php:7.1-apache /usr/bin/php7 /var/www/common/cron.php
+      burnerdev/php:7.1-apache /usr/local/bin/php /var/www/common/cron.php
     ;;
   *)
     die
