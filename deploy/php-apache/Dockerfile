@@ -101,16 +101,17 @@ RUN buildDeps=" \
   # && make clean
 
   RUN { \
-      echo ';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;' \
-      echo '; Burning Flipside App Mods      ;' \
-      echo ';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;' \
-      echo 'include_path = .:/var/www/common:/usr/share/pear' \
-      echo 'output_buffering = 1' \
-      echo '' \
+      echo ';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;'; \
+      echo '; Burning Flipside App Mods      ;'; \
+      echo ';;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;'; \
+      echo 'include_path = .:/var/www/common:/usr/share/pear'; \
+      echo 'output_buffering = 1'; \
+      echo ''; \
   		echo '[Session]'; \
-  		echo 'session.cookie_domain = .burningflipside.com'; \
+      # make this a env var
+  		# echo 'session.cookie_domain = .burningflipside.com'; \
   		echo 'session.save_path = /var/lib/php/session'; \
-  	} | tee "/usr/local/etc/php/conf.d/docker-php-ext-session.ini" \
+  	} | tee "/usr/local/etc/php/conf.d/docker-php-ext-session.ini"
 
 # RUN sed -i \
 #   -e "s|  |  |g" \

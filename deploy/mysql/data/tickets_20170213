@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.17)
 # Database: tickets
-# Generation Time: 2017-02-13 14:14:04 +0000
+# Generation Time: 2017-03-10 04:35:09 +0000
 # ************************************************************
 
 
@@ -33,15 +33,6 @@ CREATE TABLE `tblDonationTypes` (
   UNIQUE KEY `entityName_UNIQUE` (`entityName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-LOCK TABLES `tblDonationTypes` WRITE;
-/*!40000 ALTER TABLE `tblDonationTypes` DISABLE KEYS */;
-
-INSERT INTO `tblDonationTypes` (`entityName`, `thirdParty`, `url`)
-VALUES
-	('Tinderbox',1,'http://tinderbox.es');
-
-/*!40000 ALTER TABLE `tblDonationTypes` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 # Dump of table tblEarlyEntryMap
@@ -85,10 +76,11 @@ LOCK TABLES `tblLongText` WRITE;
 
 INSERT INTO `tblLongText` (`name`, `value`)
 VALUES
-	('pdf_source','<style type=\"text/css\">body {\nfont-family: helvetica, arial, sans-serif;\nfont-size: 12px;\n}\n\n.h3 {\nfont-size: 1em;\nmargin: 1em 0 .25em 0;\nfont-style: italic;\n}\n\n.h3+* {\nmargin-top: 0;\n}\n\n.sidehead {\nwidth: 16%; \nfont-weight: bold; \ntext-align: right; \nvertical-align: top;\npadding: 0 1em 0 0;\nfont-weight: bold; \nfont-size: 1em;\n}\n\n.contactlabel {\nwidth: 16%; \ntext-align: right; \nvertical-align: top;\npadding: 0 1em 0 0;\n}\n\n.contactinfo {\ntext-align: left; \nvertical-align: top;\n\n}\n</style>\n<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:100%\">\n	<tbody>\n		<tr>\n			<td class=\"sidehead\">{$last}</td>\n			<td><center>\n			<h1 style=\"text-align:center\">Burning Flipside {$year}<br />\n			Ticket Request</h1></center>\n			</td>\n			<td style=\"width: 16%; text-align: center;\">\n			<p>{$barcode}</p>\n\n			<p><span style=\"font-size:18px; font-weight: bold;\">{$request_id}</span></p>\n			</td>\n		</tr>\n	</tbody>\n</table>\n\n<hr />\n<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:100%\">\n	<tbody>\n		<tr>\n			<td class=\"sidehead\">\n			<p>Instructions</p>\n			</td>\n			<td>\n			<ol>\n				<li><strong>Purchase</strong>&nbsp;a money order,&nbsp;cashier&#39;s check or teller&#39;s check for ${$total_due} made out to Austin Artistic Reconstruction.\n				<ul type=\"a\">\n					<li><strong>Write</strong>&nbsp;{$request_id} in the memo field</li>\n					<li><strong>Keep&nbsp;</strong>your payment receipt, you will need it for lost mail or returns.</li>\n					<li><strong>Sign</strong>&nbsp;your money order if a signature is required</li>\n				</ul>\n				</li>\n				<li><strong>Print</strong>&nbsp;this form on a sheet of 8.5x11 paper (standard letter-size paper).</li>\n				<li><strong>Mail</strong>&nbsp;this form (the whole page) with your payment in a stamped envelope with your return address on it. The envelope should be addressed to:</li>\n			</ol>\n\n			<table>\n				<tbody>\n					<tr>\n						<td class=\"contactlabel\">&nbsp;</td>\n						<td>Austin Artistic Reconstruction, Ticket Request<br />\n						P.O. Box 9987<br />\n						Austin, TX 78766</td>\n					</tr>\n				</tbody>\n			</table>\n\n			<ol start=\"3\">\n				<li><strong>Ensure</strong>&nbsp;that the postmark is no earlier than {$open_date} and not later than {$close_date}.</li>\n			</ol>\n\n			<p>NOTE: Tickets are limited. If we receive valid requests in excess of that limit, orders will be filled randomly from total requests. Any unfilled requests will be returned.</p>\n			</td>\n		</tr>\n	</tbody>\n</table>\n\n<hr />\n<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:100%\">\n	<tbody>\n		<tr>\n			<td class=\"sidehead\">\n			<p>Your Info</p>\n			</td>\n			<td>\n			<p class=\"h3\">Contact Info</p>\n\n			<table border=\"0\" cellpadding=\"1\" cellspacing=\"1\" style=\"width: 100%;\">\n				<tbody>\n					<tr>\n						<td class=\"contactlabel\">Address</td>\n						<td class=\"contactinfo\">{$address}</td>\n					</tr>\n					<tr>\n						<td class=\"contactlabel\">Email</td>\n						<td class=\"contactinfo\">{$email}</td>\n					</tr>\n					<tr>\n						<td class=\"contactlabel\">Phone</td>\n						<td class=\"contactinfo\">{$phone}</td>\n					</tr>\n				</tbody>\n			</table>\n\n			<p class=\"h3\">Tickets</p>\n\n			<p>{$ticket_table}</p>\n\n			<p class=\"h3\">Donations</p>\n\n			<p>{$donation_table}</p>\n\n			<p><em>Total Due</em></p>\n\n			<p><span style=\"font-size: 18px; font-weight: bold;\">${$total_due}</span></p>\n			</td>\n		</tr>\n	</tbody>\n</table>\n\n<hr />\n<p>Request Date: {$request_date}</p>\n'),
-	('ticket_pdf_source','<style type=\"text/css\">body {\nfont-family: helvetica, arial, sans-serif;\nfont-size: 12px;\n}\n\n.h3 {\nfont-size: 1em;\nmargin: 1em 0 .25em 0;\nfont-style: italic;\n}\n\n.h3+* {\nmargin-top: 0;\n}\n\n.sidehead {\nwidth: 16%; \nfont-weight: bold; \ntext-align: right; \nvertical-align: top;\npadding: 0 1em 0 0;\nfont-weight: bold; \nfont-size: 1em;\n}\n\n.contactlabel {\nwidth: 16%; \ntext-align: right; \nvertical-align: top;\npadding: 0 1em 0 0;\n}\n\n.contactinfo {\ntext-align: left; \nvertical-align: top;\n\n}\n</style>\n<h1 style=\"text-align:center\">Burning Flipside {$year}&nbsp;Will-Call Receipt</h1>\n\n<hr />\n<p style=\"text-align:center\">{$barcode}</p>\n\n<p style=\"text-align: center;\"><span style=\"text-align:center; font-size:18px; font-weight: bold;\">{$ticket_id}</span></p>\n\n<hr />\n<p><span style=\"font-size:10px;\">This document will make entry to Burning Flipside much faster. Simply print this document and present it at gate (our scanners cannot read barcodes from phone screens).</span></p>\n\n<p><span style=\"font-size:10px;\">This document does not, however, guarantee access to Burning Flipside. If multiple copies of this document are presented at&nbsp;the Burning Flipside gate only the first presenter will be given permission to enter.</span></p>\n\n<hr />\n<p style=\"text-align: center;\"><strong>You voluntarily assume any risk of serious injury or death by attending.</strong></p>\n\n<p>You must bring enough food, water, shelter, and first aid to survive a long weekend in rural Texas. Proper footwear and personal lighting are essential. You may encounter venomous snakes and insects, wild animals, thorns, and poison ivy. Extreme heat and flash flood conditions are possible. Be Aware.</p>\n\n<p>Vending, firearms, fireworks, rockets, and all other explosives prohibited. Commercial user of images taken at Burning Flipside is prohibited without prior written consent of Austin Artistic Reconstruction, LLC.</p>\n\n<p>You agree to abide by all rules in the Survival Guide. This is not a consumer event. Leave nothing behind when you leave the site.</p>\n\n<hr />\n<h2>Transfer Information</h2>\n\n<table>\n	<tbody>\n		<tr>\n			<td>\n			<p><span style=\"font-size:10px;\">This will-call receipt is currently in the name of {$name}.&nbsp;If you have received this will-call receipt from someone else and your name is not {$name}, please make sure to register the ticket in your name promptly. This will make gate formalities much faster, and will protect you from the same ticket code being sold to multiple people (your ticket code will change when you register it).&nbsp;If this ticket is for a minor, please see the section at the end of the document for specific minor documentation requirements.</span></p>\n\n			<p><span style=\"font-size:10px;\">To register the ticket in your name, do the following:</span></p>\n\n			<ol>\n				<li><span style=\"font-size:10px;\">If you don&#39;t already have an account at&nbsp;the burningflipside.com website, please create one; if you do have an account, log in.</span></li>\n				<li><span style=\"font-size:10px;\">Visit <a href=\"https://secure.burningflipside.com/tickets/transfer.php\">https://secure.burningflipside.com/tickets/transfer.php</a> or scan this QR code with your phone.</span></li>\n				<li><span style=\"font-size:10px;\">Follow the instructions on the page and enter the following code when prompted (scanning the QR code should enter it automatically):<br />\n				&nbsp;{$word_code}&nbsp;</span></li>\n			</ol>\n			</td>\n			<td>{$transfer_qr}</td>\n		</tr>\n	</tbody>\n</table>\n\n<hr />\n<h2>Loss, Theft, or Other Issues</h2>\n\n<p><span style=\"font-size:10px;\">The information on this document is enough information for a person to use this ticket to enter Burning Flipside. If you lose&nbsp;or have a copy of this document stolen from you please email <a href=\"mailto:tickets@burningflipside.com\">tickets@burningflipside.com</a> as soon as possible to report the&nbsp;loss or theft.</span></p>\n\n<hr />\n<h2>Minor Information</h2>\n\n<p><span style=\"font-size:10px;\">If this ticket is for a minor (any one under the age of 18), then the child must be accompanied by a legal guardian and this&nbsp;ticket must be accompanied by a signed minor affidavit or state-issued&nbsp;paperwork (such as a&nbsp;passport or state-issued birth certificate) naming the adult accompanying the minor as the legal guardian for the minor.</span></p>\n'),
+	('pdf_source','<style type=\"text/css\">body {\nfont-family: helvetica, arial, sans-serif;\nfont-size: 12px;\n}\n\n.h3 {\nfont-size: 1em;\nmargin: 1em 0 .25em 0;\nfont-style: italic;\n}\n\n.h3+* {\nmargin-top: 0;\n}\n\n.sidehead {\nwidth: 16%; \nfont-weight: bold; \ntext-align: right; \nvertical-align: top;\npadding: 0 1em 0 0;\nfont-weight: bold; \nfont-size: 1em;\n}\n.lastname {\nfont-size: 2em;\n}\n\n.contactlabel {\nwidth: 16%; \ntext-align: right; \nvertical-align: top;\npadding: 0 1em 0 0;\n}\n\n.contactinfo {\ntext-align: left; \nvertical-align: top;\n\n}\n</style>\n<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"margin:0 auto; width:90%\">\n	<tbody>\n		<tr>\n			<td>\n			<center>\n			<h1 style=\"text-align:center\">{$year} Burning Flipside Ticket Request</h1>\n			</center>\n			</td>\n		</tr>\n	</tbody>\n</table>\n\n<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"margin:0 auto; width:90%\">\n	<tbody>\n		<tr>\n			<td class=\"sidehead lastname\" style=\"width: 50%; text-align: center;\">{$last}</td>\n			<td style=\"text-align: center;\">\n			<p>{$barcode}</p>\n\n			<p><span style=\"font-size:18px; font-weight: bold;\">{$request_id}</span></p>\n			</td>\n		</tr>\n	</tbody>\n</table>\n\n<hr />\n<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:100%\">\n	<tbody>\n		<tr>\n			<td class=\"sidehead\">\n			<p>Instructions</p>\n			</td>\n			<td>\n			<ol>\n				<li><strong>Purchase</strong>&nbsp;a money order,&nbsp;cashier&#39;s check or teller&#39;s check for ${$total_due} made out to Austin Artistic Reconstruction.\n				<ul type=\"a\">\n					<li><strong>Write</strong>&nbsp;{$request_id} in the memo field</li>\n					<li><strong>Keep&nbsp;</strong>your payment receipt, you will need it for lost mail or returns.</li>\n					<li><strong>Sign</strong>&nbsp;your money order if a signature is required</li>\n				</ul>\n				</li>\n				<li><strong>Print</strong>&nbsp;this form on a sheet of 8.5x11 paper (standard letter-size paper).</li>\n				<li><strong>Mail</strong>&nbsp;this form (the whole page) with your payment in a stamped envelope with your return address on it. The envelope should be addressed to:</li>\n			</ol>\n\n			<table>\n				<tbody>\n					<tr>\n						<td class=\"contactlabel\">&nbsp;</td>\n						<td>Austin Artistic Reconstruction, Ticket Request<br />\n						P.O. Box 9987<br />\n						Austin, TX 78766</td>\n					</tr>\n				</tbody>\n			</table>\n\n			<ol start=\"3\">\n				<li><strong>Ensure</strong>&nbsp;that the postmark is no earlier than {$open_date} and not later than {$close_date}.</li>\n			</ol>\n\n			<p>NOTE: Tickets are limited. If we receive valid requests in excess of that limit, orders will be filled randomly from total requests. Any unfilled requests will be returned.</p>\n			</td>\n		</tr>\n	</tbody>\n</table>\n\n<hr />\n<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"width:100%\">\n	<tbody>\n		<tr>\n			<td class=\"sidehead\">\n			<p>Your Info</p>\n			</td>\n			<td>\n			<p class=\"h3\">Contact Info</p>\n\n			<table border=\"0\" cellpadding=\"1\" cellspacing=\"1\" style=\"width: 100%;\">\n				<tbody>\n					<tr>\n						<td class=\"contactlabel\">Address</td>\n						<td class=\"contactinfo\">{$address}</td>\n					</tr>\n					<tr>\n						<td class=\"contactlabel\">Email</td>\n						<td class=\"contactinfo\">{$email}</td>\n					</tr>\n					<tr>\n						<td class=\"contactlabel\">Phone</td>\n						<td class=\"contactinfo\">{$phone}</td>\n					</tr>\n				</tbody>\n			</table>\n\n			<p class=\"h3\">Tickets</p>\n\n			<p>{$ticket_table}</p>\n\n			<p class=\"h3\">Donations</p>\n\n			<p>{$donation_table}</p>\n\n			<p><em>Total Due</em></p>\n\n			<p><span style=\"font-size: 18px; font-weight: bold;\">${$total_due}</span></p>\n			</td>\n		</tr>\n	</tbody>\n</table>\n\n<hr />\n<p>{$envelopeArtText}</p>\n\n<hr />\n<p>Request Date: {$request_date}</p>\n'),
+	('ticket_pdf_source','<style type=\"text/css\">body {\nfont-family: helvetica, arial, sans-serif;\nfont-size: 12px;\n}\n\n.h3 {\nfont-size: 1em;\nmargin: 1em 0 .25em 0;\nfont-style: italic;\n}\n\n.h3+* {\nmargin-top: 0;\n}\n\n.sidehead {\nwidth: 16%; \nfont-weight: bold; \ntext-align: right; \nvertical-align: top;\npadding: 0 1em 0 0;\nfont-weight: bold; \nfont-size: 1em;\n}\n\n.contactlabel {\nwidth: 16%; \ntext-align: right; \nvertical-align: top;\npadding: 0 1em 0 0;\n}\n\n.contactinfo {\ntext-align: left; \nvertical-align: top;\n\n}\n</style>\n<h1 style=\"text-align:center\">{$year} Burning Flipside Will-Call Receipt</h1>\n\n<hr />\n<p style=\"text-align:center\">{$barcode}</p>\n\n<p style=\"text-align: center;\"><span style=\"text-align:center; font-size:18px; font-weight: bold;\">{$ticket_id}</span></p>\n\n<hr />\n<p><span style=\"font-size:10px;\">This document will make entry to Burning Flipside much faster. Simply print this document and present it at gate (our scanners cannot read barcodes from phone screens).</span></p>\n\n<p><span style=\"font-size:10px;\">This document does not, however, guarantee access to Burning Flipside. If multiple copies of this document are presented at&nbsp;the Burning Flipside gate only the first presenter will be given permission to enter.</span></p>\n\n<hr />\n<p style=\"text-align: center;\"><strong>You voluntarily assume any risk of serious injury or death by attending.</strong></p>\n\n<p>You must bring enough food, water, shelter, and first aid to survive a long weekend in rural Texas. Proper footwear and personal lighting are essential. You may encounter venomous snakes and insects, wild animals, thorns, and poison ivy. Extreme heat and flash flood conditions are possible. Be Aware.</p>\n\n<p>Vending, firearms, fireworks, rockets, and all other explosives prohibited. Commercial user of images taken at Burning Flipside is prohibited without prior written consent of Austin Artistic Reconstruction, LLC.</p>\n\n<p>You agree to abide by all rules in the Survival Guide. This is not a consumer event. Leave nothing behind when you leave the site.</p>\n\n<hr />\n<h2>Transfer Information</h2>\n\n<table>\n	<tbody>\n		<tr>\n			<td>\n			<p><span style=\"font-size:10px;\">This will-call receipt is currently in the name of {$name}.&nbsp;If you have received this will-call receipt from someone else and your name is not {$name}, please make sure to register the ticket in your name promptly. This will make gate formalities much faster, and will protect you from the same ticket code being sold to multiple people (your ticket code will change when you register it).&nbsp;If this ticket is for a minor, please see the section at the end of the document for specific minor documentation requirements.</span></p>\n\n			<p><span style=\"font-size:10px;\">To register the ticket in your name, do the following:</span></p>\n\n			<ol>\n				<li><span style=\"font-size:10px;\">If you don&#39;t already have an account at&nbsp;the burningflipside.com website, please create one; if you do have an account, log in.</span></li>\n				<li><span style=\"font-size:10px;\">Visit <a href=\"https://secure.burningflipside.com/tickets/transfer.php\">https://secure.burningflipside.com/tickets/transfer.php</a> or scan this QR code with your phone.</span></li>\n				<li><span style=\"font-size:10px;\">Follow the instructions on the page and enter the following code when prompted (scanning the QR code should enter it automatically):<br />\n				&nbsp;{$word_code}&nbsp;</span></li>\n			</ol>\n			</td>\n			<td>{$transfer_qr}</td>\n		</tr>\n	</tbody>\n</table>\n\n<hr />\n<h2>Loss, Theft, or Other Issues</h2>\n\n<p><span style=\"font-size:10px;\">The information on this document is enough information for a person to use this ticket to enter Burning Flipside. If you lose&nbsp;or have a copy of this document stolen from you please email <a href=\"mailto:tickets@burningflipside.com\">tickets@burningflipside.com</a> as soon as possible to report the&nbsp;loss or theft.</span></p>\n\n<hr />\n<h2>Minor Information</h2>\n\n<p><span style=\"font-size:10px;\">If this ticket is for a minor (any one under the age of 18), then the child must be accompanied by a legal guardian and this&nbsp;ticket must be accompanied by a signed minor affidavit or state-issued&nbsp;paperwork (such as a&nbsp;passport or state-issued birth certificate) naming the adult accompanying the minor as the legal guardian for the minor.</span></p>\n'),
 	('ticket_email_source','<script type=\"application/ld+json\">\n{\n  \"@context\": \"http://schema.org\",\n  \"@type\": \"EventReservation\",\n  \"reservationNumber\": \"{$short_id}\",\n  \"reservationStatus\": \"http://schema.org/Confirmed\",\n  \"underName\": {\n    \"@type\": \"Person\",\n    \"name\": \"{$firstName} {$lastName}\",\n    \"email\": \"{$email}\"\n  },\n  \"reservationFor\": {\n    \"@type\": \"Event\",\n    \"name\": \"Burning Flipside {year}\",\n    \"startDate\": \"2016-05-26T09:00:00-06:00\",\n    \"location\": {\n      \"@type\": \"Place\",\n      \"name\": \"Apache Passtures\",\n      \"address\": {\n        \"@type\": \"PostalAddress\",\n        \"streetAddress\": \"Co Rd 428\",\n        \"addressLocality\": \"Rockdale\",\n        \"addressRegion\": \"TX\",\n        \"postalCode\": \"76567\",\n        \"addressCountry\": \"US\"\n      }\n    }\n  },\n  \"ticketNumber\": \"{$short_id}\",\n  \"numSeats\": \"1\"\n}\n</script>\n<h1>Burning Flipside {$year} ticket information</h1>\n\n<p>Woohoo, {$firstName}, you&#39;re going to Flipside!</p>\n\n<p>There&#39;s lot of information here to make your arrival process smoother.</p>\n\n<p>Your control center for your ticket is at</p>\n\n<p><code>https://secure.burningflipside.com/tickets/index.php</code></p>\n\n<p>You can use this to check your ticket code and status, correct errors, print out a &quot;will-call receipt&quot; to speed things up at Gate, or transfer your ticket.</p>\n\n<p>Important note: all tickets this year are will-call. No paper tickets are being mailed.</p>\n\n<h2>Survival Guide</h2>\n\n<p>Please read the Survival Guide at http://burningflipside.com/sg</p>\n\n<h2>Minors</h2>\n\n<p>If you&#39;re bringing minors to the event, please make sure that you bring their will-call receipts and documentation of legal guardianship. See your Survival Guide for more details and approved methods of documenting guardianship.</p>\n\n<h2>Transfers</h2>\n\n<p>If you decide not to attend Flipside or find you have an extra ticket, we strongly encourage you to pass along your ticket with those still seeking tickets. NotnotBob&#39;s List, a third-party forum unaffiliated with AAR, LLC is one place helping folks get Flipside tickets.</p>\n\n<p>If you are offering your ticket to someone, they may ask for your ticket&#39;s verification code, which is</p>\n\n<p><code>{$short_id}</code></p>\n\n<p>This gives the recipient enough information to make sure that you are offering a valid ticket, but not enough to complete a transfer.</p>\n\n<p>If you are ready to transfer your ticket, there are a few ways to handle it.</p>\n\n<p>1. Recommended: initiate the transfer from <code>https://secure.burningflipside.com/tickets/index.php</code><br />\n2. Give the recipient your printed will-call receipt<br />\n3. Send or read the recipient your full ticket code. This gives anyone enough information to transfer the ticket into their name, so be careful with this information. Your full ticket code is</p>\n\n<p><code>{$word_code}</code></p>\n\n<p>To complete the transfer, the recipient can register this at&nbsp;</p>\n\n<p><code>https://secure.burningflipside.com/tickets/transfer.php</code></p>\n\n<p>We remind you that our community disapproves of scalping tickets at higher prices than their face value, as that goes against the spirit of the event.</p>\n'),
-	('ticket_transfer_email_source','<h1 style=\"text-align: center;\">Burning Flipside {$year} ticket transfer information</h1>\n\n<p>Hello!</p>\n\n<p>You are receiving this message because {$name} is transferring a ticket to you.</p>\n\n<p>In order to complete the transfer, please do the following:</p>\n\n<p>1. If you have a user account at the burningflipside.com website, log in. If you don&#39;t, please create a new user account at</p>\n\n<p><code>http://profiles.burningflipside.com/</code></p>\n\n<p>2. Once you&#39;ve logged in, please go to&nbsp;</p>\n\n<p><code>https://secure.burningflipside.com/tickets/transfer.php</code></p>\n\n<p>to enter the ID code for the ticket you are registering. Your ticket ID is:</p>\n\n<p><code>{$word_code}</code></p>\n\n<p>Once you have transferred the ticket, you will receive an e-mail message confirming that you are ticketed, and a PDF with your ticket information, which you should print out and bring with you to the event.</p>\n\n<p>Please make sure to complete the transfer process promptly. This protects you from someone attempting to transfer the same ticket to multiple people. If you can&#39;t go to Flipside, it also makes it possible for you to transfer the ticket to someone else.</p>\n');
+	('ticket_transfer_email_source','<h1 style=\"text-align: center;\">Burning Flipside {$year} ticket transfer information</h1>\n\n<p>Hello!</p>\n\n<p>You are receiving this message because {$name} is transferring a ticket to you.</p>\n\n<p>In order to complete the transfer, please do the following:</p>\n\n<p>1. If you have a user account at the burningflipside.com website, log in. If you don&#39;t, please create a new user account at</p>\n\n<p><code>http://profiles.burningflipside.com/</code></p>\n\n<p>2. Once you&#39;ve logged in, please go to&nbsp;</p>\n\n<p><code>https://secure.burningflipside.com/tickets/transfer.php</code></p>\n\n<p>to enter the ID code for the ticket you are registering. Your ticket ID is:</p>\n\n<p><code>{$word_code}</code></p>\n\n<p>Once you have transferred the ticket, you will receive an e-mail message confirming that you are ticketed, and a PDF with your ticket information, which you should print out and bring with you to the event.</p>\n\n<p>Please make sure to complete the transfer process promptly. This protects you from someone attempting to transfer the same ticket to multiple people. If you can&#39;t go to Flipside, it also makes it possible for you to transfer the ticket to someone else.</p>\n'),
+	('request_email_source','<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\">\n             <html>\n                 <body>\n                 We\'ve received your ticket registration for Burning Flipside {$year} \n                 and your Ticket Request form for mailing in with your payment is attached.\n                 <b>Please print the Ticket Request form (PDF) and follow the instructions on it to complete your ticket request.</b><br><br>\n                 Reminder:  The dates for mailing your ticket request envelope are {$start_date} through {$stop_date}. Your postmark must be within that date range.<br><br>\n                 If you need to update your ticket registration before mailing in your ticket request, return to \n                 <a href=\"{$update_url}\">{$update_url}</a>.<br><br>\n                 You will receive a confirmation message each time you save your online ticket registration. Be sure to mail in the most recent \n                 Ticket Request form.<br><br>\n                 Caution: We recommend that you use a form of payment you can easily return for a refund if necessary. <br><br>\n                 For help with how to fill out a money order, something most of us rarely do, see http://www.wikihow.com/Fill-Out-a-Money-Order.<br><br>\n                 ____<br><br>\n                 Your {$year} Flipside Ticket Team<br>\n                 </body>\n             </html>');
 
 /*!40000 ALTER TABLE `tblLongText` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -116,6 +108,30 @@ VALUES
 	(3,'AAR','Crit Vols');
 
 /*!40000 ALTER TABLE `tblPoolMap` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table tblQuestions
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `tblQuestions`;
+
+CREATE TABLE `tblQuestions` (
+  `id` int(11) NOT NULL,
+  `displayString` varchar(100) NOT NULL,
+  `answerFormat` varchar(255) NOT NULL,
+  `answers` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+LOCK TABLES `tblQuestions` WRITE;
+/*!40000 ALTER TABLE `tblQuestions` DISABLE KEYS */;
+
+INSERT INTO `tblQuestions` (`id`, `displayString`, `answerFormat`, `answers`)
+VALUES
+	(1,'Trash is accepted at recycling.','[\"bool\"]','[false]'),
+
+/*!40000 ALTER TABLE `tblQuestions` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
@@ -227,6 +243,7 @@ CREATE TABLE `tblTicketRequest` (
   `private_status` int(11) NOT NULL,
   `comments` varchar(255) NOT NULL,
   `bucket` int(11) NOT NULL DEFAULT '-1',
+  `envelopeArt` int(11) NOT NULL,
   `revisions` longtext NOT NULL,
   `test` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`request_id`,`year`)
@@ -358,26 +375,27 @@ LOCK TABLES `tblVariables` WRITE;
 
 INSERT INTO `tblVariables` (`name`, `value`)
 VALUES
-	('currentEarlyEntry','-1'),
+	('currentEarlyEntry','2'),
 	('enabled','0'),
 	('mail_start_date','2017-01-06'),
 	('max_buckets','9'),
 	('max_tickets_per_request','6'),
 	('request_start_date','2017-01-06'),
-	('request_stop_date','2017-01-20'),
-	('test_mode','0'),
+	('request_stop_date','2017-01-21'),
+	('test_mode',''),
+	('ticket_system_uri','https://secure.burningflipside.com/tickets'),
 	('year','2017');
 
 /*!40000 ALTER TABLE `tblVariables` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
-# Dump of table vproblemmoneywrongstatus
+# Dump of table vProblemMoneyWrongStatus
 # ------------------------------------------------------------
 
-DROP VIEW IF EXISTS `vproblemmoneywrongstatus`;
+DROP VIEW IF EXISTS `vProblemMoneyWrongStatus`;
 
-CREATE TABLE `vproblemmoneywrongstatus` (
+CREATE TABLE `vProblemMoneyWrongStatus` (
    `request_id` VARCHAR(20) NOT NULL,
    `year` INT(11) NOT NULL,
    `givenName` VARCHAR(255) NOT NULL,
@@ -406,12 +424,12 @@ CREATE TABLE `vproblemmoneywrongstatus` (
 
 
 
-# Dump of table vproblempendingwcomments
+# Dump of table vProblemPendingWComments
 # ------------------------------------------------------------
 
-DROP VIEW IF EXISTS `vproblempendingwcomments`;
+DROP VIEW IF EXISTS `vProblemPendingWComments`;
 
-CREATE TABLE `vproblempendingwcomments` (
+CREATE TABLE `vProblemPendingWComments` (
    `request_id` VARCHAR(20) NOT NULL,
    `year` INT(11) NOT NULL,
    `givenName` VARCHAR(255) NOT NULL,
@@ -440,12 +458,12 @@ CREATE TABLE `vproblempendingwcomments` (
 
 
 
-# Dump of table vproblemreceivedincorrect
+# Dump of table vProblemReceivedIncorrect
 # ------------------------------------------------------------
 
-DROP VIEW IF EXISTS `vproblemreceivedincorrect`;
+DROP VIEW IF EXISTS `vProblemReceivedIncorrect`;
 
-CREATE TABLE `vproblemreceivedincorrect` (
+CREATE TABLE `vProblemReceivedIncorrect` (
    `request_id` VARCHAR(20) NOT NULL,
    `year` INT(11) NOT NULL,
    `givenName` VARCHAR(255) NOT NULL,
@@ -474,12 +492,46 @@ CREATE TABLE `vproblemreceivedincorrect` (
 
 
 
-# Dump of table vproblems
+# Dump of table vProblemReceivedWComments
 # ------------------------------------------------------------
 
-DROP VIEW IF EXISTS `vproblems`;
+DROP VIEW IF EXISTS `vProblemReceivedWComments`;
 
-CREATE TABLE `vproblems` (
+CREATE TABLE `vProblemReceivedWComments` (
+   `request_id` VARCHAR(20) NOT NULL,
+   `year` INT(11) NOT NULL,
+   `givenName` VARCHAR(255) NOT NULL,
+   `sn` VARCHAR(255) NOT NULL,
+   `mail` VARCHAR(255) NOT NULL,
+   `street` VARCHAR(255) NOT NULL,
+   `l` VARCHAR(255) NOT NULL,
+   `st` VARCHAR(255) NOT NULL,
+   `zip` VARCHAR(255) NOT NULL,
+   `mobile` VARCHAR(30) NOT NULL,
+   `modifiedBy` VARCHAR(255) NOT NULL,
+   `modifiedByIP` VARCHAR(255) NOT NULL,
+   `modifiedOn` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
+   `c` VARCHAR(10) NOT NULL,
+   `total_due` FLOAT NOT NULL,
+   `total_received` FLOAT NOT NULL,
+   `crit_vol` TINYINT(1) NOT NULL,
+   `protected` TINYINT(1) NOT NULL,
+   `status` INT(11) NOT NULL,
+   `private_status` INT(11) NOT NULL,
+   `comments` VARCHAR(255) NOT NULL,
+   `bucket` INT(11) NOT NULL DEFAULT '-1',
+   `revisions` LONGTEXT NOT NULL,
+   `test` TINYINT(1) NOT NULL DEFAULT '0'
+) ENGINE=MyISAM;
+
+
+
+# Dump of table vProblems
+# ------------------------------------------------------------
+
+DROP VIEW IF EXISTS `vProblems`;
+
+CREATE TABLE `vProblems` (
    `request_id` VARCHAR(20) NOT NULL DEFAULT '',
    `year` INT(11) NOT NULL DEFAULT '0',
    `givenName` VARCHAR(255) NOT NULL DEFAULT '',
@@ -508,12 +560,12 @@ CREATE TABLE `vproblems` (
 
 
 
-# Dump of table vproblemstatus
+# Dump of table vProblemStatus
 # ------------------------------------------------------------
 
-DROP VIEW IF EXISTS `vproblemstatus`;
+DROP VIEW IF EXISTS `vProblemStatus`;
 
-CREATE TABLE `vproblemstatus` (
+CREATE TABLE `vProblemStatus` (
    `request_id` VARCHAR(20) NOT NULL,
    `year` INT(11) NOT NULL,
    `givenName` VARCHAR(255) NOT NULL,
@@ -542,12 +594,12 @@ CREATE TABLE `vproblemstatus` (
 
 
 
-# Dump of table vrequestwtickets
+# Dump of table vRequestWTickets
 # ------------------------------------------------------------
 
-DROP VIEW IF EXISTS `vrequestwtickets`;
+DROP VIEW IF EXISTS `vRequestWTickets`;
 
-CREATE TABLE `vrequestwtickets` (
+CREATE TABLE `vRequestWTickets` (
    `request_id` VARCHAR(20) NOT NULL,
    `year` INT(11) NOT NULL,
    `requested_ticket_id` INT(10) UNSIGNED NOT NULL DEFAULT '0',
@@ -575,12 +627,12 @@ CREATE TABLE `vrequestwtickets` (
 
 
 
-# Replace placeholder table for vproblempendingwcomments with correct view syntax
+# Replace placeholder table for vProblemReceivedWComments with correct view syntax
 # ------------------------------------------------------------
 
-DROP TABLE `vproblempendingwcomments`;
+DROP TABLE `vProblemReceivedWComments`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vproblempendingwcomments`
+CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vproblemreceivedwcomments`
 AS SELECT
    `tblTicketRequest`.`request_id` AS `request_id`,
    `tblTicketRequest`.`year` AS `year`,
@@ -606,81 +658,13 @@ AS SELECT
    `tblTicketRequest`.`bucket` AS `bucket`,
    `tblTicketRequest`.`revisions` AS `revisions`,
    `tblTicketRequest`.`test` AS `test`
-FROM `tblTicketRequest` where ((`tblTicketRequest`.`private_status` = 0) and (not((`tblTicketRequest`.`comments` like '%Manually Created%'))) and (`tblTicketRequest`.`comments` <> ''));
+FROM `tblTicketRequest` where ((`tblTicketRequest`.`private_status` = 1) and (not((`tblTicketRequest`.`comments` like '%Manually Created%'))) and (`tblTicketRequest`.`comments` <> ''));
 
 
-# Replace placeholder table for vproblemreceivedincorrect with correct view syntax
+# Replace placeholder table for vProblemStatus with correct view syntax
 # ------------------------------------------------------------
 
-DROP TABLE `vproblemreceivedincorrect`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vproblemreceivedincorrect`
-AS SELECT
-   `tblTicketRequest`.`request_id` AS `request_id`,
-   `tblTicketRequest`.`year` AS `year`,
-   `tblTicketRequest`.`givenName` AS `givenName`,
-   `tblTicketRequest`.`sn` AS `sn`,
-   `tblTicketRequest`.`mail` AS `mail`,
-   `tblTicketRequest`.`street` AS `street`,
-   `tblTicketRequest`.`l` AS `l`,
-   `tblTicketRequest`.`st` AS `st`,
-   `tblTicketRequest`.`zip` AS `zip`,
-   `tblTicketRequest`.`mobile` AS `mobile`,
-   `tblTicketRequest`.`modifiedBy` AS `modifiedBy`,
-   `tblTicketRequest`.`modifiedByIP` AS `modifiedByIP`,
-   `tblTicketRequest`.`modifiedOn` AS `modifiedOn`,
-   `tblTicketRequest`.`c` AS `c`,
-   `tblTicketRequest`.`total_due` AS `total_due`,
-   `tblTicketRequest`.`total_received` AS `total_received`,
-   `tblTicketRequest`.`crit_vol` AS `crit_vol`,
-   `tblTicketRequest`.`protected` AS `protected`,
-   `tblTicketRequest`.`status` AS `status`,
-   `tblTicketRequest`.`private_status` AS `private_status`,
-   `tblTicketRequest`.`comments` AS `comments`,
-   `tblTicketRequest`.`bucket` AS `bucket`,
-   `tblTicketRequest`.`revisions` AS `revisions`,
-   `tblTicketRequest`.`test` AS `test`
-FROM `tblTicketRequest` where ((`tblTicketRequest`.`total_due` <> `tblTicketRequest`.`total_received`) and (`tblTicketRequest`.`private_status` = 1));
-
-
-# Replace placeholder table for vproblems with correct view syntax
-# ------------------------------------------------------------
-
-DROP TABLE `vproblems`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vproblems`
-AS SELECT
-   `vproblempendingwcomments`.`request_id` AS `request_id`,
-   `vproblempendingwcomments`.`year` AS `year`,
-   `vproblempendingwcomments`.`givenName` AS `givenName`,
-   `vproblempendingwcomments`.`sn` AS `sn`,
-   `vproblempendingwcomments`.`mail` AS `mail`,
-   `vproblempendingwcomments`.`street` AS `street`,
-   `vproblempendingwcomments`.`l` AS `l`,
-   `vproblempendingwcomments`.`st` AS `st`,
-   `vproblempendingwcomments`.`zip` AS `zip`,
-   `vproblempendingwcomments`.`mobile` AS `mobile`,
-   `vproblempendingwcomments`.`modifiedBy` AS `modifiedBy`,
-   `vproblempendingwcomments`.`modifiedByIP` AS `modifiedByIP`,
-   `vproblempendingwcomments`.`modifiedOn` AS `modifiedOn`,
-   `vproblempendingwcomments`.`c` AS `c`,
-   `vproblempendingwcomments`.`total_due` AS `total_due`,
-   `vproblempendingwcomments`.`total_received` AS `total_received`,
-   `vproblempendingwcomments`.`crit_vol` AS `crit_vol`,
-   `vproblempendingwcomments`.`protected` AS `protected`,
-   `vproblempendingwcomments`.`status` AS `status`,
-   `vproblempendingwcomments`.`private_status` AS `private_status`,
-   `vproblempendingwcomments`.`comments` AS `comments`,
-   `vproblempendingwcomments`.`bucket` AS `bucket`,
-   `vproblempendingwcomments`.`revisions` AS `revisions`,
-   `vproblempendingwcomments`.`test` AS `test`
-FROM `vproblempendingwcomments` union select `vproblemstatus`.`request_id` AS `request_id`,`vproblemstatus`.`year` AS `year`,`vproblemstatus`.`givenName` AS `givenName`,`vproblemstatus`.`sn` AS `sn`,`vproblemstatus`.`mail` AS `mail`,`vproblemstatus`.`street` AS `street`,`vproblemstatus`.`l` AS `l`,`vproblemstatus`.`st` AS `st`,`vproblemstatus`.`zip` AS `zip`,`vproblemstatus`.`mobile` AS `mobile`,`vproblemstatus`.`modifiedBy` AS `modifiedBy`,`vproblemstatus`.`modifiedByIP` AS `modifiedByIP`,`vproblemstatus`.`modifiedOn` AS `modifiedOn`,`vproblemstatus`.`c` AS `c`,`vproblemstatus`.`total_due` AS `total_due`,`vproblemstatus`.`total_received` AS `total_received`,`vproblemstatus`.`crit_vol` AS `crit_vol`,`vproblemstatus`.`protected` AS `protected`,`vproblemstatus`.`status` AS `status`,`vproblemstatus`.`private_status` AS `private_status`,`vproblemstatus`.`comments` AS `comments`,`vproblemstatus`.`bucket` AS `bucket`,`vproblemstatus`.`revisions` AS `revisions`,`vproblemstatus`.`test` AS `test` from `vproblemstatus` union select `vproblemmoneywrongstatus`.`request_id` AS `request_id`,`vproblemmoneywrongstatus`.`year` AS `year`,`vproblemmoneywrongstatus`.`givenName` AS `givenName`,`vproblemmoneywrongstatus`.`sn` AS `sn`,`vproblemmoneywrongstatus`.`mail` AS `mail`,`vproblemmoneywrongstatus`.`street` AS `street`,`vproblemmoneywrongstatus`.`l` AS `l`,`vproblemmoneywrongstatus`.`st` AS `st`,`vproblemmoneywrongstatus`.`zip` AS `zip`,`vproblemmoneywrongstatus`.`mobile` AS `mobile`,`vproblemmoneywrongstatus`.`modifiedBy` AS `modifiedBy`,`vproblemmoneywrongstatus`.`modifiedByIP` AS `modifiedByIP`,`vproblemmoneywrongstatus`.`modifiedOn` AS `modifiedOn`,`vproblemmoneywrongstatus`.`c` AS `c`,`vproblemmoneywrongstatus`.`total_due` AS `total_due`,`vproblemmoneywrongstatus`.`total_received` AS `total_received`,`vproblemmoneywrongstatus`.`crit_vol` AS `crit_vol`,`vproblemmoneywrongstatus`.`protected` AS `protected`,`vproblemmoneywrongstatus`.`status` AS `status`,`vproblemmoneywrongstatus`.`private_status` AS `private_status`,`vproblemmoneywrongstatus`.`comments` AS `comments`,`vproblemmoneywrongstatus`.`bucket` AS `bucket`,`vproblemmoneywrongstatus`.`revisions` AS `revisions`,`vproblemmoneywrongstatus`.`test` AS `test` from `vproblemmoneywrongstatus` union select `vproblemreceivedincorrect`.`request_id` AS `request_id`,`vproblemreceivedincorrect`.`year` AS `year`,`vproblemreceivedincorrect`.`givenName` AS `givenName`,`vproblemreceivedincorrect`.`sn` AS `sn`,`vproblemreceivedincorrect`.`mail` AS `mail`,`vproblemreceivedincorrect`.`street` AS `street`,`vproblemreceivedincorrect`.`l` AS `l`,`vproblemreceivedincorrect`.`st` AS `st`,`vproblemreceivedincorrect`.`zip` AS `zip`,`vproblemreceivedincorrect`.`mobile` AS `mobile`,`vproblemreceivedincorrect`.`modifiedBy` AS `modifiedBy`,`vproblemreceivedincorrect`.`modifiedByIP` AS `modifiedByIP`,`vproblemreceivedincorrect`.`modifiedOn` AS `modifiedOn`,`vproblemreceivedincorrect`.`c` AS `c`,`vproblemreceivedincorrect`.`total_due` AS `total_due`,`vproblemreceivedincorrect`.`total_received` AS `total_received`,`vproblemreceivedincorrect`.`crit_vol` AS `crit_vol`,`vproblemreceivedincorrect`.`protected` AS `protected`,`vproblemreceivedincorrect`.`status` AS `status`,`vproblemreceivedincorrect`.`private_status` AS `private_status`,`vproblemreceivedincorrect`.`comments` AS `comments`,`vproblemreceivedincorrect`.`bucket` AS `bucket`,`vproblemreceivedincorrect`.`revisions` AS `revisions`,`vproblemreceivedincorrect`.`test` AS `test` from `vproblemreceivedincorrect`;
-
-
-# Replace placeholder table for vproblemstatus with correct view syntax
-# ------------------------------------------------------------
-
-DROP TABLE `vproblemstatus`;
+DROP TABLE `vProblemStatus`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vproblemstatus`
 AS SELECT
@@ -711,41 +695,10 @@ AS SELECT
 FROM `tblTicketRequest` where (`tblTicketRequest`.`private_status` = 2);
 
 
-# Replace placeholder table for vrequestwtickets with correct view syntax
+# Replace placeholder table for vProblemMoneyWrongStatus with correct view syntax
 # ------------------------------------------------------------
 
-DROP TABLE `vrequestwtickets`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vrequestwtickets`
-AS SELECT
-   `tblRequestedTickets`.`request_id` AS `request_id`,
-   `tblRequestedTickets`.`year` AS `year`,
-   `tblRequestedTickets`.`requested_ticket_id` AS `requested_ticket_id`,
-   `tblRequestedTickets`.`first` AS `first`,
-   `tblRequestedTickets`.`last` AS `last`,
-   `tblRequestedTickets`.`type` AS `type`,
-   `tblRequestedTickets`.`assigned_id` AS `assigned_id`,
-   `tblTicketRequest`.`bucket` AS `bucket`,
-   `tblTicketRequest`.`crit_vol` AS `crit_vol`,
-   `tblTicketRequest`.`protected` AS `protected`,
-   `tblTicketRequest`.`givenName` AS `requestor_first`,
-   `tblTicketRequest`.`sn` AS `requestor_last`,
-   `tblTicketRequest`.`mail` AS `mail`,
-   `tblTicketRequest`.`street` AS `street`,
-   `tblTicketRequest`.`l` AS `l`,
-   `tblTicketRequest`.`st` AS `st`,
-   `tblTicketRequest`.`zip` AS `zip`,
-   `tblTicketRequest`.`c` AS `c`,
-   `tblTicketRequest`.`private_status` AS `private_status`,
-   `tblTicketRequest`.`status` AS `status`,
-   `tblRequestedTickets`.`test` AS `test`
-FROM (`tblRequestedTickets` join `tblTicketRequest` on(((`tblRequestedTickets`.`year` = `tblTicketRequest`.`year`) and (`tblRequestedTickets`.`request_id` = `tblTicketRequest`.`request_id`))));
-
-
-# Replace placeholder table for vproblemmoneywrongstatus with correct view syntax
-# ------------------------------------------------------------
-
-DROP TABLE `vproblemmoneywrongstatus`;
+DROP TABLE `vProblemMoneyWrongStatus`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vproblemmoneywrongstatus`
 AS SELECT
@@ -774,6 +727,139 @@ AS SELECT
    `tblTicketRequest`.`revisions` AS `revisions`,
    `tblTicketRequest`.`test` AS `test`
 FROM `tblTicketRequest` where ((`tblTicketRequest`.`private_status` not in (1,2,3,4,5,6)) and (`tblTicketRequest`.`total_received` <> 0));
+
+
+# Replace placeholder table for vProblemReceivedIncorrect with correct view syntax
+# ------------------------------------------------------------
+
+DROP TABLE `vProblemReceivedIncorrect`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vproblemreceivedincorrect`
+AS SELECT
+   `tblTicketRequest`.`request_id` AS `request_id`,
+   `tblTicketRequest`.`year` AS `year`,
+   `tblTicketRequest`.`givenName` AS `givenName`,
+   `tblTicketRequest`.`sn` AS `sn`,
+   `tblTicketRequest`.`mail` AS `mail`,
+   `tblTicketRequest`.`street` AS `street`,
+   `tblTicketRequest`.`l` AS `l`,
+   `tblTicketRequest`.`st` AS `st`,
+   `tblTicketRequest`.`zip` AS `zip`,
+   `tblTicketRequest`.`mobile` AS `mobile`,
+   `tblTicketRequest`.`modifiedBy` AS `modifiedBy`,
+   `tblTicketRequest`.`modifiedByIP` AS `modifiedByIP`,
+   `tblTicketRequest`.`modifiedOn` AS `modifiedOn`,
+   `tblTicketRequest`.`c` AS `c`,
+   `tblTicketRequest`.`total_due` AS `total_due`,
+   `tblTicketRequest`.`total_received` AS `total_received`,
+   `tblTicketRequest`.`crit_vol` AS `crit_vol`,
+   `tblTicketRequest`.`protected` AS `protected`,
+   `tblTicketRequest`.`status` AS `status`,
+   `tblTicketRequest`.`private_status` AS `private_status`,
+   `tblTicketRequest`.`comments` AS `comments`,
+   `tblTicketRequest`.`bucket` AS `bucket`,
+   `tblTicketRequest`.`revisions` AS `revisions`,
+   `tblTicketRequest`.`test` AS `test`
+FROM `tblTicketRequest` where ((`tblTicketRequest`.`total_due` <> `tblTicketRequest`.`total_received`) and (`tblTicketRequest`.`private_status` = 1));
+
+
+# Replace placeholder table for vProblemPendingWComments with correct view syntax
+# ------------------------------------------------------------
+
+DROP TABLE `vProblemPendingWComments`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vProblemPendingWComments`
+AS SELECT
+   `tblTicketRequest`.`request_id` AS `request_id`,
+   `tblTicketRequest`.`year` AS `year`,
+   `tblTicketRequest`.`givenName` AS `givenName`,
+   `tblTicketRequest`.`sn` AS `sn`,
+   `tblTicketRequest`.`mail` AS `mail`,
+   `tblTicketRequest`.`street` AS `street`,
+   `tblTicketRequest`.`l` AS `l`,
+   `tblTicketRequest`.`st` AS `st`,
+   `tblTicketRequest`.`zip` AS `zip`,
+   `tblTicketRequest`.`mobile` AS `mobile`,
+   `tblTicketRequest`.`modifiedBy` AS `modifiedBy`,
+   `tblTicketRequest`.`modifiedByIP` AS `modifiedByIP`,
+   `tblTicketRequest`.`modifiedOn` AS `modifiedOn`,
+   `tblTicketRequest`.`c` AS `c`,
+   `tblTicketRequest`.`total_due` AS `total_due`,
+   `tblTicketRequest`.`total_received` AS `total_received`,
+   `tblTicketRequest`.`crit_vol` AS `crit_vol`,
+   `tblTicketRequest`.`protected` AS `protected`,
+   `tblTicketRequest`.`status` AS `status`,
+   `tblTicketRequest`.`private_status` AS `private_status`,
+   `tblTicketRequest`.`comments` AS `comments`,
+   `tblTicketRequest`.`bucket` AS `bucket`,
+   `tblTicketRequest`.`revisions` AS `revisions`,
+   `tblTicketRequest`.`test` AS `test`
+FROM `tblTicketRequest` where ((`tblTicketRequest`.`private_status` = 0) and (not((`tblTicketRequest`.`comments` like '%Manually Created%'))) and (`tblTicketRequest`.`comments` <> ''));
+
+
+# Replace placeholder table for vRequestWTickets with correct view syntax
+# ------------------------------------------------------------
+
+DROP TABLE `vRequestWTickets`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vrequestwtickets`
+AS SELECT
+   `tblRequestedTickets`.`request_id` AS `request_id`,
+   `tblRequestedTickets`.`year` AS `year`,
+   `tblRequestedTickets`.`requested_ticket_id` AS `requested_ticket_id`,
+   `tblRequestedTickets`.`first` AS `first`,
+   `tblRequestedTickets`.`last` AS `last`,
+   `tblRequestedTickets`.`type` AS `type`,
+   `tblRequestedTickets`.`assigned_id` AS `assigned_id`,
+   `tblTicketRequest`.`bucket` AS `bucket`,
+   `tblTicketRequest`.`crit_vol` AS `crit_vol`,
+   `tblTicketRequest`.`protected` AS `protected`,
+   `tblTicketRequest`.`givenName` AS `requestor_first`,
+   `tblTicketRequest`.`sn` AS `requestor_last`,
+   `tblTicketRequest`.`mail` AS `mail`,
+   `tblTicketRequest`.`street` AS `street`,
+   `tblTicketRequest`.`l` AS `l`,
+   `tblTicketRequest`.`st` AS `st`,
+   `tblTicketRequest`.`zip` AS `zip`,
+   `tblTicketRequest`.`c` AS `c`,
+   `tblTicketRequest`.`private_status` AS `private_status`,
+   `tblTicketRequest`.`status` AS `status`,
+   `tblRequestedTickets`.`test` AS `test`
+FROM (`tblRequestedTickets` join `tblTicketRequest` on(((`tblRequestedTickets`.`year` = `tblTicketRequest`.`year`) and (`tblRequestedTickets`.`request_id` = `tblTicketRequest`.`request_id`))));
+
+
+# Replace placeholder table for vProblems with correct view syntax
+# ------------------------------------------------------------
+
+DROP TABLE `vProblems`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`tickets`@`%` SQL SECURITY DEFINER VIEW `vproblems`
+AS SELECT
+   `vProblemPendingWComments`.`request_id` AS `request_id`,
+   `vProblemPendingWComments`.`year` AS `year`,
+   `vProblemPendingWComments`.`givenName` AS `givenName`,
+   `vProblemPendingWComments`.`sn` AS `sn`,
+   `vProblemPendingWComments`.`mail` AS `mail`,
+   `vProblemPendingWComments`.`street` AS `street`,
+   `vProblemPendingWComments`.`l` AS `l`,
+   `vProblemPendingWComments`.`st` AS `st`,
+   `vProblemPendingWComments`.`zip` AS `zip`,
+   `vProblemPendingWComments`.`mobile` AS `mobile`,
+   `vProblemPendingWComments`.`modifiedBy` AS `modifiedBy`,
+   `vProblemPendingWComments`.`modifiedByIP` AS `modifiedByIP`,
+   `vProblemPendingWComments`.`modifiedOn` AS `modifiedOn`,
+   `vProblemPendingWComments`.`c` AS `c`,
+   `vProblemPendingWComments`.`total_due` AS `total_due`,
+   `vProblemPendingWComments`.`total_received` AS `total_received`,
+   `vProblemPendingWComments`.`crit_vol` AS `crit_vol`,
+   `vProblemPendingWComments`.`protected` AS `protected`,
+   `vProblemPendingWComments`.`status` AS `status`,
+   `vProblemPendingWComments`.`private_status` AS `private_status`,
+   `vProblemPendingWComments`.`comments` AS `comments`,
+   `vProblemPendingWComments`.`bucket` AS `bucket`,
+   `vProblemPendingWComments`.`revisions` AS `revisions`,
+   `vProblemPendingWComments`.`test` AS `test`
+FROM `vProblemPendingWComments` union select `vproblemstatus`.`request_id` AS `request_id`,`vproblemstatus`.`year` AS `year`,`vproblemstatus`.`givenName` AS `givenName`,`vproblemstatus`.`sn` AS `sn`,`vproblemstatus`.`mail` AS `mail`,`vproblemstatus`.`street` AS `street`,`vproblemstatus`.`l` AS `l`,`vproblemstatus`.`st` AS `st`,`vproblemstatus`.`zip` AS `zip`,`vproblemstatus`.`mobile` AS `mobile`,`vproblemstatus`.`modifiedBy` AS `modifiedBy`,`vproblemstatus`.`modifiedByIP` AS `modifiedByIP`,`vproblemstatus`.`modifiedOn` AS `modifiedOn`,`vproblemstatus`.`c` AS `c`,`vproblemstatus`.`total_due` AS `total_due`,`vproblemstatus`.`total_received` AS `total_received`,`vproblemstatus`.`crit_vol` AS `crit_vol`,`vproblemstatus`.`protected` AS `protected`,`vproblemstatus`.`status` AS `status`,`vproblemstatus`.`private_status` AS `private_status`,`vproblemstatus`.`comments` AS `comments`,`vproblemstatus`.`bucket` AS `bucket`,`vproblemstatus`.`revisions` AS `revisions`,`vproblemstatus`.`test` AS `test` from `vproblemstatus` union select `vproblemmoneywrongstatus`.`request_id` AS `request_id`,`vproblemmoneywrongstatus`.`year` AS `year`,`vproblemmoneywrongstatus`.`givenName` AS `givenName`,`vproblemmoneywrongstatus`.`sn` AS `sn`,`vproblemmoneywrongstatus`.`mail` AS `mail`,`vproblemmoneywrongstatus`.`street` AS `street`,`vproblemmoneywrongstatus`.`l` AS `l`,`vproblemmoneywrongstatus`.`st` AS `st`,`vproblemmoneywrongstatus`.`zip` AS `zip`,`vproblemmoneywrongstatus`.`mobile` AS `mobile`,`vproblemmoneywrongstatus`.`modifiedBy` AS `modifiedBy`,`vproblemmoneywrongstatus`.`modifiedByIP` AS `modifiedByIP`,`vproblemmoneywrongstatus`.`modifiedOn` AS `modifiedOn`,`vproblemmoneywrongstatus`.`c` AS `c`,`vproblemmoneywrongstatus`.`total_due` AS `total_due`,`vproblemmoneywrongstatus`.`total_received` AS `total_received`,`vproblemmoneywrongstatus`.`crit_vol` AS `crit_vol`,`vproblemmoneywrongstatus`.`protected` AS `protected`,`vproblemmoneywrongstatus`.`status` AS `status`,`vproblemmoneywrongstatus`.`private_status` AS `private_status`,`vproblemmoneywrongstatus`.`comments` AS `comments`,`vproblemmoneywrongstatus`.`bucket` AS `bucket`,`vproblemmoneywrongstatus`.`revisions` AS `revisions`,`vproblemmoneywrongstatus`.`test` AS `test` from `vproblemmoneywrongstatus` union select `vproblemreceivedincorrect`.`request_id` AS `request_id`,`vproblemreceivedincorrect`.`year` AS `year`,`vproblemreceivedincorrect`.`givenName` AS `givenName`,`vproblemreceivedincorrect`.`sn` AS `sn`,`vproblemreceivedincorrect`.`mail` AS `mail`,`vproblemreceivedincorrect`.`street` AS `street`,`vproblemreceivedincorrect`.`l` AS `l`,`vproblemreceivedincorrect`.`st` AS `st`,`vproblemreceivedincorrect`.`zip` AS `zip`,`vproblemreceivedincorrect`.`mobile` AS `mobile`,`vproblemreceivedincorrect`.`modifiedBy` AS `modifiedBy`,`vproblemreceivedincorrect`.`modifiedByIP` AS `modifiedByIP`,`vproblemreceivedincorrect`.`modifiedOn` AS `modifiedOn`,`vproblemreceivedincorrect`.`c` AS `c`,`vproblemreceivedincorrect`.`total_due` AS `total_due`,`vproblemreceivedincorrect`.`total_received` AS `total_received`,`vproblemreceivedincorrect`.`crit_vol` AS `crit_vol`,`vproblemreceivedincorrect`.`protected` AS `protected`,`vproblemreceivedincorrect`.`status` AS `status`,`vproblemreceivedincorrect`.`private_status` AS `private_status`,`vproblemreceivedincorrect`.`comments` AS `comments`,`vproblemreceivedincorrect`.`bucket` AS `bucket`,`vproblemreceivedincorrect`.`revisions` AS `revisions`,`vproblemreceivedincorrect`.`test` AS `test` from `vproblemreceivedincorrect`;
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
