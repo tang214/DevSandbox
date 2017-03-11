@@ -6,9 +6,9 @@ selection="$1"
 
 if [ -z "$selection" ];then
   bot "which instance to seed"
-  echo "1. mysql database"
+  echo "1. browsercap cache"
   echo "2. mongo database"
-  echo "3. browsercap cache"
+  echo "3. mysql database"
   echo "Select then press enter"
   read selection
 fi
@@ -16,13 +16,10 @@ fi
 case $selection in
   1)
     docker run --rm \
-      --name mysql.init \
-      -v `pwd`/.volumes/mysql:/var/lib/mysql/ \
-      -v `pwd`/deploy/mysql/data:/docker-entrypoint-initdb.d \
-      -p 3306:3306 \
-      -e MYSQL_RANDOM_ROOT_PASSWORD=1 \
-      -e SEED_ONLY=1 \
-      burnerdev/mysql:5.7
+      --name browscap.init \
+      -v `pwd`/src/common:/var/www/common \
+      -v `pwd`/.volumes/browser:/var/php_cache/browser \
+      burnerdev/php:7.1-apache /usr/local/bin/php /var/www/common/cron.php
     ;;
   2)
     docker run --rm \
@@ -36,10 +33,13 @@ case $selection in
     ;;
   3)
     docker run --rm \
-      --name browscap.init \
-      -v `pwd`/src/common:/var/www/common \
-      -v `pwd`/.volumes/browser:/var/php_cache/browser \
-      burnerdev/php:7.1-apache /usr/local/bin/php /var/www/common/cron.php
+      --name mysql.init \
+      -v `pwd`/.volumes/mysql:/var/lib/mysql/ \
+      -v `pwd`/deploy/mysql/data:/docker-entrypoint-initdb.d \
+      -p 3306:3306 \
+      -e MYSQL_RANDOM_ROOT_PASSWORD=1 \
+      -e SEED_ONLY=1 \
+      burnerdev/mysql:5.7
     ;;
   *)
     die

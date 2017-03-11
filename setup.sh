@@ -65,15 +65,9 @@ action "fetch mongo image"
 docker pull burnerdev/mongo:3.4
 ok
 
-warn "in a new terminal execute bin/seed to seed mongo database"
-warn "see deploy/mongo/SEEDME.md for detailed instructions"
-
 action "fetch mysql image"
 docker pull burnerdev/mysql:5.7
 ok
-
-warn "in a new terminal execute bin/seed to seed your mysql database"
-warn "see deploy/mysql/SEEDME.md for detailed instructions"
 
 action "fetch swagger editor image"
 docker pull swaggerapi/swagger-editor
@@ -91,6 +85,18 @@ action "fetch wordpress image"
 docker pull burnerdev/wordpress:4.7.2
 ok
 
-warn "once you've seeded your databases"
+action "seeding browsercap cache"
+bin/seed 1
+ok
+
+action "seeding mongo databases"
+bin/seed 2
+ok
+
+action "seeding mysql databases"
+bin/seed 3
+warn "record mysl root password now.. it will not be retrievable later"
+ok
+
 warn "run docker-compose up"
 warn "and point your browser to https://localhost:3300"
