@@ -15,7 +15,7 @@ function prune_images() {
     (docker rmi swaggerapi/swagger-editor:latest > /dev/null 2>&1)
     (docker rmi php:7.1-apache > /dev/null 2>&1)
     (docker rmi burnerdev/openldap:1.1.8 > /dev/null 2>&1)
-    (docker rmi burnerdev/wordpress:4.7.2 > /dev/null 2>&1)
+    (docker rmi burnerdev/wordpress:4.7.3 > /dev/null 2>&1)
     (docker rmi osixia/openldap:1.1.8 > /dev/null 2>&1)
 }
 

@@ -82,7 +82,7 @@ docker pull burnerdev/php:7.1-apache
 ok
 
 action "fetch wordpress image"
-docker pull burnerdev/wordpress:4.7.2
+docker pull burnerdev/wordpress:4.7.3
 ok
 
 action "seeding browsercap cache"
