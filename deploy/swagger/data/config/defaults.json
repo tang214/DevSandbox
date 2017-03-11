@@ -1,0 +1,25 @@
+{
+  "disableCodeGen": true,
+  "examplesFolder": "spec-files/",
+  "editorOptions": {
+    "theme": "ace/theme/atom_dark"
+  },
+  "exampleFiles": [
+    "api_profiles.yaml",
+    "api_registration.yaml",
+    "api_volunteer.yaml"
+  ],
+  "autocompleteExtension": {},
+  "useBackendForStorage": false,
+  "backendThrottle": 200,
+  "keyPressDebounceTime": 200,
+  "backendEndpoint": "/editor/spec",
+  "useYamlBackend": false,
+  "disableFileMenu": false,
+  "headerBranding": false,
+  "disableNewUserIntro": false,
+  "enableTryIt": true,
+  "brandingCssClass": "",
+  "importProxyUrl": "https://cors-it.herokuapp.com/?url=",
+  "pointerResolutionBasePath": null
+}

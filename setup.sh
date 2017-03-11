@@ -67,6 +67,9 @@ docker pull burnerdev/mysql:5.7; ok
 warn "in a new terminal execute bin/seed to seed your mysql database"
 warn "see deploy/mysql/SEEDME.md for detailed instructions"
 
+action "fetch swagger editor image"
+docker pull swaggerapi/swagger-editor; ok
+
 action "fetch php base image"
 docker pull php:7.1-apache; ok
 

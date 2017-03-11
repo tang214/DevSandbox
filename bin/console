@@ -15,6 +15,7 @@ if [ -z "$selection" ];then
   echo "5. wiki.burningflipside.local"
   echo "6. profiles.burningflipside.local"
   echo "7. secure.burningflipside.local"
+  echo "8. swagger.burningflipside.local"
   echo "Select then press enter"
   read selection
 fi
@@ -41,9 +42,12 @@ case $selection in
   7)
     instance=secure
     ;;
+  8)
+    instance=swagger
+    ;;
   *)
     die
     ;;
 esac
 
-docker exec -it $instance.burningflipside.local /bin/bash
+docker exec -it $instance.burningflipside.local /bin/sh
