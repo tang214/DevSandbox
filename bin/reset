@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+
+function reset_git() {
+    git reset --hard origin/master
+}
+
+function prune_volumes() {
+    rm -rf .volumes
+}
+
+function prune_images() {
+    (docker rmi burnerdev/php:7.1-apache > /dev/null 2>&1)
+    (docker rmi burnerdev/mongo:3.4 > /dev/null 2>&1)
+    (docker rmi burnerdev/mysql:5.7 > /dev/null 2>&1)
+    (docker rmi swaggerapi/swagger-editor:latest > /dev/null 2>&1)
+    (docker rmi php:7.1-apache > /dev/null 2>&1)
+    (docker rmi burnerdev/openldap:1.1.8 > /dev/null 2>&1)
+    (docker rmi burnerdev/wordpress:4.7.2 > /dev/null 2>&1)
+    (docker rmi osixia/openldap:1.1.8 > /dev/null 2>&1)
+}
+
+source ./bin/functions.sh
+
+banner
+
+bot "Are you sure you want me to perform the following tasks?"
+action "reset the DevSandbox git repo"
+action "delete your .volumes directory"
+action "delete all DevSandbox docker images"
+echo "press enter to continue"
+read confirm
+
+action "reset the DevSandbox git repo"
+reset_git
+ok
+
+action "delete your .volumes directory"
+prune_volumes
+ok
+
+action "delete all DevSandbox docker images"
+prune_images
+ok
