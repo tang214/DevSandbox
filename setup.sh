@@ -6,24 +6,7 @@ banner
 
 bot "Lets get you set up"
 
-if [ -f '.githubuser' ]; then
-  githubuser=`cat .githubuser`
-else
-  read -r -p "What is the github.com username or organization from which we will pull source? " githubuser
-  echo "$githubuser" > .githubuser
-fi
-
-git_clone_or_update git@github.com:$githubuser/CommonCode.git src/common
-action "init / update common code submodules"
-( cd src/common && git submodule init > /dev/null 2>&1 && git submodule update > /dev/null 2>&1 )
-ok
-
-git_clone_or_update git@github.com:$githubuser/Profiles.git src/profiles
-
-git_clone_or_update git@github.com:$githubuser/SecureFramework.git src/secure
-action "init / update secure framework submodules"
-( cd src/secure && git submodule init > /dev/null 2>&1 && git submodule update > /dev/null 2>&1 )
-ok
+./bin/repos
 
 if [ ! -d '.volumes' ]; then
   action "create shared data volume dir"

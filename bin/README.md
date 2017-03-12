@@ -8,6 +8,10 @@ connect a console session to a running container
 
 pull or prune docker images used in this project
 
+### bin/repos
+
+checkout or update project git repos 
+
 ### bin/reset
 
 remove data volumes and prune docker images

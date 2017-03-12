@@ -1,0 +1,7 @@
+CommonCode            src/common
+Profiles              src/profiles
+SecureFramework       src/secure
+VolunteerSystem       src/secure/fvs
+Registration          src/secure/register
+ThemeRegistration     src/secure/themes
+Tickets               src/secure/tickets
