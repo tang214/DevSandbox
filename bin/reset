@@ -16,7 +16,7 @@ git reset --hard origin/master
 ok
 
 action "delete your .volumes directory"
-rm -rf .volumes
+sudo rm -rf .volumes
 ok
 
 action "delete all DevSandbox docker images"
