@@ -20,12 +20,14 @@ function pull() {
 }
 
 function prune() {
+  set +e
   for (( idx=${#IMAGES[@]}-1 ; idx>=0 ; idx-- )) ; do
       image=`echo "${IMAGES[idx]}" | awk '{print $1}'`
       action "prune docker image $image"
       docker rmi $(docker images | grep "$image" | awk '{print $3}')
       ok
   done
+  set -e
 }
 
 selection="$1"
