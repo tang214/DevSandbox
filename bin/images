@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+source ./bin/functions.sh
+
+MANIFEST_PATH=`pwd`/`dirname ${BASH_SOURCE[0]}`/../.docker-manifest
+MANIFEST=`cat $MANIFEST_PATH`
+IFS=$'\r\n' GLOBIGNORE='*' command eval  'IMAGES=($MANIFEST)'
+
+function pull() {
+  for (( idx=0 ; idx<=${#IMAGES[@]}-1 ; idx++ )) ; do
+      image=`echo "${IMAGES[idx]}" | awk '{print $1}'`
+      tag=`echo "${IMAGES[idx]}" | awk '{print $2}'`
+      if [ -z $tag ]; then
+        tag='latest'
+      fi
+      action "fetch docker image $image:$tag"
+      docker pull $image:$tag
+      ok
+  done
+}
+
+function prune() {
+  for (( idx=${#IMAGES[@]}-1 ; idx>=0 ; idx-- )) ; do
+      image=`echo "${IMAGES[idx]}" | awk '{print $1}'`
+      action "prune docker image $image"
+      docker rmi $(docker images | grep "$image" | awk '{print $3}')
+      ok
+  done
+}
+
+selection="$1"
+
+if [ -z "$selection" ];then
+  bot "select action"
+  echo "1. pull images"
+  echo "2. prune images"
+  echo "Select then press enter"
+  read selection
+fi
+
+case $selection in
+  1)
+    pull
+    ;;
+  2)
+    prune
+    ;;
+  *)
+    die
+    ;;
+esac

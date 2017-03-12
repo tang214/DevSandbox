@@ -57,44 +57,18 @@ if [ ! -f 'src/secure_settings/aws.ini' ]; then
   ok
 fi
 
-action "fetch ldap image"
-docker pull burnerdev/openldap:1.1.8
-ok
-
-action "fetch mongo image"
-docker pull burnerdev/mongo:3.4
-ok
-
-action "fetch mysql image"
-docker pull burnerdev/mysql:5.7
-ok
-
-action "fetch swagger editor image"
-docker pull swaggerapi/swagger-editor
-ok
-
-action "fetch php base image"
-docker pull php:7.1-apache
-ok
-
-action "fetch web service image"
-docker pull burnerdev/php:7.1-apache
-ok
-
-action "fetch wordpress image"
-docker pull burnerdev/wordpress:4.7.3
-ok
+./bin/images 1
 
 action "seeding browsercap cache"
-bin/seed 1
+./bin/seed 1
 ok
 
 action "seeding mongo databases"
-bin/seed 2
+./bin/seed 2
 ok
 
 action "seeding mysql databases"
-bin/seed 3
+./bin/seed 3
 warn "record mysl root password now.. it will not be retrievable later"
 ok
 

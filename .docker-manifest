@@ -1,0 +1,7 @@
+burnerdev/openldap          1.1.8
+burnerdev/mongo             3.4
+burnerdev/mysql             5.7
+php                         7.1-apache
+burnerdev/php               7.1-apache
+burnerdev/wordpress         4.7.3
+swaggerapi/swagger-editor
