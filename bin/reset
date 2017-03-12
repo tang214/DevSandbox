@@ -21,4 +21,4 @@ ok
 
 action "delete all DevSandbox docker images"
 ./bin/images 2
-ok
+
