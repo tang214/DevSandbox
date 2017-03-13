@@ -6,7 +6,7 @@ This repo uses Docker Compose so you should have Docker installed on your workst
 
 ## If your workstation runs Windows
 
-To run the latest docker on window requires Windows 10 Professional.  
+To run the latest docker on window requires Windows 10 Professional.
 
 If you are running another version of windows we recommend creating a linux virtual machine to work from.
 
@@ -18,9 +18,8 @@ You still might find advantages to working in a virtual machine.
 
 ## Creating a Virtual Machine
 
-We recommend creating a virtual machine following these instrcutions.  
+If you create your virtual machine using these instructions you can skip the prerequisites below.
 https://bhedana.gitbooks.io/burner-code-school-sandbox-provisioning/content/
-
 
 ## prerequisites
 1. [Install Docker](https://www.docker.com/products/overview)
