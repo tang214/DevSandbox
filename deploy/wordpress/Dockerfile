@@ -1,4 +1,4 @@
-FROM burnerdev/php:7.1-apache
+FROM burnerdev/php-appserver:7.1-apache
 
 # install the PHP extensions we need
 RUN set -ex; \
