@@ -15,6 +15,12 @@ sudo sed 's/\#X11Forwarding no/X11Forwarding yes/g' /etc/ssh/sshd_config
 sudo sed 's/\#X11UseLocalhost yes/X11UseLocalhost yes/g' /etc/ssh/sshd_config 
 ```
 
+restart sshd
+```
+/etc/init.d/sshd restart
+```
+
+
 add ip address to list of allowed remotes for xhost
 ```
 xhost + $(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}')
