@@ -28,7 +28,7 @@ https://bhedana.gitbooks.io/burner-code-school-sandbox-provisioning/content/
 
 ## setup
 1. [Sign up for GitHub Account](https://github.com)
-1. [Fork our repos](https://help.github.com/articles/fork-a-repo/)
+2. [Fork our repos](https://help.github.com/articles/fork-a-repo/)
   * https://github.com/BurningFlipside/CommonCode
   * https://github.com/BurningFlipside/Profiles
   * https://github.com/BurningFlipside/Registration
@@ -36,11 +36,11 @@ https://bhedana.gitbooks.io/burner-code-school-sandbox-provisioning/content/
   * https://github.com/BurningFlipside/ThemeRegistration
   * https://github.com/BurningFlipside/Tickets
   * https://github.com/BurningFlipside/VolunteerSystem
-1. clone this repo to your workstation
+3. clone this repo to your workstation
   ```
   git clone https://github.com/BurningFlipside/DevSandbox
   ```
-1. run setup helper script
+4. run setup helper script
   ```
   cd DevSandbox
   ./setup.sh
