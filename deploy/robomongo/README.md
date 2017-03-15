@@ -8,6 +8,6 @@ export DOCKER_DISPLAY=$(ifconfig en0 | grep inet | awk '$1=="inet" {print $2}'):
 docker run --rm \
     -e DISPLAY=$DOCKER_DISPLAY \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
-    -v $HOME/.config:/home/robomongo/.config \
+    -v $HOME/.config/robomongo:/home/robomongo/.config/robomongo \
     burnerdev/robomongo
 ```

@@ -3,5 +3,5 @@
 docker run --rm -d \
     -e DISPLAY=$DOCKER_DISPLAY \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
-    -v $HOME/.robomongo:/home/robomongo/.robomongo \
+    -v $HOME/.config/robomongo:/home/robomongo/.config/robomongo \
     burnerdev/robomongo

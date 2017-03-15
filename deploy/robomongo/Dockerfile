@@ -17,7 +17,7 @@ RUN curl -L "https://download.robomongo.org/1.0.0-rc1/linux/robomongo-1.0.0-rc1-
     rm -f robomongo.tar.gz
 
 # Add application user
-RUN mkdir -p /home/robomongo && \
+RUN mkdir -p /home/robomongo/.config/robomongo && \
     groupadd -r robomongo && \ 
     useradd -r -g robomongo -G audio,video robomongo && \
     chown -R robomongo:robomongo /home/robomongo
