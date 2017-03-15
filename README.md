@@ -22,8 +22,8 @@ If you create your virtual machine using these instructions you can skip the pre
 https://bhedana.gitbooks.io/burner-code-school-sandbox-provisioning/content/
 
 ## prerequisites
-1. [Install Docker](https://www.docker.com/products/overview)
-1. [Install Docker Compose](https://docs.docker.com/compose/install/)
+* [Install Docker](https://www.docker.com/products/overview)
+* [Install Docker Compose](https://docs.docker.com/compose/install/)
 
 
 ## setup
