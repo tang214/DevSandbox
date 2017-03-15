@@ -50,9 +50,9 @@ if [ "$NS_PLATFORM" == "linux" ]; then
   # built in
   sudo sed 's/\#   ForwardX11 no/ForwardX11 yes/g' /etc/ssh/ssh_config
 fi
-if [ "$NS_PLATFORM" == "windows" ]; then
-  # install xming
-fi
+# if [ "$NS_PLATFORM" == "windows" ]; then
+#   install xming
+# fi
 
 ./bin/images 1
 
