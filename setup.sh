@@ -2,6 +2,8 @@
 
 source ./bin/functions.sh
 
+get_platform
+
 banner
 
 bot "Lets get you set up"
@@ -38,6 +40,18 @@ if [ ! -f 'src/secure_settings/aws.ini' ]; then
   action "writing aws.ini"
   cp src/secure_settings/aws.example src/secure_settings/aws.ini
   ok
+fi
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+  require_cask xquartz
+  sudo sed 's/\#X11Forwarding no/X11Forwarding yes/g' /etc/ssh/sshd_config
+fi
+if [ "$NS_PLATFORM" == "linux" ]; then
+  # built in
+  sudo sed 's/\#   ForwardX11 no/ForwardX11 yes/g' /etc/ssh/ssh_config
+fi
+if [ "$NS_PLATFORM" == "windows" ]; then
+  # install xming
 fi
 
 ./bin/images 1

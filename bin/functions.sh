@@ -70,3 +70,36 @@ function git_clone_or_update() {
     ok
   fi
 }
+
+function get_platform() {
+  if [ "$(uname -s)" == "Darwin" ]; then
+    # Do something for OSX
+    export NS_PLATFORM="darwin"
+    running "darwin platform detected"
+  elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+  	# Do something for Linux platform
+  	# assume ubuntu - but surely this can be extended to include other distros
+  	export NS_PLATFORM="linux"
+    running "linux platform detected"
+  elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+    # Do something for Windows NT platform
+  	export NS_PLATFORM="windows"
+    running "windoze platform detected"
+    die "Windows not yet supported"
+  fi
+  ok
+}
+
+function require_cask() {
+    running "brew cask $1"
+    brew cask list $1 > /dev/null 2>&1
+    if [[ "$?" != "0" ]]; then
+        action "brew cask install $1 $2"
+        brew cask install $1
+        if [[ $? != 0 ]]; then
+            error "failed to install $1! aborting..."
+            # exit -1
+        fi
+    fi
+    ok
+}
