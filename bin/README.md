@@ -1,5 +1,9 @@
 # Burning Flipside Developer cli scripts
 
+### bin/apache-studio
+
+launches Apache Directory Studio: The Eclipse-based LDAP browser and directory client http://directory.apache.org/studio/
+
 ### bin/console
 
 connect a console session to a running container 
@@ -7,6 +11,10 @@ connect a console session to a running container
 ### bin/images
 
 pull or prune docker images used in this project
+
+### bin/mongotron
+
+launches Mongotron: Cross platform Mongo DB management http://mongotron.io
 
 ### bin/repos
 
@@ -25,3 +33,7 @@ populate databases and browsercap cache with initial values
 iterate over all repos in .gitmanifest
 checkout master and develo branches and pull latest code from production repos
 if using private forks push changes to development repos
+
+### bin/valentina-studio
+
+launches Valentina Studio: your universal database management tool for working with MySQL, MariaDB, SQL Server, PostgreSQL, SQLite and Valentina DB databases http://valentina-db.com

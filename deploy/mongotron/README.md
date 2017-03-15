@@ -1,6 +1,6 @@
 # Mongotron
 
-#### Valentina Studio is your universal database management tool for working with MySQL, MariaDB, SQL Server, PostgreSQL, SQLite and Valentina DB databases
+#### Cross platform Mongo DB management http://mongotron.io
 
 
 run docker container
