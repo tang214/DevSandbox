@@ -12,10 +12,6 @@ connect a console session to a running container
 
 pull or prune docker images used in this project
 
-### bin/mongotron
-
-launches Mongotron: Cross platform Mongo DB management http://mongotron.io
-
 ### bin/repos
 
 checkout or update main project git repos
