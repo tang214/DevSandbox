@@ -134,8 +134,8 @@ services:
     container_name: swagger.burningflipside.local
     image: swaggerapi/swagger-editor
     volumes:
-      - /BURNINGFLIPSIDE/deploy/swagger/data/config:/editor/config
-      - /BURNINGFLIPSIDE/deploy/swagger/data/docs:/editor/spec-files
+      - /BURNINGFLIPSIDE/dockerfiles/swagger/data/config:/editor/config
+      - /BURNINGFLIPSIDE/dockerfiles/swagger/data/docs:/editor/spec-files
     ports:
       - "3500:8080"
     restart: always
