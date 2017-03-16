@@ -44,11 +44,11 @@ fi
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
   require_cask xquartz
-  sudo sed 's/\#X11Forwarding no/X11Forwarding yes/g' /etc/ssh/sshd_config
+  (sudo sed 's/\#X11Forwarding no/X11Forwarding yes/g' /etc/ssh/sshd_config > /dev/null 2>&1)
 fi
 if [ "$NS_PLATFORM" == "linux" ]; then
   # built in
-  sudo sed 's/\#   ForwardX11 no/ForwardX11 yes/g' /etc/ssh/ssh_config
+  (sudo sed 's/\#   ForwardX11 no/ForwardX11 yes/g' /etc/ssh/ssh_config > /dev/null 2>&1)
 fi
 # if [ "$NS_PLATFORM" == "windows" ]; then
 #   install xming
@@ -56,12 +56,14 @@ fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
   action "creating config persistence dirs for GUI containers"
-    (mkdir $HOME/.ApacheDirectoryStudio  > /dev/null 2>&1)
-    sudo chown 999:999 $HOME/.ApacheDirectoryStudio
-    (mkdir -p  $HOME/.config/robomongo  > /dev/null 2>&1)
-    sudo chown 999:999 $HOME/.config/robomongo
-    (mkdir -p  $HOME/.config/ParadigmaSoft > /dev/null 2>&1)
-    sudo chown 999:999 $HOME/.config/ParadigmaSoft
+    (
+      mkdir $HOME/.ApacheDirectoryStudio  > /dev/null 2>&1
+      sudo chown 999:999 $HOME/.ApacheDirectoryStudio
+      mkdir -p  $HOME/.config/robomongo  > /dev/null 2>&1
+      sudo chown 999:999 $HOME/.config/robomongo
+      mkdir -p  $HOME/.config/ParadigmaSoft > /dev/null 2>&1
+      sudo chown 999:999 $HOME/.config/ParadigmaSoft
+    )
   ok
 fi
 
