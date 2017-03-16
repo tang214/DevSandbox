@@ -54,6 +54,17 @@ fi
 #   install xming
 # fi
 
+if [ "$NS_PLATFORM" == "linux" ]; then
+  action "creating config persistence dirs for GUI containers"
+    mkdir $HOME/.ApacheDirectoryStudio
+    sudo chown 999:999 $HOME/.ApacheDirectoryStudio
+    mkdir -p  $HOME/.config/robomongo
+    sudo chown 999:999 $HOME/.config/robomongo
+    mkdir -p  $HOME/.config/ParadigmaSoft
+    sudo chown 999:999 $HOME/.config/ParadigmaSoft
+  ok
+fi
+
 ./bin/images 1
 
 action "seeding browsercap cache"
