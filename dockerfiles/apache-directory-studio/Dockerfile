@@ -17,7 +17,7 @@ RUN apt-get update && apt-get -y install --no-install-recommends \
 	\
 	&& rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p $HOME \
+RUN mkdir -p $HOME/.ApacheDirectoryStudio \
     && groupadd -r app \ 
     && useradd -r -g app -G audio,video app
 
