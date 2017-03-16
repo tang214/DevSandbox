@@ -56,11 +56,11 @@ fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
   action "creating config persistence dirs for GUI containers"
-    mkdir $HOME/.ApacheDirectoryStudio
+    (mkdir $HOME/.ApacheDirectoryStudio  > /dev/null 2>&1)
     sudo chown 999:999 $HOME/.ApacheDirectoryStudio
-    mkdir -p  $HOME/.config/robomongo
+    (mkdir -p  $HOME/.config/robomongo  > /dev/null 2>&1)
     sudo chown 999:999 $HOME/.config/robomongo
-    mkdir -p  $HOME/.config/ParadigmaSoft
+    (mkdir -p  $HOME/.config/ParadigmaSoft > /dev/null 2>&1)
     sudo chown 999:999 $HOME/.config/ParadigmaSoft
   ok
 fi
