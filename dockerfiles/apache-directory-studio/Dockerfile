@@ -1,44 +1,41 @@
 FROM debian:jessie
 
 ENV VERSION 2.0.0.v20161101-M12
+# ENV MIRROR https://www.apache.org/dist/directory/studio
+ENV MIRROR http://apache.mirrors.hoobly.com/directory/studio/
+ENV FILE "ApacheDirectoryStudio-$VERSION-linux.gtk.x86_64.tar.gz"
+ENV HOME /home/app
 
-ENV MIRROR https://www.apache.org/dist/directory/studio
-    
-RUN apt-get update && apt-get -y install \
-    default-jre \
+RUN apt-get update && apt-get -y install --no-install-recommends \
     ca-certificates \
+    curl \
+    default-jre \
+	dirmngr \
+	gnupg \
     libgtk2.0-0 \
     libcanberra-gtk-module \
-    curl \
-    nano \
-	--no-install-recommends \
+	\
 	&& rm -rf /var/lib/apt/lists/*
 
-RUN curl -L "$MIRROR/$VERSION/ApacheDirectoryStudio-$VERSION-linux.gtk.x86_64.tar.gz.md5" -o ApacheDirectoryStudio.tar.gz.md5 && \
-    curl -L "$MIRROR/$VERSION/ApacheDirectoryStudio-$VERSION-linux.gtk.x86_64.tar.gz.asc" -o ApacheDirectoryStudio.tar.gz.asc && \
-    curl -L "$MIRROR/$VERSION/ApacheDirectoryStudio-$VERSION-linux.gtk.x86_64.tar.gz" -o ApacheDirectoryStudio.tar.gz && \
-    tar -xvzf ApacheDirectoryStudio.tar.gz && \
-    mv ApacheDirectoryStudio /home/apache && \
-    rm ApacheDirectoryStudio.tar.gz
+RUN mkdir -p $HOME \
+    && groupadd -r app \ 
+    && useradd -r -g app -G audio,video app
 
-# verify md5 signature
-# verigy pgp signature
-# https://www.apache.org/dist/directory/KEYS
-# $ gpg --import KEYS
-# $ gpg --verify ApacheDirectoryStudio.tar.gz.asc
+RUN curl -L $MIRROR/$VERSION/$FILE.asc -o $FILE.asc \
+    && curl -L $MIRROR/$VERSION/$FILE -o $FILE \
+    && curl -L https://www.apache.org/dist/directory/KEYS -o KEYS \
+    # verify passes on macbook but no in container ?!
+	# && mkdir -p $HOME/.gnupg \
+    # && gpg --import KEYS \
+    # && gpg --verify $FILE.asc $FILE \
+    && tar -xvzf $FILE \
+    && mv ApacheDirectoryStudio/* $HOME \
+    && chown -R app:app $HOME \
+    && rm -rf ApacheDirectoryStudio* \
+    && rm KEYS 
 
-# Add application user
-RUN groupadd -r apache && \ 
-    useradd -r -g apache -G audio,video apache && \
-    chown -R apache:apache /home/apache
+USER app
 
-# run apache directory studio as non privileged user
-USER apache
+WORKDIR /home/app
 
-ENV HOME /home/apache
-
-WORKDIR /home/apache
-
-# run apache directory studio
-ENTRYPOINT [ "/home/apache/ApacheDirectoryStudio" ]
-CMD [ "" ]
+ENTRYPOINT [ "/home/app/ApacheDirectoryStudio" ]

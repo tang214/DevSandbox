@@ -1,6 +1,8 @@
 FROM debian:jessie
 
-RUN apt-get update && apt-get -y install \
+ENV HOME /home/app
+
+RUN apt-get update && apt-get -y install --no-install-recommends \
     ca-certificates \
     curl \
     desktop-file-utils \
@@ -13,26 +15,20 @@ RUN apt-get update && apt-get -y install \
     nano \
     shared-mime-info \
     xdg-utils \
-	--no-install-recommends \
+	\
 	&& rm -rf /var/lib/apt/lists/*
 
-RUN curl -L "http://www.valentina-db.com/en/studio/download/current/vstudio_x64_lin-deb?format=raw" -o vstudio_x64_lin.deb && \
-    dpkg --install vstudio_x64_lin.deb && \
-    rm -f vstudio_x64_lin.deb
+RUN mkdir -p $HOME \
+    && groupadd -r app \ 
+    && useradd -r -g app -G audio,video app
 
-# Add application user
-RUN mkdir -p /home/valentina && \
-    groupadd -r valentina && \ 
-    useradd -r -g valentina -G audio,video valentina && \
-    chown -R valentina:valentina /home/valentina
+RUN curl -L "http://www.valentina-db.com/en/studio/download/current/vstudio_x64_lin-deb?format=raw" -o vstudio_x64_7_lin.deb \
+    && dpkg --install vstudio_x64_7_lin.deb \
+    && chown -R app:app $HOME \
+    && rm -f vstudio_x64_7_lin.deb
 
-# run apache directory studio as non privileged user
-USER valentina
+USER app
 
-ENV HOME /home/valentina
+WORKDIR /home/app
 
-WORKDIR /home/valentina
-
-# run apache directory studio
 ENTRYPOINT [ "/opt/VStudio/vstudio" ]
-CMD [ "" ]
