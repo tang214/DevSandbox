@@ -19,6 +19,13 @@ action "delete your .volumes directory"
 sudo rm -rf .volumes
 ok
 
+action "delete your config dirs"
+sudo rm -rf .volumes
+sudo rm -rf $HOME/.ApacheDirectoryStudio
+sudo rm -rf $HOME/.config/robomongo
+sudo rm -rf $HOME/.config/ParadigmaSoft
+ok
+
 action "delete all DevSandbox docker images"
 ./bin/images 2
 
