@@ -350,7 +350,7 @@ paths:
             $ref: '#/definitions/Error'
   /years:
     get:
-      summary: Get array of years
+      summary: Get Array of years
       operationId: getYears
       responses:
         200:
