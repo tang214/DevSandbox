@@ -41,23 +41,31 @@ services:
       flipside:
         ipv4_address: 172.25.0.103
 
+  appserver:
+    image: burnerdev/php-appserver:7.1-apache
+    env_file:
+      - secrets/envvars
+    volumes:
+      - /BURNINGFLIPSIDE/src/secure_settings:/var/www/secure_settings
+      - /BURNINGFLIPSIDE/src/common:/var/www/common
+      - /BURNINGFLIPSIDE/.volumes/session:/var/lib/php/session
+      - /BURNINGFLIPSIDE/.volumes/browser:/var/php_cache/browser
+    restart: always
+
+
   # www:
   #   container_name: www.burningflipside.local
-  #   image: burnerdev/php-appserver:7.1-apache
+  #   extends:
+  #     service: appserver
   #   env_file:
-  #     - secrets/envvars
   #     - secrets/www/envvars
   #   volumes:
-  #     - /BURNINGFLIPSIDE/src/secure_settings:/var/www/secure_settings
-  #     - /BURNINGFLIPSIDE/src/common:/var/www/common
   #     - /BURNINGFLIPSIDE/src/www:/var/www/html
-  #     - /BURNINGFLIPSIDE/.volumes/session:/var/lib/php/session
   #   ports:
   #     - "3100:443"
   #   depends_on:
   #     - ldap
   #     - mysql
-  #   restart: always
   #   networks:
   #     flipside:
   #       ipv4_address: 172.25.0.104
@@ -65,67 +73,53 @@ services:
 
   # wiki:
   #   container_name: wiki.burningflipside.local
-  #   image: burnerdev/php-appserver:7.1-apache
+  #   extends:
+  #     service: appserver
   #   env_file:
-  #     - secrets/envvars
   #     - secrets/wiki/envvars
   #   volumes:
-  #     - /BURNINGFLIPSIDE/src/secure_settings:/var/www/secure_settings
-  #     - /BURNINGFLIPSIDE/src/common:/var/www/common
   #     - /BURNINGFLIPSIDE/src/wiki:/var/www/html
-  #     - /BURNINGFLIPSIDE/.volumes/session:/var/lib/php/session
   #   ports:
   #     - "3200:443"
   #   depends_on:
   #     - ldap
   #     - mysql
-  #   restart: always
   #   networks:
   #     flipside:
   #       ipv4_address: 172.25.0.105
 
   profiles:
     container_name: profiles.burningflipside.local
-    image: burnerdev/php-appserver:7.1-apache
+    extends:
+      service: appserver
     env_file:
-      - secrets/envvars
       - secrets/profiles/envvars
     volumes:
-      - /BURNINGFLIPSIDE/src/secure_settings:/var/www/secure_settings
-      - /BURNINGFLIPSIDE/src/common:/var/www/common
       - /BURNINGFLIPSIDE/src/profiles:/var/www/html
-      - /BURNINGFLIPSIDE/.volumes/session:/var/lib/php/session
-      - /BURNINGFLIPSIDE/.volumes/browser:/var/php_cache/browser
     ports:
       - "3300:443"
     depends_on:
       - ldap
       - mysql
       - mongo
-    restart: always
     networks:
       flipside:
         ipv4_address: 172.25.0.106
 
   secure:
     container_name: secure.burningflipside.local
-    image: burnerdev/php-appserver:7.1-apache
+    extends:
+      service: appserver
     env_file:
-      - secrets/envvars
       - secrets/secure/envvars
     volumes:
-      - /BURNINGFLIPSIDE/src/secure_settings:/var/www/secure_settings
-      - /BURNINGFLIPSIDE/src/common:/var/www/common
       - /BURNINGFLIPSIDE/src/secure:/var/www/html
-      - /BURNINGFLIPSIDE/.volumes/session:/var/lib/php/session
-      - /BURNINGFLIPSIDE/.volumes/browser:/var/php_cache/browser
     ports:
       - "3400:443"
     depends_on:
       - ldap
       - mysql
       - mongo
-    restart: always
     networks:
       flipside:
         ipv4_address: 172.25.0.107
