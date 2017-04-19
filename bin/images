@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 source ./bin/functions.sh
+get_platform
 
 MANIFEST_PATH=`pwd`/`dirname ${BASH_SOURCE[0]}`/../.docker-manifest
 MANIFEST=`cat $MANIFEST_PATH`
@@ -14,7 +15,7 @@ function pull() {
         tag='latest'
       fi
       action "fetch docker image $image:$tag"
-      docker pull $image:$tag
+      $PREFIX docker pull $image:$tag
       ok
   done
 }
@@ -24,7 +25,7 @@ function prune() {
   for (( idx=${#IMAGES[@]}-1 ; idx>=0 ; idx-- )) ; do
       image=`echo "${IMAGES[idx]}" | awk '{print $1}'`
       action "prune docker image $image"
-      docker rmi $(docker images | grep "$image" | awk '{print $3}')
+      $PREFIX docker rmi $(docker images | grep "$image" | awk '{print $3}')
       ok
   done
   set -e

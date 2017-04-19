@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 source ./bin/functions.sh
+get_platform
 
 selection="$1"
 
@@ -15,14 +16,14 @@ fi
 
 case $selection in
   1)
-    docker run --rm \
+    $PREFIX docker run --rm \
       --name browscap.init \
       -v `pwd`/src/common:/var/www/common \
       -v `pwd`/.volumes/browser:/var/php_cache/browser \
       burnerdev/php:7.1-apache /usr/local/bin/php /var/www/common/cron.php
     ;;
   2)
-    docker run --rm \
+    $PREFIX docker run --rm \
       --name mongo.init \
       -v `pwd`/.volumes/mongo/db:/data/db/ \
       -v `pwd`/.volumes/mongo/configdb:/data/configdb/ \
@@ -32,7 +33,7 @@ case $selection in
       burnerdev/mongo:3.4
     ;;
   3)
-    docker run --rm \
+    $PREFIX docker run --rm \
       --name mysql.init \
       -v `pwd`/.volumes/mysql:/var/lib/mysql/ \
       -v `pwd`/dockerfiles/mysql/data:/docker-entrypoint-initdb.d \

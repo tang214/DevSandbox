@@ -55,6 +55,13 @@ fi
 # fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
+
+  if [ -f '/etc/redhat-release' ]; then
+    action "redhat requies use of sudo"
+    touch '.usesudo'
+    ok
+  fi
+  
   action "creating config persistence dirs for GUI containers"
     (
       mkdir $HOME/.ApacheDirectoryStudio  > /dev/null 2>&1

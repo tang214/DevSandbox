@@ -80,6 +80,9 @@ function get_platform() {
   	# Do something for Linux platform
   	# assume ubuntu - but surely this can be extended to include other distros
   	export NS_PLATFORM="linux"
+    if [ -f '.usesudo' ]; then
+      export PREFIX='sudo'
+    fi
     action "linux platform detected"
   elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
     # Do something for Windows NT platform

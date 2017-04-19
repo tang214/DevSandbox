@@ -3,6 +3,7 @@
 set -eo pipefail
 
 source ./bin/functions.sh
+get_platform
 
 selection="$1"
 
@@ -50,4 +51,4 @@ case $selection in
     ;;
 esac
 
-docker exec -it $instance.burningflipside.local /bin/sh
+$PREFIX docker exec -it $instance.burningflipside.local /bin/sh

@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-docker run --rm -d \
+source ./bin/functions.sh
+get_platform
+
+$PREFIX docker run --rm -d \
     -e DISPLAY=$DOCKER_DISPLAY \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     -v $HOME/.config/robomongo:/home/app/.config/robomongo \
