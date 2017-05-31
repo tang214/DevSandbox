@@ -59,6 +59,8 @@ if [ "$NS_PLATFORM" == "linux" ]; then
   if [ -f '/etc/redhat-release' ]; then
     action "redhat requies use of sudo"
     touch '.usesudo'
+    sudo chcon -R -t svirt_sandbox_file_t src
+    sudo chcon -R -t svirt_sandbox_file_t .volumes
     ok
   fi
   
