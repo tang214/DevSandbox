@@ -16,5 +16,8 @@ docker-compose.yml
 # ignore volumes storage folder
 .volumes
 
+# ignore .githubuser
+.githubuser
+
 # ignore usesudo if it is needed
 .usesudo
