@@ -10,6 +10,7 @@ if [ -z "$selection" ];then
   echo "1. browsercap cache"
   echo "2. mongo database"
   echo "3. mysql database"
+  echo "4. php composer dependencies"
   echo "Select then press enter"
   read selection
 fi
@@ -41,6 +42,12 @@ case $selection in
       -e MYSQL_RANDOM_ROOT_PASSWORD=1 \
       -e SEED_ONLY=1 \
       burnerdev/mysql:5.7
+    ;;
+  4)
+    command -v composer >/dev/null 2>&1 || { echo >&2 "Composer is not installed.  Aborting."; exit 1; }
+
+    cd `pwd`/`dirname ${BASH_SOURCE[0]}`/../src/common
+    composer install
     ;;
   *)
     die

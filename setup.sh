@@ -8,7 +8,11 @@ banner
 
 bot "Lets get you set up"
 
+./bin/composer
+
 ./bin/repos
+
+./bin/seed 4
 
 if [ ! -d '.volumes' ]; then
   action "create shared data volume dir"
