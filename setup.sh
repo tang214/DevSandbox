@@ -8,11 +8,17 @@ banner
 
 bot "Lets get you set up"
 
+action "install php and composer package manager for php"
 ./bin/composer
+ok
 
+action "checkout git repo projects"
 ./bin/repos
+ok
 
+action "install php dependencies"
 ./bin/seed 4
+ok
 
 if [ ! -d '.volumes' ]; then
   action "create shared data volume dir"
