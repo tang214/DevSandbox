@@ -86,6 +86,10 @@ action "seeding browsercap cache"
 ./bin/seed 1
 ok
 
+action "fixing permissions on browser cache volume"
+sudo chown -R www-data:www-data .volumes/browser
+ok
+
 action "seeding mongo databases"
 ./bin/seed 2
 ok
