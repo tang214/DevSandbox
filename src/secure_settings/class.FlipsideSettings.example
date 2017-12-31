@@ -4,7 +4,7 @@ class FlipsideSettings
 {
     public static $global = array(
       'use_minified' => false,
-      'use_cdn' => false,
+      'use_cdn' => true,
       'login_url' => 'https://localhost:3300/login.php',
       'logout_url' => 'https://localhost:3300/logout.php',
       'register_url' => 'https://localhost:3300/register.php',
