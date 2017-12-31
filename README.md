@@ -20,6 +20,7 @@ You still might find advantages to working in a virtual machine.
 
 If you create your virtual machine using these instructions you can skip the prerequisites below.
 https://bhedana.gitbooks.io/burner-code-school-sandbox-provisioning/content/
+(I recommand creating a VM with 32gb disk for this project)
 
 ## prerequisites
 * [Install Docker](https://www.docker.com/products/overview)
