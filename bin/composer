@@ -1,7 +1,19 @@
 #!/usr/bin/env bash
 
+source ./bin/functions.sh
+
+get_platform
+
 command -v composer >/dev/null 2>&1 || { 
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+
+fi
+if [ "$NS_PLATFORM" == "linux" ]; then
     sudo apt-get update
     sudo apt-get install -y php-cli php-curl php-xml php-mbstring
-    curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+fi
+
+curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
+
 }
