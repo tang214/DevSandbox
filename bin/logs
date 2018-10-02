@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1090
+
+set -eo pipefail
+
+function usage() {
+  cat <<- EOF
+
+  tail the logs of a container
+
+  usage: $0 <selection>
+
+EOF
+}
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$DIR/../lib/bashui.sh"
+
+selection="$1"
+
+if [ -z "$selection" ];then
+  banner
+  bot "which instance to connect"
+  list_containers
+  echo "Select then press enter"
+  read -r selection
+fi
+
+docker logs --follow "$(instance_name_from_selection "$selection")"
