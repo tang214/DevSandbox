@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1090
+# shellcheck disable=SC2016
+
+set -eo pipefail
+
+function usage() {
+  cat <<- EOF
+
+  pull or prune docker images
+
+  usage: $0 <selection>
+
+EOF
+}
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$DIR/../lib/bashui.sh"
+
+MANIFEST_PATH="$DIR/../.docker-manifest"
+MANIFEST=$(cat "$MANIFEST_PATH")
+IFS=$'\r\n' GLOBIGNORE='*' command eval 'IMAGES=($MANIFEST)'
+
+echo "$MANIFEST"
+
+function pull() {
+  for (( idx=0 ; idx<=${#IMAGES[@]}-1 ; idx++ )) ; do
+    image=$(echo "${IMAGES[idx]}" | awk '{print $1}')
+    tag=$(echo "${IMAGES[idx]}" | awk '{print $2}')
+    if [ -z "$tag" ]; then
+      tag="latest"
+    fi
+    action "fetch docker image $image:$tag"
+    docker pull "$image:$tag"
+  done
+}
+
+function prune() {
+  set +e
+  for (( idx=${#IMAGES[@]}-1 ; idx>=0 ; idx-- )) ; do
+    image=$(echo "${IMAGES[idx]}" | awk '{print $1}')
+    image_id=$(docker image ls | grep "$image" | awk '{print $3}' | sed -n 1p)
+    action "docker image rm --force $image $image_id"
+    docker image rm --force "$image_id"
+  done
+  set -e
+}
+
+selection="$1"
+
+if [ -z "$selection" ];then
+  banner
+  bot "select action"
+  echo "1. pull images"
+  echo "2. prune images"
+  echo "Select then press enter"
+  read -r selection
+fi
+
+case $selection in
+  1)
+    pull
+    ;;
+  2)
+    prune
+    ;;
+  *)
+    die
+    ;;
+esac
