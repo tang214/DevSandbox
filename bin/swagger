@@ -16,13 +16,48 @@ EOF
 
 get_platform
 
-docker run --detach \
+selection="$1"
+
+if [ -z "$selection" ];then
+  bot "which API documentation to browse"
+  echo "1. Profiles API"
+  echo "2. Registration API"
+  echo "3. Themes API"
+  echo "4. Tickets API"
+  echo "5. Volunteer API"
+  echo "Select then press enter"
+  read -r selection
+fi
+
+case $selection in
+  1)
+    FILE=api_profiles.json
+    ;;
+  2)
+    FILE=api_registration.json
+    ;;
+  3)
+    FILE=api_themes.json
+    ;;
+  4)
+    FILE=api_tickets_global.json
+    ;;
+  5)
+    FILE=api_volunteer.json
+    ;;
+  *)
+    die
+    ;;
+esac
+
+docker stop swagger.burningflipside.local
+
+docker run --rm -d \
   --name swagger.burningflipside.local \
-  -v "$DIR"/../dockerfiles/swagger/data/config:/editor/config \
-  -v "$DIR"/../dockerfiles/swagger/data/docs:/editor/spec-files \
+  -v "$DIR"/../dockerfiles/swagger/data/docs/:/app \
+  -e SWAGGER_JSON=/app/$FILE \
   -p "3500:8080" \
-  swaggerapi/swagger-editor
+  swaggerapi/swagger-ui
 
 
 echo "visit http://localhost:3500 to view swagger documentation."
-

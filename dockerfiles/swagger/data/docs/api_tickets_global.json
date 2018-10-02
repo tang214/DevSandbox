@@ -1,0 +1,701 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Burning Flipside Ticket System API",
+    "description": "This is the api to access ticket data for Burning Flipside",
+    "contact": {
+      "name": "Technology Team",
+      "email": "technology@burningflipside.com"
+    }
+  },
+  "host": "secure.burningflipside.com",
+  "schemes": [
+    "https"
+  ],
+  "basePath": "/tickets/api/v1",
+  "consumes": [
+    "multipart/form-data",
+    "application/jason"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/contraints": {
+      "get": {
+        "summary": "An object containing user defined Ticket System Variables",
+        "operationId": "show_constraints",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/Contraints"
+            }
+          },
+          "500": {
+            "description": "error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/donation_types": {
+      "get": {
+        "summary": "Return an array of DonationType",
+        "operationId": "show_donation_types",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DonationType"
+              }
+            }
+          },
+          "500": {
+            "description": "error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new DonationType",
+        "operationId": "createDonationType",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/DonationType"
+            }
+          },
+          "500": {
+            "description": "error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "donationType",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DonationType"
+            }
+          }
+        ]
+      }
+    },
+    "/donation_types/{id}": {
+      "delete": {
+        "summary": "delete a DonationType",
+        "operationId": "deleteDonationType",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/Unknown"
+            }
+          },
+          "500": {
+            "description": "error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/ticket_types": {
+      "get": {
+        "summary": "List of TicketType",
+        "operationId": "showTicketTypes",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/TicketType"
+              }
+            }
+          },
+          "500": {
+            "description": "error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new TicketType",
+        "operationId": "createTicketType",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/TicketType"
+            }
+          },
+          "500": {
+            "description": "error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ticketType",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TicketType"
+            }
+          }
+        ]
+      },
+      "delete": {
+        "summary": "delete a TicketType",
+        "operationId": "deleteTicketType",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/Unknown"
+            }
+          },
+          "500": {
+            "description": "error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/lists": {
+      "get": {
+        "summary": "List of Email Lists",
+        "operationId": "show_lists",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/EmailList"
+              }
+            }
+          },
+          "500": {
+            "description": "error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/window": {
+      "get": {
+        "summary": "Get Ticketing Window",
+        "operationId": "show_window",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/TickingWindow"
+            }
+          },
+          "500": {
+            "description": "error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/statuses": {
+      "get": {
+        "summary": "List of Email Lists",
+        "operationId": "list_statuses",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RequestStatus"
+              }
+            }
+          },
+          "500": {
+            "description": "error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "parameters": null
+      }
+    },
+    "/vars": {
+      "get": {
+        "summary": "List of Vars",
+        "operationId": "get_vars",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/NameValue"
+              }
+            }
+          },
+          "500": {
+            "description": "error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/var/{name}": {
+      "get": {
+        "summary": "Get a Var by name",
+        "operationId": "get_var",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/NameValue"
+            }
+          },
+          "500": {
+            "description": "error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true
+          }
+        ]
+      },
+      "patch": {
+        "summary": "List of Vars",
+        "operationId": "set_var",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/NameValue"
+            }
+          },
+          "500": {
+            "description": "error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "value",
+            "in": "body",
+            "required": true
+          }
+        ]
+      },
+      "post": {
+        "summary": "Create a Var by name",
+        "operationId": "create_var",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/NameValue"
+            }
+          },
+          "500": {
+            "description": "error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "value",
+            "in": "body",
+            "required": true
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Delete a Var by name",
+        "operationId": "del_var",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/NameValue"
+            }
+          },
+          "500": {
+            "description": "error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/long_text": {
+      "get": {
+        "summary": "Get all LongText",
+        "operationId": "getAllLongText",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/NameValue"
+              }
+            }
+          },
+          "500": {
+            "description": "error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/long_text/{name}": {
+      "get": {
+        "summary": "Get LongText by name",
+        "operationId": "getLongText",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/NameValue"
+            }
+          },
+          "500": {
+            "description": "error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true
+          }
+        ]
+      },
+      "patch": {
+        "summary": "Update LongText by name",
+        "operationId": "setLongText",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "$ref": "#/definitions/NameValue"
+            }
+          },
+          "500": {
+            "description": "error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "value",
+            "in": "body",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/users": {
+      "get": {
+        "summary": "Get Ticket System Authorized users",
+        "operationId": "getTicketUsers",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Unknown"
+              }
+            }
+          },
+          "500": {
+            "description": "error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/years": {
+      "get": {
+        "summary": "Get Array of years",
+        "operationId": "getYears",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "int32"
+              }
+            }
+          },
+          "500": {
+            "description": "error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/Actions/generatePreview/{:class}": {
+      "get": {
+        "summary": "Get previewPDF",
+        "operationId": "previewPDF",
+        "responses": {
+          "200": {
+            "description": "success",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "500": {
+            "description": "error",
+            "schema": {
+              "$ref": "#/definitions/Error"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "class",
+            "in": "path",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "Unknown": {
+      "type": "string"
+    },
+    "RequestStatus": {
+      "type": "string"
+    },
+    "NameValue": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "date"
+        }
+      }
+    },
+    "TickingWindow": {
+      "properties": {
+        "request_start_date": {
+          "type": "date"
+        },
+        "request_stop_date": {
+          "type": "date"
+        },
+        "mail_start_date": {
+          "type": "date"
+        },
+        "test_mode": {
+          "type": "boolean"
+        },
+        "year": {
+          "type": "int"
+        },
+        "current": {
+          "type": "date"
+        }
+      }
+    },
+    "EmailList": {
+      "properties": {
+        "short_name": {
+          "type": "string",
+          "maxLength": 50
+        },
+        "name": {
+          "type": "boolean",
+          "format": "tinyint",
+          "maxLength": 1
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 255
+        },
+        "request_condition": {
+          "type": "string",
+          "maxLength": 255
+        }
+      }
+    },
+    "DonationType": {
+      "properties": {
+        "entityName": {
+          "type": "string",
+          "maxLength": 50
+        },
+        "thirdParty": {
+          "type": "boolean",
+          "format": "tinyint",
+          "maxLength": 1
+        },
+        "url": {
+          "type": "string",
+          "maxLength": 255
+        }
+      }
+    },
+    "Contraints": {
+      "properties": {
+        "max_tickets_per_request": {
+          "type": "number"
+        },
+        "ticket_types": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TicketType"
+          }
+        }
+      }
+    },
+    "TicketType": {
+      "required": [
+        "typeCode",
+        "description",
+        "cost",
+        "max_per_request",
+        "is_minor"
+      ],
+      "properties": {
+        "typeCode": {
+          "type": "string",
+          "format": "char",
+          "maxLength": 1
+        },
+        "description": {
+          "type": "string",
+          "format": "varchar",
+          "maxLength": 45
+        },
+        "cost": {
+          "type": "number",
+          "format": "float"
+        },
+        "max_per_request": {
+          "type": "number",
+          "format": "int",
+          "maxLength": 10
+        },
+        "is_minor": {
+          "type": "boolean",
+          "format": "tinyint",
+          "maxLength": 1
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "fields": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
