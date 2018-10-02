@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC1090
 
-source ./bin/functions.sh
+# set -eo pipefail
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$DIR/lib/bashui.sh"
 
 get_platform
 
@@ -61,21 +65,24 @@ fi
 if [ "$NS_PLATFORM" == "linux" ]; then
     action "creating config persistence dirs for GUI containers"
     (
-      mkdir $HOME/.ApacheDirectoryStudio  > /dev/null 2>&1
-      sudo chown 999:999 $HOME/.ApacheDirectoryStudio
-      mkdir -p  $HOME/.config/robomongo  > /dev/null 2>&1
-      sudo chown 999:999 $HOME/.config/robomongo
-      mkdir -p  $HOME/.config/ParadigmaSoft > /dev/null 2>&1
-      sudo chown 999:999 $HOME/.config/ParadigmaSoft
+      mkdir "$HOME"/.ApacheDirectoryStudio  > /dev/null 2>&1
+      sudo chown 999:999 "$HOME"/.ApacheDirectoryStudio
+      mkdir -p  "$HOME"/.config/robomongo  > /dev/null 2>&1
+      sudo chown 999:999 "$HOME"/.config/robomongo
+      mkdir -p  "$HOME"/.config/ParadigmaSoft > /dev/null 2>&1
+      sudo chown 999:999 "$HOME"/.config/ParadigmaSoft
     )
   ok
 fi
 
-./bin/images 1
+./bin/image 1
 
 action "seeding browsercap cache"
 ./bin/seed 1
 ok
+
+action "loading composer dependencies"
+./bin/seed 4
 
 action "fixing permissions on browser cache volume"
 sudo chown -R www-data:www-data .volumes/php_cache
