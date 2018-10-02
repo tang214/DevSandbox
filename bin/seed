@@ -26,23 +26,23 @@ if [ -z "$selection" ];then
   echo "3. mysql database"
   echo "4. php composer dependencies"
   echo "Select then press enter"
-  read selection
+  read -r selection
 fi
 
 case $selection in
   1)
     docker run --rm \
       --name browscap.init \
-      -v `pwd`/src/common:/var/www/common \
-      -v `pwd`/.volumes/php_cache:/var/php_cache \
+      -v "$(pwd)"/src/common:/var/www/common \
+      -v "$(pwd)"/.volumes/php_cache:/var/php_cache \
       burnerdev/php:7.1-apache /usr/local/bin/php /var/www/common/cron.php
     ;;
   2)
     docker run --rm \
       --name mongo.init \
-      -v `pwd`/.volumes/mongo/db:/data/db/ \
-      -v `pwd`/.volumes/mongo/configdb:/data/configdb/ \
-      -v `pwd`/dockerfiles/mongo/data:/docker-entrypoint-initdb.d \
+      -v "$(pwd)"/.volumes/mongo/db:/data/db/ \
+      -v "$(pwd)"/.volumes/mongo/configdb:/data/configdb/ \
+      -v "$(pwd)"/dockerfiles/mongo/data:/docker-entrypoint-initdb.d \
       -p 27017:27017 \
       -e SEED_ONLY=1 \
       burnerdev/mongo:3.4
@@ -50,8 +50,8 @@ case $selection in
   3)
     docker run --rm \
       --name mysql.init \
-      -v `pwd`/.volumes/mysql:/var/lib/mysql/ \
-      -v `pwd`/dockerfiles/mysql/data:/docker-entrypoint-initdb.d \
+      -v "$(pwd)"/.volumes/mysql:/var/lib/mysql/ \
+      -v "$(pwd)"/dockerfiles/mysql/data:/docker-entrypoint-initdb.d \
       -p 3306:3306 \
       -e MYSQL_RANDOM_ROOT_PASSWORD=1 \
       -e SEED_ONLY=1 \
@@ -60,7 +60,7 @@ case $selection in
   4)
     command -v composer >/dev/null 2>&1 || { echo >&2 "Composer is not installed.  Aborting."; exit 1; }
 
-    cd `pwd`/`dirname ${BASH_SOURCE[0]}`/../src/common
+    cd "$(pwd)"/"$(dirname ${BASH_SOURCE[0]})"/../src/common
     composer install
     ;;
   *)
