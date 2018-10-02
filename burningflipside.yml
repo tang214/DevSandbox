@@ -1,0 +1,135 @@
+version: "3.5"
+
+services:
+
+  ldap:
+    container_name: ldap.burningflipside.local
+    image: burnerdev/openldap:1.1.8
+    volumes:
+      - ./.volumes/ldap/database:/var/lib/ldap
+      - ./.volumes/ldap/config:/etc/ldap/slapd.d
+    ports:
+      - "389:389"
+      - "636:636"
+    restart: always
+    networks:
+      flipside:
+        ipv4_address: 172.25.0.101
+
+  mysql:
+    container_name: mysql.burningflipside.local
+    image: burnerdev/mysql:5.7
+    volumes:
+      - ./.volumes/mysql:/var/lib/mysql/
+    ports:
+      - "3306:3306"
+    restart: always
+    networks:
+      flipside:
+        ipv4_address: 172.25.0.102
+
+  mongo:
+    container_name: mongo.burningflipside.local
+    image: burnerdev/mongo:3.4
+    volumes:
+      - ./.volumes/mongo/db:/data/db/
+      - ./.volumes/mongo/configdb:/data/configdb/
+    ports:
+      - "27017:27017"
+    restart: always
+    networks:
+      flipside:
+        ipv4_address: 172.25.0.103
+  
+  www:
+    container_name: www.burningflipside.local
+    image: burnerdev/php-appserver:7.1-apache
+    env_file:
+      - secrets/envvars
+      - secrets/wiki/envvars
+    volumes:
+      - ./src/secure_settings:/var/www/secure_settings
+      - ./src/common:/var/www/common
+      - ./.volumes/session:/var/lib/php/session
+      - ./.volumes/browser:/var/php_cache/browser
+      - ./src/www:/var/www/html
+    depends_on:
+      - ldap
+      - mysql
+    ports:
+      - "3100:443"
+    networks:
+      flipside:
+        ipv4_address: 172.25.0.104
+
+  wiki:
+    container_name: wiki.burningflipside.local
+    image: burnerdev/php-appserver:7.1-apache
+    env_file:
+      - secrets/envvars
+      - secrets/wiki/envvars
+    volumes:
+      - ./src/secure_settings:/var/www/secure_settings
+      - ./src/common:/var/www/common
+      - ./.volumes/session:/var/lib/php/session
+      - ./.volumes/browser:/var/php_cache/browser
+      - ./src/wiki:/var/www/html
+    depends_on:
+      - ldap
+      - mysql
+    ports:
+      - "3200:443"
+    networks:
+      flipside:
+        ipv4_address: 172.25.0.105
+
+  profiles:
+    container_name: profiles.burningflipside.local
+    image: burnerdev/php-appserver:7.1-apache
+    env_file:
+      - secrets/envvars
+      - secrets/profiles/envvars
+    volumes:
+      - ./src/secure_settings:/var/www/secure_settings
+      - ./src/common:/var/www/common
+      - ./.volumes/session:/var/lib/php/session
+      - ./.volumes/browser:/var/php_cache/browser
+      - ./src/profiles:/var/www/html
+    depends_on:
+      - ldap
+      - mysql
+    ports:
+      - "3300:443"
+    networks:
+      flipside:
+        ipv4_address: 172.25.0.106
+
+  secure:
+    container_name: secure.burningflipside.local
+    image: burnerdev/php-appserver:7.1-apache
+    env_file:
+      - secrets/envvars
+      - secrets/secure/envvars
+    volumes:
+      - ./src/secure_settings:/var/www/secure_settings
+      - ./src/common:/var/www/common
+      - ./.volumes/session:/var/lib/php/session
+      - ./.volumes/browser:/var/php_cache/browser
+      - ./src/secure:/var/www/html
+    depends_on:
+      - ldap
+      - mysql
+      - mongo
+    ports:
+      - "3400:443"
+    networks:
+      flipside:
+        ipv4_address: 172.25.0.107
+
+
+networks:
+  flipside:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 172.25.0.0/24

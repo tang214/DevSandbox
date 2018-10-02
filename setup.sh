@@ -28,12 +28,6 @@ if [ ! -d '.volumes' ]; then
   ok
 fi
 
-if [ ! -f 'docker-compose.yml' ]; then
-  action "writing docker-compose.yml"
-  sed -e s%/BURNINGFLIPSIDE%`pwd`%g docker-compose.tpl > docker-compose.yml
-  ok
-fi
-
 if [ ! -f 'src/secure_settings/class.FlipsideSettings.php' ]; then
   action "writing class.FlipsideSettings.php"
   cp src/secure_settings/class.FlipsideSettings.example src/secure_settings/class.FlipsideSettings.php
