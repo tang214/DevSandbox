@@ -23,26 +23,33 @@ https://bhedana.gitbooks.io/burner-code-school-sandbox-provisioning/content/
 (I recommand creating a VM with 32gb disk for this project)
 
 ## prerequisites
+
 * [Install Docker](https://www.docker.com/products/overview)
 * [Install Docker Compose](https://docs.docker.com/compose/install/)
 
-
 ## setup
+
 1. [Sign up for GitHub Account](https://github.com)
-2. [Fork our repos](https://help.github.com/articles/fork-a-repo/)
-  * https://github.com/BurningFlipside/CommonCode
-  * https://github.com/BurningFlipside/Profiles
-  * https://github.com/BurningFlipside/Registration
-  * https://github.com/BurningFlipside/SecureFramework
-  * https://github.com/BurningFlipside/ThemeRegistration
-  * https://github.com/BurningFlipside/Tickets
-  * https://github.com/BurningFlipside/VolunteerSystem
-3. clone this repo to your workstation
-  ```
+
+1. [Fork our repos](https://help.github.com/articles/fork-a-repo/)
+
+* https://github.com/BurningFlipside/CommonCode
+* https://github.com/BurningFlipside/Profiles
+* https://github.com/BurningFlipside/Registration
+* https://github.com/BurningFlipside/SecureFramework
+* https://github.com/BurningFlipside/ThemeRegistration
+* https://github.com/BurningFlipside/Tickets
+* https://github.com/BurningFlipside/VolunteerSystem
+
+1. clone this repo to your workstation
+
+  ```sh
   git clone https://github.com/BurningFlipside/DevSandbox
   ```
-4. run setup helper script
-  ```
+
+1. run setup helper script
+
+  ```sh
   cd DevSandbox
   ./setup.sh
   ```
@@ -55,13 +62,15 @@ change source code and refresh browser to immediately see your changes
 
 if you have mysql, ldap, or mongo database services running on your development machine you will need to stop those services while docker-compose is running.
 
+```sh
+bin/compose up
 ```
-$ docker-compose up
-```
+
 now point your web browser to https://localhost:3300
 open up repos in src/* to make changes
 
 ## spin down services
-```
-$ docker-compose down
+
+```sh
+bin/compose down
 ```

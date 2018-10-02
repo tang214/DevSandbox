@@ -1,12 +1,14 @@
 # disk requirements
+
   you'll need at least 4 GB free disk space
 
 ## git repo space requirements
+
   repos, volumes, other data (approx 1.6GB)
 
 ## docker image space requirements (approx 1.6GB)
 
-```
+```sh
 REPOSITORY                TAG                 IMAGE ID            SIZE
 burnerdev/nginx-php-fpm   php7                3b9d3ada47fd        248 MB
 burnerdev/mysql           5.7                 29c93862a770        356 MB

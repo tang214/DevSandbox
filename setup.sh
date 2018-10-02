@@ -59,16 +59,7 @@ fi
 # fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
-
-  if [ -f '/etc/redhat-release' ]; then
-    action "redhat requies use of sudo"
-    touch '.usesudo'
-    sudo chcon -R -t svirt_sandbox_file_t src
-    sudo chcon -R -t svirt_sandbox_file_t .volumes
-    ok
-  fi
-  
-  action "creating config persistence dirs for GUI containers"
+    action "creating config persistence dirs for GUI containers"
     (
       mkdir $HOME/.ApacheDirectoryStudio  > /dev/null 2>&1
       sudo chown 999:999 $HOME/.ApacheDirectoryStudio
@@ -99,5 +90,5 @@ action "seeding mysql databases"
 warn "record mysl root password now.. it will not be retrievable later"
 ok
 
-warn "run docker-compose up"
+warn "run bin/compose up"
 warn "and point your browser to https://localhost:3300"
