@@ -4,6 +4,9 @@ This repo includes helper tools to allow you to easily create a development sand
 
 This repo uses Docker Compose so you should have Docker installed on your workstation before you begin.
 
+This project has been built and testing using Mac OSX and Debian linux systems.
+If you choose to use a different distribution you may have to make adjustments.
+
 ## If your workstation runs Windows
 
 To run the latest docker on window requires Windows 10 Professional.
