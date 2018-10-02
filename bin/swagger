@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1090
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$DIR/../lib/bashui.sh"
+
+function usage() {
+  cat <<- EOF
+
+  run Swagger application container
+
+  usage: $0
+
+EOF
+}
+
+get_platform
+
+docker run --detach \
+  --name swagger.burningflipside.local \
+  -v "$DIR"/../dockerfiles/swagger/data/config:/editor/config \
+  -v "$DIR"/../dockerfiles/swagger/data/docs:/editor/spec-files \
+  -p "3500:8080" \
+  swaggerapi/swagger-editor
+
+
+echo "visit http://localhost:3500 to view swagger documentation."
+

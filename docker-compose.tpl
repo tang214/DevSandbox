@@ -124,19 +124,6 @@ services:
       flipside:
         ipv4_address: 172.25.0.107
 
-  swagger:
-    container_name: swagger.burningflipside.local
-    image: swaggerapi/swagger-editor
-    volumes:
-      - /BURNINGFLIPSIDE/dockerfiles/swagger/data/config:/editor/config
-      - /BURNINGFLIPSIDE/dockerfiles/swagger/data/docs:/editor/spec-files
-    ports:
-      - "3500:8080"
-    restart: always
-    networks:
-      flipside:
-        ipv4_address: 172.25.0.108
-
 networks:
   flipside:
     driver: bridge
