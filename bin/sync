@@ -1,6 +1,22 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC1090
 
-source ./bin/functions.sh
+set -eo pipefail
+
+function usage() {
+  cat <<- EOF
+
+  iterate over all repos in .gitmanifest
+  checkout master and develo branches and pull latest code from production repos
+  if using private forks push changes to development repos
+
+  usage: $0
+
+EOF
+}
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$DIR/../lib/bashui.sh"
 
 MANIFEST_PATH=`pwd`/`dirname ${BASH_SOURCE[0]}`/../.gitmanifest
 MANIFEST=`cat $MANIFEST_PATH`

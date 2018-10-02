@@ -1,13 +1,27 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC1090
 
-source ./bin/functions.sh
+set -eo pipefail
+
+function usage() {
+  cat <<- EOF
+
+  install php and composer package manager for php
+
+  usage: $0
+
+EOF
+}
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$DIR/../lib/bashui.sh"
 
 get_platform
 
 command -v composer >/dev/null 2>&1 || { 
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
-
+    echo ""
 fi
 if [ "$NS_PLATFORM" == "linux" ]; then
     sudo apt-get update

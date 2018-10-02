@@ -1,6 +1,21 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC1090
 
-source ./bin/functions.sh
+set -eo pipefail
+
+function usage() {
+  cat <<- EOF
+
+  run Valentina Studio application container
+
+  usage: $0
+
+EOF
+}
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$DIR/../lib/bashui.sh"
+
 get_platform
 
 $PREFIX docker run --rm -d \

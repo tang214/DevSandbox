@@ -1,6 +1,20 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC1090
 
-source ./bin/functions.sh
+set -eo pipefail
+
+function usage() {
+  cat <<- EOF
+
+  populate LDAP, MYSQL, Mongo and browsercap cache with initial values
+  usage: $0
+
+EOF
+}
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$DIR/../lib/bashui.sh"
+
 get_platform
 
 selection="$1"

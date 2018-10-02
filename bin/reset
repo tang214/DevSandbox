@@ -1,6 +1,20 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC1090
 
-source ./bin/functions.sh
+set -eo pipefail
+
+function usage() {
+  cat <<- EOF
+
+  nuke the sandbox from orbit and start over
+
+  usage: $0 <selection>
+
+EOF
+}
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$DIR/../lib/bashui.sh"
 
 banner
 
@@ -9,23 +23,19 @@ action "reset the DevSandbox git repo"
 action "delete your .volumes directory"
 action "delete all DevSandbox docker images"
 echo "press enter to continue"
-read confirm
+read -r 
 
 action "reset the DevSandbox git repo"
-git reset --hard origin/master
-ok
+# git reset --hard origin/master
 
 action "delete your .volumes directory"
 sudo rm -rf .volumes
-ok
 
-action "delete your config dirs"
-sudo rm -rf .volumes
+action "delete app config dirs"
 sudo rm -rf $HOME/.ApacheDirectoryStudio
 sudo rm -rf $HOME/.config/robomongo
 sudo rm -rf $HOME/.config/ParadigmaSoft
 ok
 
 action "delete all DevSandbox docker images"
-./bin/images 2
-
+./bin/image 2
