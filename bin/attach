@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1090
+
+set -eo pipefail
+
+function usage() {
+  cat <<- EOF
+
+  attach an interactive terminal session to a running container
+
+  usage: $0
+
+EOF
+}
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$DIR/../lib/bashui.sh"
+
+get_platform
+
+selection="$1"
+
+if [ -z "$selection" ];then
+  banner
+  bot "which instance to connect"
+  list_containers
+  echo "Select then press enter"
+  read -r selection
+fi
+
+docker exec --interactive --tty "$(instance_name_from_selection "$selection")" /bin/bash
