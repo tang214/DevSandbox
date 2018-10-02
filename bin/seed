@@ -34,7 +34,7 @@ case $selection in
     docker run --rm \
       --name browscap.init \
       -v `pwd`/src/common:/var/www/common \
-      -v `pwd`/.volumes/browser:/var/php_cache/browser \
+      -v `pwd`/.volumes/php_cache:/var/php_cache \
       burnerdev/php:7.1-apache /usr/local/bin/php /var/www/common/cron.php
     ;;
   2)

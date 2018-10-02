@@ -78,7 +78,7 @@ action "seeding browsercap cache"
 ok
 
 action "fixing permissions on browser cache volume"
-sudo chown -R www-data:www-data .volumes/browser
+sudo chown -R www-data:www-data .volumes/php_cache
 ok
 
 action "seeding mongo databases"

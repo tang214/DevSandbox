@@ -51,7 +51,7 @@ services:
       - ./src/secure_settings:/var/www/secure_settings
       - ./src/common:/var/www/common
       - ./.volumes/session:/var/lib/php/session
-      - ./.volumes/browser:/var/php_cache/browser
+      - ./.volumes/php_cache:/var/php_cache
       - ./src/www:/var/www/html
     depends_on:
       - ldap
@@ -72,7 +72,7 @@ services:
       - ./src/secure_settings:/var/www/secure_settings
       - ./src/common:/var/www/common
       - ./.volumes/session:/var/lib/php/session
-      - ./.volumes/browser:/var/php_cache/browser
+      - ./.volumes/php_cache:/var/php_cache
       - ./src/wiki:/var/www/html
     depends_on:
       - ldap
@@ -93,7 +93,7 @@ services:
       - ./src/secure_settings:/var/www/secure_settings
       - ./src/common:/var/www/common
       - ./.volumes/session:/var/lib/php/session
-      - ./.volumes/browser:/var/php_cache/browser
+      - ./.volumes/php_cache:/var/php_cache
       - ./src/profiles:/var/www/html
     depends_on:
       - ldap
@@ -114,7 +114,7 @@ services:
       - ./src/secure_settings:/var/www/secure_settings
       - ./src/common:/var/www/common
       - ./.volumes/session:/var/lib/php/session
-      - ./.volumes/browser:/var/php_cache/browser
+      - ./.volumes/php_cache:/var/php_cache
       - ./src/secure:/var/www/html
     depends_on:
       - ldap
