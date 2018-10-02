@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1090
+
+set -eo pipefail
+
+function usage() {
+  cat <<- EOF
+
+  convenience script for docker-compose
+
+  usage: $0 <action> <unit>
+    action: (u|up|start|d|down|stop)
+    unit: (ldap|mysql|mongo|www|wiki|profiles|secure)
+EOF
+}
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$DIR/../lib/bashui.sh"
+
+action="$1"
+unit="$2"
+file="docker-compose.yml"
+
+if [ -z "$action" ];then
+  banner
+  bot "Do What?"
+  echo "1. Up"
+  echo "2. Down"
+  echo "3. Restart"
+  echo "Select then press enter"
+  read -r action
+fi
+
+case $action in
+  1|u|up|start)
+    action="up"
+    ;;
+  2|d|down|stop)
+    action="down"
+    ;;
+  3|r|restart)
+    action="restart"
+    ;;
+  *)
+    die "invalid action"
+    ;;
+esac
+
+if [ "$action" = "restart" ]; then
+  if [ -z "$unit" ]; then
+    banner
+    bot "Restart which container?"
+    list_containers
+    echo "9. All Containers"
+    echo "Select then press enter"
+    read -r unit
+  fi
+  if [ "$unit" = "9" ]; then unit=""; fi
+fi
+
+if [ -z "$unit" ]; then
+  docker-compose -f "$DIR/../$file" "$action"
+else
+  docker-compose -f "$DIR/../$file" "$action" "$(instance_name_from_selection "$unit")"
+fi
