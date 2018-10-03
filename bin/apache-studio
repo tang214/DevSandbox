@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC1090
 
-set -eo pipefail
-
 function usage() {
   cat <<- EOF
 
@@ -18,8 +16,12 @@ source "$DIR/../lib/bashui.sh"
 
 get_platform
 
+docker stop apache-studio.burningflipside.local
+
 docker run --rm -d \
-    -e DISPLAY="$DOCKER_DISPLAY" \
-    -v /tmp/.X11-unix:/tmp/.X11-unix \
-    -v "$HOME"/.ApacheDirectoryStudio:/home/app/.ApacheDirectoryStudio \
-    burnerdev/apache-directory-studio
+  --name apache-studio.burningflipside.local \
+  -e DISPLAY="$DOCKER_DISPLAY" \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
+  -v "$HOME"/.ApacheDirectoryStudio:/home/app/.ApacheDirectoryStudio \
+  --network flipside_dev \
+  burnerdev/apache-directory-studio
