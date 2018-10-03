@@ -20,10 +20,6 @@ action "checkout git repo projects"
 ./bin/repos
 ok
 
-action "install php dependencies"
-./bin/seed 4
-ok
-
 if [ ! -d '.volumes' ]; then
   action "create shared data volume dir"
   mkdir .volumes
