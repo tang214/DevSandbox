@@ -80,12 +80,11 @@ function git_clone_or_update() {
 }
 
 function get_platform() {
-  action "attempt detecting platform"
+  # action "attempt detecting platform"
   # shellcheck disable=SC2003
   if [ "$(uname -s)" == "Darwin" ]; then
     # Do something for OSX
     export NS_PLATFORM="darwin"
-    echo "darwin detected"
   elif [ "$(expr substr "$(uname -s)" 1 5)" == "Linux" ]; then
   	# Do something for Linux platform
   	# assume ubuntu - but surely this can be extended to include other distros
@@ -93,7 +92,6 @@ function get_platform() {
     if [ -f '.usesudo' ]; then
       export PREFIX='sudo'
     fi
-    echo "linux detected"
   elif [ "$(expr substr "$(uname -s)" 1 10)" == "MINGW32_NT" ]; then
     # Do something for Windows NT platform
   	export NS_PLATFORM="windows"
