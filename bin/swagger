@@ -59,5 +59,10 @@ docker run --rm -d \
   -p "3500:8080" \
   swaggerapi/swagger-ui
 
+if [ "$NS_PLATFORM" == "darwin" ]; then
+  open http://localhost:3500
+fi
+if [ "$NS_PLATFORM" == "linux" ]; then
+  echo "visit http://localhost:3500 to view swagger documentation."
+fi
 
-echo "visit http://localhost:3500 to view swagger documentation."
