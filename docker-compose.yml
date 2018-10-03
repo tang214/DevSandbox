@@ -129,6 +129,7 @@ services:
 
 networks:
   flipside:
+    name: flipside_dev
     driver: bridge
     ipam:
       config:
