@@ -19,7 +19,7 @@ source "$DIR/../lib/bashui.sh"
 get_platform
 
 docker run --rm -d \
-    -e DISPLAY=$DOCKER_DISPLAY \
+    -e DISPLAY="$DOCKER_DISPLAY" \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
-    -v $HOME/.config:/home/app/.config \
+    -v "$HOME"/.config:/home/app/.config \
     burnerdev/valentina-db

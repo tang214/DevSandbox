@@ -27,6 +27,4 @@ if [ -z "$selection" ];then
   read -r selection
 fi
 
-name="$(instance_name_from_selection "$selection")"
-
-docker stats $name
+docker stats "$(instance_name_from_selection "$selection")"

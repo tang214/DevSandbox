@@ -16,36 +16,35 @@ EOF
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "$DIR/../lib/bashui.sh"
 
-MANIFEST_PATH=`pwd`/`dirname ${BASH_SOURCE[0]}`/../.gitmanifest
-MANIFEST=`cat $MANIFEST_PATH`
-IFS=$'\r\n' GLOBIGNORE='*' command eval  'REPOS=($MANIFEST)'
+MANIFEST_PATH=$(pwd)/$(dirname "${BASH_SOURCE[0]}")/../.gitmanifest
+IFS=$'\r\n' GLOBIGNORE='*' command eval "REPOS=($(cat "$MANIFEST_PATH"))"
 
 if [ -f '.githubuser' ]; then
-    githubuser=`cat .githubuser`
+    githubuser=$(cat .githubuser)
 else
     read -r -p "What is the github.com username or organization from which we will pull source? " githubuser
     echo "$githubuser" > .githubuser
 fi
 
-git_clone_or_update git@github.com:$githubuser/CommonCode.git src/common
+git_clone_or_update "git@github.com:$githubuser/CommonCode.git" src/common
 action "init / update common code submodules"
 ( cd src/common && git submodule init && git submodule update  )
 ok
 
-git_clone_or_update git@github.com:$githubuser/Profiles.git src/profiles
+git_clone_or_update "git@github.com:$githubuser/Profiles.git" src/profiles
 
-git_clone_or_update git@github.com:$githubuser/SecureFramework.git src/secure
+git_clone_or_update "git@github.com:$githubuser/SecureFramework.git" src/secure
 action "init / update secure framework submodules"
 ( cd src/secure && git submodule init && git submodule update  )
 ok
 
 set +e
 for (( idx=0 ; idx<=${#REPOS[@]}-1 ; idx++ )) ; do
-    repo=`echo "${REPOS[idx]}" | awk '{print $1}'`
-    local=`echo "${REPOS[idx]}" | awk '{print $2}'`
+    repo=$(echo "${REPOS[idx]}" | awk '{print $1}')
+    local=$(echo "${REPOS[idx]}" | awk '{print $2}')
     # add users private forks as a remote named development
-    ( cd $local && git remote add development git@github.com:$githubuser/$repo > /dev/null 2>&1 )
+    ( cd "$local" && git remote add development "git@github.com:$githubuser/$repo" > /dev/null 2>&1 )
     # add master flipside repos as a remote named production
-    ( cd $local && git remote add production https://github.com/BurningFlipside/$repo > /dev/null 2>&1 )        
+    ( cd "$local" && git remote add production "https://github.com/BurningFlipside/$repo" > /dev/null 2>&1 )        
 done
 set -e

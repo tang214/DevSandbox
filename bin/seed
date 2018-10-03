@@ -60,7 +60,7 @@ case $selection in
   4)
     command -v composer >/dev/null 2>&1 || { echo >&2 "Composer is not installed.  Aborting."; exit 1; }
 
-    cd "$(pwd)"/"$(dirname ${BASH_SOURCE[0]})"/../src/common
+    cd "$(pwd)"/"$(dirname "${BASH_SOURCE[0]}")"/../src/common
     rm composer.lock
     composer install
     ;;
