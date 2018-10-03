@@ -14,7 +14,6 @@ services:
     restart: always
     networks:
       flipside:
-        ipv4_address: 172.25.0.101
 
   mysql:
     container_name: mysql.burningflipside.local
@@ -26,7 +25,6 @@ services:
     restart: always
     networks:
       flipside:
-        ipv4_address: 172.25.0.102
 
   mongo:
     container_name: mongo.burningflipside.local
@@ -39,7 +37,6 @@ services:
     restart: always
     networks:
       flipside:
-        ipv4_address: 172.25.0.103
   
   www:
     container_name: www.burningflipside.local
@@ -60,7 +57,6 @@ services:
       - "3100:443"
     networks:
       flipside:
-        ipv4_address: 172.25.0.104
 
   wiki:
     container_name: wiki.burningflipside.local
@@ -81,7 +77,6 @@ services:
       - "3200:443"
     networks:
       flipside:
-        ipv4_address: 172.25.0.105
 
   profiles:
     container_name: profiles.burningflipside.local
@@ -102,7 +97,6 @@ services:
       - "3300:443"
     networks:
       flipside:
-        ipv4_address: 172.25.0.106
 
   secure:
     container_name: secure.burningflipside.local
@@ -124,7 +118,6 @@ services:
       - "3400:443"
     networks:
       flipside:
-        ipv4_address: 172.25.0.107
 
 
 networks:

@@ -32,7 +32,7 @@ class FlipsideSettings
             'current'       => true,
             'pending'       => false,
             'supplement'    => false,
-            'host'          => 'ldap://172.25.0.101',
+            'host'          => 'ldap://ldap.burningflipside.local',
             'base'          => 'dc=burningflipside,dc=local',
             'user_base'     => 'ou=Users,dc=burningflipside,dc=local',
             'group_base'    => 'ou=Groups,dc=burningflipside,dc=local',
@@ -65,8 +65,8 @@ class FlipsideSettings
         'tickets' => array(
             'type' => 'SQLDataSet',
             'params' => array(
-                'dsn'  => 'mysql:host=172.25.0.102;dbname=tickets',
-                'host' => '172.25.0.102',
+                'dsn'  => 'mysql:host=mysql.burningflipside.local;dbname=tickets',
+                'host' => 'mysql.burningflipside.local',
                 'user' => 'tickets',
                 'pass' => 'p@s5w0rd'
             )
@@ -80,15 +80,15 @@ class FlipsideSettings
         'registration' => array(
             'type' => 'MongoDataSet',
             'params' => array(
-                'host' => '172.25.0.103',
+                'host' => 'mongo.burningflipside.local',
                 'db'   => 'registrations',
             )
         ),
         'profiles' => array(
             'type' => 'SQLDataSet',
             'params' => array(
-                'dsn'  => 'mysql:host=172.25.0.102;dbname=registration',
-                'host' => '172.25.0.102',
+                'dsn'  => 'mysql:host=mysql.burningflipside.local;dbname=registration',
+                'host' => 'mysql.burningflipside.local',
                 'user' => 'registration',
                 'pass' => 'p@s5w0rd'
             )
@@ -96,14 +96,14 @@ class FlipsideSettings
         'fvs' => array(
             'type' => 'MongoDataSet',
             'params' => array(
-                'host' => '172.25.0.103',
+                'host' => 'mongo.burningflipside.local',
                 'db'   => 'volunteer',
             )
         ),
         'email' => array(
             'type' => 'MongoDataSet',
             'params' => array(
-                'host' => '172.25.0.103',
+                'host' => 'mongo.burningflipside.local',
                 'db'   => 'email',
             )
         )
