@@ -19,7 +19,7 @@ source "$DIR/../lib/bashui.sh"
 
 action="$1"
 unit="$2"
-file="burningflipside.yml"
+file="docker-compose.yml"
 
 if [ -z "$action" ];then
   banner

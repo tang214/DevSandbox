@@ -11,9 +11,6 @@ src/secure_settings/class.FlipsideSettings.php
 src/secure_settings/*.bak
 src/secure_settings/client_secret.json
 
-# ignore modified docker-compose.yml
-docker-compose.yml
-
 # ignore volumes storage folder
 .volumes
 
