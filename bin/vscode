@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1090
+
+function usage() {
+  cat <<- EOF
+
+  run Visual Studio Code application container
+
+  usage: $0
+
+EOF
+}
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$DIR/../lib/bashui.sh"
+
+get_platform
+
+docker stop vscode
+
+docker run -d \
+  --name vscode \
+  -e DISPLAY="$DOCKER_DISPLAY" \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
+  -v $HOME:/home/user \
+  --device /dev/dri \
+  jess/vscode
+
+# it appears to function without
+# access to rendering device /dev/dri 
+# but the user experience is a bit clunky
