@@ -1,8 +1,7 @@
-#
 # ./mysql
-#
 
-start by building the custom image
-```bash
-$ make
+building the image
+
+```sh
+make
 ```

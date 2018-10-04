@@ -1,7 +1,4 @@
-#
 # TODO
-#
-
 
 ## base and size improvements
 
@@ -12,6 +9,7 @@ more of these images are based on debian jessie.
 this results in images that possibly larger than they need to be.
 
 REPOSITORY            TAG                 IMAGE ID            SIZE
+
 ----------------------------------------------------------------------
 burnerdev/openldap    1.1.8               246ea04eea73        223 MB
 burnerdev/wordpress   4.7.2               c0ed36b39f07        694 MB
@@ -23,7 +21,6 @@ debian                jessie              e5599115b6a6        123 MB
 osixia/openldap       1.1.8               03a4eced0fc7        223 MB
 
 I'd like to see all these images based on alpine to make them as small as possible.
-
 
 ## make production ready versions
 

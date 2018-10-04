@@ -1,13 +1,12 @@
-#
 # ./mongo
-#
 
 Use docker to spin up a temporary container to create databases and collections
 then destroy the container leaving no trace of passwords in command line history
 on your public services
 
 generate the initialization container
-```bash
+
+```sh
 docker run --rm \
   --name mongo.init \
   -v ~/src/FlipsideDeveloper/.volumes/mongo/db:/data/db/ \
@@ -18,7 +17,8 @@ docker run --rm \
 ```
 
 open a new terminal window and issue the command to stop the mysql.init container
-```bash
+
+```sh
 docker stop mongo.init
 ```
 

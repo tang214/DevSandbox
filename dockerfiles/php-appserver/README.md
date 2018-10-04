@@ -1,8 +1,9 @@
-#
 # burnerdev/php-apache
-#
 
-start by building the custom image
-```bash
-$ make
+PHP Application server
+
+building the image
+
+```sh
+make
 ```

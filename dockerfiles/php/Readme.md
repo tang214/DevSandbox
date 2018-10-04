@@ -1,5 +1,3 @@
-#
 # php-official
-#
 
-modified to be build on debian:jessie-slim
+modified to build on debian:jessie-slim

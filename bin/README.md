@@ -1,5 +1,7 @@
 # Burning Flipside Developer cli scripts
 
+Depending on your OS and Docker configuration you may need to `sudo`
+
 ## bin/apache-studio
 
 launches Apache Directory Studio: The Eclipse-based LDAP browser and directory client http://directory.apache.org/studio/
