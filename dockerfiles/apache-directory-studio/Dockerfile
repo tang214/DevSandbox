@@ -1,17 +1,15 @@
-FROM debian:jessie
+FROM debian:stretch-slim
 
-ENV VERSION 2.0.0.v20161101-M12
+ENV VERSION 2.0.0.v20180908-M14
 # ENV MIRROR https://www.apache.org/dist/directory/studio
 ENV MIRROR http://apache.mirrors.hoobly.com/directory/studio/
 ENV FILE "ApacheDirectoryStudio-$VERSION-linux.gtk.x86_64.tar.gz"
 ENV HOME /home/app
 
-RUN apt-get update && apt-get -y install --no-install-recommends \
-    ca-certificates \
-    curl \
+RUN mkdir -p /usr/share/man/man1; \
+    apt-get update && apt-get -y install --no-install-recommends \
+    \
     default-jre \
-	dirmngr \
-	gnupg \
     libgtk2.0-0 \
     libcanberra-gtk-module \
 	\
@@ -21,7 +19,8 @@ RUN mkdir -p $HOME/.ApacheDirectoryStudio \
     && groupadd -r app \ 
     && useradd -r -g app -G audio,video app
 
-RUN curl -L $MIRROR/$VERSION/$FILE.asc -o $FILE.asc \
+RUN apt-get update && apt-get -y install --no-install-recommends ca-certificates curl gnupg dirmngr \
+    && curl -L $MIRROR/$VERSION/$FILE.asc -o $FILE.asc \
     && curl -L $MIRROR/$VERSION/$FILE -o $FILE \
     && curl -L https://www.apache.org/dist/directory/KEYS -o KEYS \
     # verify passes on macbook but no in container ?!
@@ -32,7 +31,9 @@ RUN curl -L $MIRROR/$VERSION/$FILE.asc -o $FILE.asc \
     && mv ApacheDirectoryStudio/* $HOME \
     && chown -R app:app $HOME \
     && rm -rf ApacheDirectoryStudio* \
-    && rm KEYS 
+    && rm KEYS \
+    && apt-get purge -y --auto-remove ca-certificates curl gnupg dirmngr
+
 
 USER app
 

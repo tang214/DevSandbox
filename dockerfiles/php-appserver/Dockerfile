@@ -8,8 +8,8 @@ RUN buildDeps=" \
   libmagickwand-dev \
   libmagickcore-dev \
   libmemcached-dev \
-  libmysqlclient15-dev \
-  libpng12-dev \
+  default-libmysqlclient-dev \
+  libpng-dev \
   libpq-dev \
   libpspell-dev \
   librecode-dev \

@@ -1,5 +1,5 @@
 NAME = burnerdev/apache-directory-studio
-VERSION = latest
+VERSION = 2.0.0.v20180908-M14
 
 .PHONY: all build build-nocache
 

@@ -1,5 +1,5 @@
 NAME = burnerdev/wordpress
-VERSION = 4.7.3
+VERSION = 4.9.8
 
 .PHONY: all build build-nocache
 

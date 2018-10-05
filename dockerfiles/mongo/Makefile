@@ -1,5 +1,5 @@
 NAME = burnerdev/mongo
-VERSION = 3.4
+VERSION = 3.6.8
 
 .PHONY: all build build-nocache
 

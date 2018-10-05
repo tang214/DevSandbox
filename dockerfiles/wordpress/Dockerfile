@@ -6,7 +6,7 @@ RUN set -ex; \
 	apt-get update; \
 	apt-get install -y \
 		libjpeg-dev \
-		libpng12-dev \
+		libpng-dev \
 	; \
 	rm -rf /var/lib/apt/lists/*; \
 	\
@@ -29,8 +29,8 @@ RUN a2enmod rewrite expires
 
 VOLUME /var/www/html
 
-ENV WORDPRESS_VERSION 4.7.3
-ENV WORDPRESS_SHA1 35adcd8162eae00d5bc37f35344fdc06b22ffc98
+ENV WORDPRESS_VERSION 4.9.8
+ENV WORDPRESS_SHA1 0945bab959cba127531dceb2c4fed81770812b4f
 
 RUN set -ex; \
 	curl -o wordpress.tar.gz -fSL "https://wordpress.org/wordpress-${WORDPRESS_VERSION}.tar.gz"; \

@@ -1,5 +1,5 @@
 NAME = burnerdev/php
-VERSION = 7.1-apache
+VERSION = 7.1.10-apache
 
 .PHONY: all build build-nocache
 
