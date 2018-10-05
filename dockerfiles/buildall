@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1090
+
+# set -eo pipefail
+
+function usage() {
+  cat <<- EOF
+
+  build all docker images
+
+  usage: $0
+
+EOF
+}
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$DIR/../lib/bashui.sh"
+
+get_platform
+
+for D in *; do
+  if [ -d "$D" ]; then 
+    if [ -f "$D/Makefile" ]; then
+      action "build $D"
+      (cd "$D" && make > buildlog.log)
+    fi
+  fi
+done
