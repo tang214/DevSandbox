@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1090
+
+function usage() {
+  cat <<- EOF
+
+  run MySQL Workbench application container
+
+  usage: $0
+
+EOF
+}
+
+# DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# source "$DIR/../lib/bashui.sh"
+
+# get_platform
+
+docker stop mysql-workbench
+
+docker run --rm -d \
+  --name mysql-workbench \
+  -e DISPLAY="$DOCKER_DISPLAY" \
+  -v /tmp/.X11-unix:/tmp/.X11-unix \
+  -v "$HOME"/src:/home/app/workspace \
+  -v "$HOME"/.mysql/workbench:/home/app/.mysql/workbench \
+  383700cb8e57
