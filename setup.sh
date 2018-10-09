@@ -54,9 +54,10 @@ if [ "$NS_PLATFORM" == "linux" ]; then
   # built in
   (sudo sed 's/\#   ForwardX11 no/ForwardX11 yes/g' /etc/ssh/ssh_config > /dev/null 2>&1)
 fi
-# if [ "$NS_PLATFORM" == "windows" ]; then
-#   install xming
-# fi
+if [ "$NS_PLATFORM" == "windows" ]; then
+  # install xming
+  die "windows support not yet implemented in this project"
+fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
     action "creating config persistence dirs for GUI containers"
@@ -75,6 +76,10 @@ fi
 
 action "seeding browsercap cache"
 ./bin/seed 1
+ok
+
+action "create jwt keypair"
+./bin/jwtkey
 ok
 
 action "loading composer dependencies"
