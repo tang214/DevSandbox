@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1090
+
+set -eo pipefail
+
+function usage() {
+  cat <<- EOF
+
+  generate jwt keypair
+
+  usage: $0 <selection>
+
+EOF
+}
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$DIR/../lib/bashui.sh"
+
+bot "generate jwt keypair"
+
+OUTPATH="$DIR"/../src/secure_settings
+
+rm -rf "$OUTPATH"/jwtRS256*
+
+ssh-keygen -t rsa -b 4096 -N '' \
+  -f "$OUTPATH"/jwtRS256.key
+
+openssl rsa -in "$OUTPATH"/jwtRS256.key \
+  -pubout -outform PEM -out "$OUTPATH"/jwtRS256.key.pub
+
+cat "$OUTPATH"/jwtRS256.key.pub
