@@ -47,13 +47,12 @@ https://bhedana.gitbooks.io/burner-code-school-sandbox-provisioning/content/
 1. clone this repo to your workstation
 
   ```sh
-  git clone https://github.com/BurningFlipside/DevSandbox
+  git clone https://github.com/BurningFlipside/DevSandbox && cd DevSandbox
   ```
 
 1. run setup helper script
 
   ```sh
-  cd DevSandbox
   ./setup.sh
   ```
 

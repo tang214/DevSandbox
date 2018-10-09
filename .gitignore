@@ -21,6 +21,3 @@ src/secure_settings/jwtRS256*
 
 # ignore .githubuser
 .githubuser
-
-# ignore usesudo if it is needed
-.usesudo
