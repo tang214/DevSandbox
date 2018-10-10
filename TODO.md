@@ -1,17 +1,10 @@
 # TODO
 
-login-dialog.html
-
-* redirects to wrong url after signin
-
-secure/fvs/main.html
-
-* link to wiki
-
-class.RegistrationDB.php
-
-* should link to local mongo in dev
-
+* consider adding 
+  `https://github.com/kentcdodds/cypress-testing-library`
+  or perhaps
+  `https://github.com/testdouble/cypress-capybara`
+  
 * thouroughly test
 
 ## future
