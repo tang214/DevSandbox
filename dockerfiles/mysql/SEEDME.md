@@ -27,7 +27,7 @@ and make a note of the generated PASSWORD
 open a new terminal window and issue the command to stop the mysql.init container
 
 ```sh
-docker stop mysql.init
+docker rm -f mysql.init
 ```
 
 now the shared volume should contain the users and databases we need

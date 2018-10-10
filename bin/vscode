@@ -16,7 +16,7 @@ source "$DIR/../lib/bashui.sh"
 
 get_platform
 
-docker stop vscode
+docker rm -f vscode > /dev/null 2>&1
 
 docker run -d \
   --name vscode \
@@ -27,5 +27,5 @@ docker run -d \
   jess/vscode
 
 # it appears to function without
-# access to rendering device /dev/dri 
+# access to rendering device /dev/dri
 # but the user experience is a bit clunky

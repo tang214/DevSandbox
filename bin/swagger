@@ -50,7 +50,7 @@ case $selection in
     ;;
 esac
 
-docker stop swagger.burningflipside.local
+docker rm -f swagger.burningflipside.local > /dev/null 2>&1
 
 docker run --rm -d \
   --name swagger.burningflipside.local \

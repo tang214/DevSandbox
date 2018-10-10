@@ -16,7 +16,7 @@ source "$DIR/../lib/bashui.sh"
 
 get_platform
 
-docker stop apache-studio.burningflipside.local
+docker rm -f apache-studio.burningflipside.local > /dev/null 2>&1
 
 docker run --rm -d \
   --name apache-studio.burningflipside.local \

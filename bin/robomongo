@@ -16,7 +16,7 @@ source "$DIR/../lib/bashui.sh"
 
 get_platform
 
-docker stop robomongo.burningflipside.local
+docker rm -f robomongo.burningflipside.local > /dev/null 2>&1
 
 docker run --rm -d \
   --name robomongo.burningflipside.local \

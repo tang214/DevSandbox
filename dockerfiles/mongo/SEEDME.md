@@ -19,7 +19,7 @@ docker run --rm \
 open a new terminal window and issue the command to stop the mysql.init container
 
 ```sh
-docker stop mongo.init
+docker rm -f mongo.init
 ```
 
 now the shared volume should contain the users and databases we need

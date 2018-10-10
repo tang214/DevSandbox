@@ -16,7 +16,7 @@ source "$DIR/../lib/bashui.sh"
 
 get_platform
 
-docker stop valentina-studio.burningflipside.local
+docker rm -f valentina-studio.burningflipside.local > /dev/null 2>&1
 
 docker run --rm -d \
   --name valentina-studio.burningflipside.local \
