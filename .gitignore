@@ -1,6 +1,9 @@
 # ignore docker build logs
 dockerfiles/*/*.log
 
+# ignore node dependencies
+node_modules
+
 # ignore cloned repos
 src/common
 src/profiles

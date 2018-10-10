@@ -74,3 +74,9 @@ open up repos in src/* to make changes
 ```sh
 bin/compose down
 ```
+
+## Running integration tests
+
+```sh
+npm run test
+```

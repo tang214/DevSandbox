@@ -1,0 +1,21 @@
+{
+  "name": "flipsidedeveloper",
+  "version": "0.2.0",
+  "description": "This repo includes helper tools to allow you to easily create a development sandbox of Burning Flipside web applications.",
+  "scripts": {
+    "test": "./node_modules/.bin/cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BurningFlipside/DevSandbox.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BurningFlipside/DevSandbox/issues"
+  },
+  "homepage": "https://github.com/BurningFlipside/DevSandbox#readme",
+  "devDependencies": {
+    "cypress": "3.1.0"
+  }
+}

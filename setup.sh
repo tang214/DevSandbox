@@ -98,5 +98,8 @@ action "seeding mysql databases"
 warn "record mysl root password now.. it will not be retrievable later"
 ok
 
+action "installing integration test dependencies"
+npm install
+
 warn "run bin/compose up"
 warn "and point your browser to https://localhost:3300"
