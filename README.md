@@ -1,11 +1,9 @@
 # Burning Flipside Developer
 
-This repo includes helper tools to allow you to easily create a development sandbox of Burning Flipside web applications.
+This repo includes a docker compose symphony to allow you to create a development sandbox of Burning Flipside web applications.
 
-This repo uses Docker Compose so you should have Docker installed on your workstation before you begin.
-
-This project has been built and testing using Mac OSX and Debian linux systems.
-If you choose to use a different distribution you may have to make adjustments.
+This project has been built and tested using both Mac OSX and Debian linux systems.
+If you use a different distribution you may need to make modifications. PRs are always welcome.
 
 ## If your workstation runs Windows
 
