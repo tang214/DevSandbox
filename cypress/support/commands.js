@@ -27,7 +27,7 @@ const url = require('url');
 
 /**
  * cy.target provides a single point of reference to the target host details
- * @param target the project subdomain being tested
+ * @param {str} target the project subdomain being tested
  * @returns {obj}
  * returns an empty object if target is not defined
  * Url {
@@ -62,7 +62,7 @@ Cypress.Commands.add('target', (service) => {
 
 /**
  * cy.user provides a single point of reference to user login details
- * @param role the user role for testing actions
+ * @param {str} role the user role for testing actions
  * @returns {obj}
  * returns an empty object if role is not defined
  * User {
@@ -93,28 +93,55 @@ Cypress.Commands.add('user', (role) => {
   return user;
 })
 
-// allow quick login for tests by posting directly to API
+/**
+ * allow quick login for tests by posting directly to API
+ * @param {str} role the user role to login as
+ */
 Cypress.Commands.add('login', (role) => {
+  cy.logout().then(()=>{
+    cy.target('profiles').then((tgt) => {
+      const target = tgt
+
+      cy.user(role).then((usr) => {
+        const user = usr
+
+        cy.request({
+          method: 'POST',
+          url: `${target.href}api/v1/login`,
+          body: {
+            username: user.username,
+            password: user.password
+          }
+        })
+        .then((resp) => {
+          // log statements are useless within the context of tests
+          // investigate implementing debugger for the ability to
+          // inspect within testing contexts
+          console.log(resp)
+        })
+      })
+    })
+  })
+})
+
+/**
+ * allow quick logout for tests by posting directly to API
+ */
+Cypress.Commands.add('logout', () => {
   cy.target('profiles').then((tgt) => {
     const target = tgt
 
-    cy.user(role).then((usr) => {
-      const user = usr
-
-      cy.request({
-        method: 'POST',
-        url: `${target.href}api/v1/login`,
-        body: {
-          username: user.username,
-          password: user.password
-        }
-      })
-      .then((resp) => {
-        // log statements are useless within the context of tests
-        // investigate implementing debugger for the ability to
-        // inspect within testing contexts
-        console.log(resp)
-      })
+    cy.request({
+      method: 'POST',
+      url: `${target.href}api/v1/logout`,
+      body: {
+      }
+    })
+    .then((resp) => {
+      // log statements are useless within the context of tests
+      // investigate implementing debugger for the ability to
+      // inspect within testing contexts
+      console.log(resp)
     })
   })
 })

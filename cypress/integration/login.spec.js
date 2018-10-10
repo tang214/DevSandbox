@@ -53,7 +53,7 @@ describe('user login', () => {
 
   context('using login modal', () => {
     beforeEach(() => {
-      cy.visit(`${target.href}logout.php`)
+      cy.logout()
       cy.visit(`${target.href}`)
 
       cy.server();
