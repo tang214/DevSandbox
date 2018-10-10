@@ -1,9 +1,7 @@
 /// <reference types="Cypress" />
 
 describe('user profile', () => {
-
-  // target holds a parsed url for the tested host
-  let target = {};
+  let target;
 
   beforeEach(() => {
     cy.login('dev')

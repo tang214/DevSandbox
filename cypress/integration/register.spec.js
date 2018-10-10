@@ -1,8 +1,6 @@
 /// <reference types="Cypress" />
 
 describe('user profile', () => {
-
-  // target holds a parsed url for the tested host
   let target;
 
   beforeEach(() => {
@@ -15,7 +13,7 @@ describe('user profile', () => {
     beforeEach(() => {
       cy.visit(`${target.href}register.php`)
     })
-  
+
     it('I see the registration form', () => {
       cy.get('fieldset > legend').contains('Burning Flipside Profile Registration')
     })

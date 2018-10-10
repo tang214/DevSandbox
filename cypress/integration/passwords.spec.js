@@ -1,8 +1,6 @@
 /// <reference types="Cypress" />
 
 describe('user password', () => {
-
-  // target holds a parsed url for the tested host
   let target;
 
   beforeEach(() => {

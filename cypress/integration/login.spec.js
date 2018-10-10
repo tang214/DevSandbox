@@ -1,10 +1,7 @@
 /// <reference types="Cypress" />
 
 describe('user login', () => {
-
-  // target holds a parsed url for the tested host
   let target;
-  // object holds valid user credentials
   let user;
 
   beforeEach(() => {
@@ -73,7 +70,8 @@ describe('user login', () => {
       cy.get('#login_dialog_form').children('button[type=submit]').click()
       cy.wait('@authenticate').then(function(xhr){
         expect(xhr.status).to.eq(403)
-        // there is no visible feedback that an error has occurred
+        // I expect there should be visible feedback that an error has occurred
+        // there is none
       })
     })
 
@@ -82,7 +80,8 @@ describe('user login', () => {
       cy.get('#login_dialog_form').children('input[name=username]').type('me@example.com{enter}')
       cy.wait('@authenticate').then(function(xhr){
         expect(xhr.status).to.eq(403)
-        // there is no visible feedback that an error has occurred
+        // I expect there should be visible feedback that an error has occurred
+        // there is none
       })
     })
 
@@ -92,7 +91,8 @@ describe('user login', () => {
       cy.get('#login_dialog_form').children('button[type=submit]').click()
       cy.wait('@authenticate').then(function(xhr){
         expect(xhr.status).to.eq(403)
-        // there is no visible feedback that an error has occurred
+        // I expect there should be visible feedback that an error has occurred
+        // there is none
       })
     })
 
@@ -103,7 +103,8 @@ describe('user login', () => {
       cy.get('#login_dialog_form').children('button[type=submit]').click()
       cy.wait('@authenticate').then(function(xhr){
         expect(xhr.status).to.eq(403)
-        // there is no visible feedback that an error has occurred
+        // I expect there should be visible feedback that an error has occurred
+        // there is none
       })
     })
 
@@ -138,4 +139,3 @@ describe('user login', () => {
   })
 
 })
-// https://docs.cypress.io/api/api/table-of-contents.html
