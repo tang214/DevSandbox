@@ -25,11 +25,29 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 const url = require('url');
 
-// this will need to be exapnded to accomodate multiple targets
-// perhaps this command can accept a parameter to return the desired url?
-
+/**
+ * cy.target provides a single point of reference to the target host details
+ * @param target the project subdomain being tested
+ * @returns {obj}
+ * returns an empty object if target is not defined
+ * Url {
+ *   protocol: 'https:',
+ *   slashes: true,
+ *   auth: null,
+ *   host: 'localhost:3000',
+ *   port: '3000',
+ *   hostname: 'localhost',
+ *   hash: null,
+ *   search: null,
+ *   query: null,
+ *   pathname: '/',
+ *   path: '/',
+ *   href: 'https://localhost:3000/'
+ * }
+ *
+ */
 Cypress.Commands.add('target', (service) => {
-  let hostUrl;
+  let hostUrl = {};
 
   switch(service) {
     case 'profiles':
@@ -42,10 +60,22 @@ Cypress.Commands.add('target', (service) => {
   return url.parse(hostUrl);
 })
 
+/**
+ * cy.user provides a single point of reference to user login details
+ * @param role the user role for testing actions
+ * @returns {obj}
+ * returns an empty object if role is not defined
+ * User {
+ *   email: 'burnerdev@burningflipside.com',
+ *   username: 'developer',
+ *   password: 'p@s5w0rd'
+ * }
+ *
+ */
 Cypress.Commands.add('user', (role) => {
-  let user;
+  let user = {};
 
-  // implement a more portable configuration to facilitate
+  // investigate a more portable configuration to facilitate
   // running against a different installation
   // define more user roles as neseccary
   switch(role) {
@@ -63,7 +93,7 @@ Cypress.Commands.add('user', (role) => {
   return user;
 })
 
-// perform login by posting directly to API
+// allow quick login for tests by posting directly to API
 Cypress.Commands.add('login', (role) => {
   cy.target('profiles').then((tgt) => {
     const target = tgt
