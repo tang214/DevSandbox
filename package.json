@@ -16,12 +16,16 @@
     "url": "https://github.com/BurningFlipside/DevSandbox/issues"
   },
   "homepage": "https://github.com/BurningFlipside/DevSandbox#readme",
-  "devDependencies": {
+  "dependencies": {
     "cypress": "3.1.0",
-    "cypress-dark": "1.5.1",
     "cypress-eslint-preprocessor": "1.2.1",
+    "cypress-dark": "1.5.1"
+  },
+  "devDependencies": {
     "eslint": "5.6.1",
+    "eslint-config-airbnb-base": "13.1.0",
     "eslint-plugin-chai-friendly": "0.4.1",
-    "eslint-plugin-cypress": "2.0.1"
+    "eslint-plugin-cypress": "2.0.1",
+    "eslint-plugin-import": "2.14.0"
   }
 }

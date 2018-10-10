@@ -49,16 +49,18 @@ const url = require('url');
 Cypress.Commands.add('target', (service) => {
   let hostUrl = {};
 
-  switch(service) {
+  switch (service) {
     case 'profiles':
       hostUrl = Cypress.env('profilesUrl', 'https://localhost:3300');
       break;
     case 'secure':
       hostUrl = Cypress.env('secureUrl', 'https://localhost:3400');
       break;
+    default:
+      break;
   }
   return url.parse(hostUrl);
-})
+});
 
 /**
  * cy.user provides a single point of reference to user login details
@@ -78,70 +80,72 @@ Cypress.Commands.add('user', (role) => {
   // investigate a more portable configuration to facilitate
   // running against a different installation
   // define more user roles as neseccary
-  switch(role) {
+  switch (role) {
     case 'dev':
       user = {
         email: 'burnerdev@burningflipside.com',
         username: 'developer',
-        password: 'p@s5w0rd'
+        password: 'p@s5w0rd',
       };
       break;
     case 'admin':
       user = {};
       break;
+    default:
+      break;
   }
   return user;
-})
+});
 
 /**
  * allow quick login for tests by posting directly to API
  * @param {str} role the user role to login as
  */
 Cypress.Commands.add('login', (role) => {
-  cy.logout().then(()=>{
+  cy.logout().then(() => {
     cy.target('profiles').then((tgt) => {
-      const target = tgt
+      const target = tgt;
 
       cy.user(role).then((usr) => {
-        const user = usr
+        const user = usr;
 
         cy.request({
           method: 'POST',
           url: `${target.href}api/v1/login`,
           body: {
             username: user.username,
-            password: user.password
-          }
-        })
-        .then((resp) => {
-          // log statements are useless within the context of tests
-          // investigate implementing debugger for the ability to
-          // inspect within testing contexts
-          console.log(resp)
-        })
-      })
-    })
-  })
-})
+            password: user.password,
+          },
+        });
+        // .then((resp) => {
+        //   // log statements are useless within the context of tests
+        //   // investigate implementing debugger for the ability to
+        //   // inspect within testing contexts
+        //   console.log(resp);
+        // });
+      });
+    });
+  });
+});
 
 /**
  * allow quick logout for tests by posting directly to API
  */
 Cypress.Commands.add('logout', () => {
   cy.target('profiles').then((tgt) => {
-    const target = tgt
+    const target = tgt;
 
     cy.request({
       method: 'POST',
       url: `${target.href}api/v1/logout`,
       body: {
-      }
-    })
-    .then((resp) => {
-      // log statements are useless within the context of tests
-      // investigate implementing debugger for the ability to
-      // inspect within testing contexts
-      console.log(resp)
-    })
-  })
-})
+      },
+    });
+    // .then((resp) => {
+    //   // log statements are useless within the context of tests
+    //   // investigate implementing debugger for the ability to
+    //   // inspect within testing contexts
+    //   console.log(resp);
+    // });
+  });
+});
