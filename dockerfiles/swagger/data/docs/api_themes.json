@@ -114,7 +114,7 @@
         }
       },
       "patch": {
-        "summary": "Update Department",
+        "summary": "Update Theme",
         "description": "Modify one or more fields in the theme",
         "tags": [
           "Themes"
@@ -156,8 +156,8 @@
         }
       },
       "delete": {
-        "summary": "Delete Department",
-        "description": "Delete a department",
+        "summary": "Delete Theme",
+        "description": "Delete a theme",
         "tags": [
           "Themes"
         ],
