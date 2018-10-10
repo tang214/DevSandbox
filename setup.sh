@@ -46,12 +46,6 @@ if [ ! -f 'src/secure_settings/aws.ini' ]; then
   ok
 fi
 
-if [ ! -f 'cypress.env.json' ]; then
-  action "writing cypress.env.json"
-  cp cypress.env.json.example cypress.env.json
-  ok
-fi
-
 if [ "$NS_PLATFORM" == "darwin" ]; then
   require_cask xquartz
   (sudo sed 's/\#X11Forwarding no/X11Forwarding yes/g' /etc/ssh/sshd_config > /dev/null 2>&1)

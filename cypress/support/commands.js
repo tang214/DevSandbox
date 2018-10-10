@@ -51,10 +51,10 @@ Cypress.Commands.add('target', (service) => {
 
   switch(service) {
     case 'profiles':
-      hostUrl = Cypress.env('profilesUrl');
+      hostUrl = Cypress.env('profilesUrl', 'https://localhost:3300');
       break;
     case 'secure':
-      hostUrl = Cypress.env('secureUrl');
+      hostUrl = Cypress.env('secureUrl', 'https://localhost:3400');
       break;
   }
   return url.parse(hostUrl);

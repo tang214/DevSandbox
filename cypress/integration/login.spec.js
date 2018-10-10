@@ -57,7 +57,7 @@ describe('user login', () => {
       cy.visit(`${target.href}`)
 
       cy.server();
-      cy.route("POST", "/api/v1/login").as("authenticate");
+      cy.route('POST', '/api/v1/login').as('authenticate');
     })
 
     it('says Burning Flipside Profile Login', () => {
@@ -68,7 +68,7 @@ describe('user login', () => {
     it('when submitting empty form', () => {
       cy.get('a').contains('Login').click()
       cy.get('#login_dialog_form').children('button[type=submit]').click()
-      cy.wait('@authenticate').then(function(xhr){
+      cy.wait('@authenticate').then((xhr) => {
         expect(xhr.status).to.eq(403)
         // I expect there should be visible feedback that an error has occurred
         // there is none
@@ -78,7 +78,7 @@ describe('user login', () => {
     it('form can be submitted by pressing the enter key', () => {
       cy.get('a').contains('Login').click()
       cy.get('#login_dialog_form').children('input[name=username]').type('me@example.com{enter}')
-      cy.wait('@authenticate').then(function(xhr){
+      cy.wait('@authenticate').then((xhr) => {
         expect(xhr.status).to.eq(403)
         // I expect there should be visible feedback that an error has occurred
         // there is none
@@ -89,7 +89,7 @@ describe('user login', () => {
       cy.get('a').contains('Login').click()
       cy.get('#login_dialog_form').children('input[name=username]').type(user.username)
       cy.get('#login_dialog_form').children('button[type=submit]').click()
-      cy.wait('@authenticate').then(function(xhr){
+      cy.wait('@authenticate').then((xhr) => {
         expect(xhr.status).to.eq(403)
         // I expect there should be visible feedback that an error has occurred
         // there is none
@@ -101,7 +101,7 @@ describe('user login', () => {
       cy.get('#login_dialog_form').children('input[name=username]').type(user.username)
       cy.get('#login_dialog_form').children('input[name=password]').type('notmyrealpassword')
       cy.get('#login_dialog_form').children('button[type=submit]').click()
-      cy.wait('@authenticate').then(function(xhr){
+      cy.wait('@authenticate').then((xhr) => {
         expect(xhr.status).to.eq(403)
         // I expect there should be visible feedback that an error has occurred
         // there is none
@@ -113,7 +113,7 @@ describe('user login', () => {
       cy.get('#login_dialog_form').children('input[name=username]').type(user.username)
       cy.get('#login_dialog_form').children('input[name=password]').type(user.password)
       cy.get('#login_dialog_form').children('button[type=submit]').click()
-      cy.wait('@authenticate').then(function(xhr){
+      cy.wait('@authenticate').then((xhr) => {
         expect(xhr.status).to.eq(200)
 
         cy.location().should((location) => {
@@ -127,7 +127,7 @@ describe('user login', () => {
       cy.get('#login_dialog_form').children('input[name=username]').type(user.email)
       cy.get('#login_dialog_form').children('input[name=password]').type(user.password)
       cy.get('#login_dialog_form').children('button[type=submit]').click()
-      cy.wait('@authenticate').then(function(xhr){
+      cy.wait('@authenticate').then((xhr) => {
         expect(xhr.status).to.eq(200)
 
         cy.location().should((location) => {
