@@ -18,6 +18,7 @@
   "homepage": "https://github.com/BurningFlipside/DevSandbox#readme",
   "devDependencies": {
     "cypress": "3.1.0",
+    "cypress-dark": "1.5.1",
     "cypress-eslint-preprocessor": "1.2.1",
     "eslint": "5.6.1",
     "eslint-plugin-chai-friendly": "0.4.1",
