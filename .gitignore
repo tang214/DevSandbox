@@ -19,8 +19,6 @@ src/secure_settings/jwtRS256*
 
 *.bak
 
-package.lock
-
 # ignore volumes storage folder
 .volumes
 
