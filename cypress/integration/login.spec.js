@@ -9,11 +9,11 @@ describe('user login', () => {
 
   beforeEach(() => {
     // get target from support/commands
-    cy.target().then(($o) => {
+    cy.target('profiles').then(($o) => {
       target = $o
     })
     // get user from support/commands
-    cy.user().then(($o) => {
+    cy.user('dev').then(($o) => {
       user = $o
     })
   })

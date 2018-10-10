@@ -6,7 +6,7 @@ describe('user profile', () => {
   let target;
 
   beforeEach(() => {
-    cy.target().then(($tgt) => {
+    cy.target('profiles').then(($tgt) => {
       target = $tgt
     })
   })

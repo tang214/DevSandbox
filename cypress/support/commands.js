@@ -27,26 +27,50 @@ const url = require('url');
 
 // this will need to be exapnded to accomodate multiple targets
 // perhaps this command can accept a parameter to return the desired url?
-Cypress.Commands.add('target', () => {
-  // this should probably be set in ENV
-  return url.parse('https://localhost:3300');
+
+Cypress.Commands.add('target', (service) => {
+  let hostUrl;
+
+  // implement a more portable configuration to facilitate
+  // running against a different installation
+  switch(service) {
+    case 'profiles':
+      hostUrl = 'https://localhost:3300';
+      break;
+    case 'secure':
+      hostUrl = 'https://localhost:3400';
+      break;
+  }
+  return url.parse(hostUrl);
 })
 
-Cypress.Commands.add('user', () => {
-  // this should probably be set in ENV
-  return {
-    email: 'burnerdev@burningflipside.com',
-    username: 'developer',
-    password: 'p@s5w0rd'
-  };
+Cypress.Commands.add('user', (role) => {
+  let user;
+
+  // implement a more portable configuration to facilitate
+  // running against a different installation
+  // define more user roles as neseccary
+  switch(role) {
+    case 'dev':
+      user = {
+        email: 'burnerdev@burningflipside.com',
+        username: 'developer',
+        password: 'p@s5w0rd'
+      };
+      break;
+    case 'admin':
+      user = {};
+      break;
+  }
+  return user;
 })
 
 // perform login by posting directly to API
-Cypress.Commands.add('login', () => {
-  cy.target().then(($o) => {
+Cypress.Commands.add('login', (role) => {
+  cy.target('profiles').then(($o) => {
     const target = $o
 
-    cy.user().then(($o) => {
+    cy.user(role).then(($o) => {
       const user = $o
 
       cy.request({

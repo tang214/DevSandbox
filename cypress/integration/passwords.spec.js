@@ -6,17 +6,17 @@ describe('user password', () => {
   let target;
 
   beforeEach(() => {
-    cy.target().then(($tgt) => {
+    cy.target('profiles').then(($tgt) => {
       target = $tgt
     })
   })
 
   context('as an authenticated user', () => {
     beforeEach(() => {
-      cy.login()
+      cy.login('dev')
       cy.visit(`${target.href}reset.php`)
     })
-  
+
     it('I can change my password', () => {
       //pending
     })

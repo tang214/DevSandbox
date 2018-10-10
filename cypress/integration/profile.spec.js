@@ -6,8 +6,8 @@ describe('user profile', () => {
   let target = {};
 
   beforeEach(() => {
-    cy.login()
-    cy.target().then(($tgt) => {
+    cy.login('dev')
+    cy.target('profiles').then(($tgt) => {
       target = $tgt
       cy.visit(`${target.href}profile.php`)
     })
@@ -29,5 +29,5 @@ describe('user profile', () => {
     it('I can change my profile data', () => {
       //pending
     })
-  })  
+  })
 })
