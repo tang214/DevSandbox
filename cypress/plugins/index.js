@@ -16,6 +16,8 @@
 //   // `config` is the resolved Cypress config
 // }
 
+// cypress-eslint-preprocessor is a plugin that will run linting via ESLint
+// on your spec files and display linting errors in the console.
 const cypressEslint = require('cypress-eslint-preprocessor');
 
 module.exports = (on) => {
