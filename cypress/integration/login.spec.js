@@ -66,6 +66,15 @@ context('using login modal', () => {
     })
   })
 
+  it('form can be submitted by pressing the enter key', () => {    
+    cy.get('a').contains('Login').click()
+    cy.get('#login_dialog_form').children('input[name=username]').type('me@example.com{enter}')
+    cy.wait('@authenticate').then(function(xhr){
+      expect(xhr.status).to.eq(403)
+      // there is no visible feedback that an error has occurred     
+    })
+  })
+
   it('when submitting incomplete credentials', () => {    
     cy.get('a').contains('Login').click()
     cy.get('#login_dialog_form').children('input[name=username]').type(VALID_USERNAME)
