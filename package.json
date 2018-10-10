@@ -3,7 +3,8 @@
   "version": "0.2.0",
   "description": "This repo includes helper tools to allow you to easily create a development sandbox of Burning Flipside web applications.",
   "scripts": {
-    "test": "./node_modules/.bin/cypress open"
+    "test": "./node_modules/.bin/cypress open",
+    "lint": "./node_modules/.bin/eslint --ext .js cypress/"
   },
   "repository": {
     "type": "git",
@@ -16,6 +17,9 @@
   },
   "homepage": "https://github.com/BurningFlipside/DevSandbox#readme",
   "devDependencies": {
-    "cypress": "3.1.0"
+    "cypress": "3.1.0",
+    "eslint": "5.6.1",
+    "eslint-plugin-chai-friendly": "0.4.1",
+    "eslint-plugin-cypress": "2.0.1"
   }
 }
