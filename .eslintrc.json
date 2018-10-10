@@ -8,6 +8,9 @@
     "node": true,
     "cypress/globals": true
   },
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
   "rules": {
     "no-unused-expressions": 0,
     "chai-friendly/no-unused-expressions": 2
