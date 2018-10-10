@@ -103,6 +103,10 @@ context('using login modal', () => {
     cy.get('#login_dialog_form').children('button[type=submit]').click()
     cy.wait('@authenticate').then(function(xhr){
       expect(xhr.status).to.eq(200)
+
+      cy.location().should((location) => {
+        expect(location.href).to.eq(target.href)
+      })
     })
   })
 
@@ -113,6 +117,10 @@ context('using login modal', () => {
     cy.get('#login_dialog_form').children('button[type=submit]').click()
     cy.wait('@authenticate').then(function(xhr){
       expect(xhr.status).to.eq(200)
+
+      cy.location().should((location) => {
+        expect(location.href).to.eq(target.href)
+      })
     })
   })
 
