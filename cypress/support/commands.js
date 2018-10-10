@@ -67,11 +67,11 @@ Cypress.Commands.add('user', (role) => {
 
 // perform login by posting directly to API
 Cypress.Commands.add('login', (role) => {
-  cy.target('profiles').then(($o) => {
-    const target = $o
+  cy.target('profiles').then((tgt) => {
+    const target = tgt
 
-    cy.user(role).then(($o) => {
-      const user = $o
+    cy.user(role).then((usr) => {
+      const user = usr
 
       cy.request({
         method: 'POST',
@@ -82,6 +82,9 @@ Cypress.Commands.add('login', (role) => {
         }
       })
       .then((resp) => {
+        // log statements are useless within the context of tests
+        // investigate implementing debugger for the ability to
+        // inspect within testing contexts
         console.log(resp)
       })
     })
