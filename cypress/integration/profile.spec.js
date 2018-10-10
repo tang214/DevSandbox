@@ -5,8 +5,8 @@ describe('user profile', () => {
 
   beforeEach(() => {
     cy.login('dev')
-    cy.target('profiles').then(($tgt) => {
-      target = $tgt
+    cy.target('profiles').then((tgt) => {
+      target = tgt
       cy.visit(`${target.href}profile.php`)
     })
   })

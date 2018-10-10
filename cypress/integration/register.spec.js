@@ -4,8 +4,8 @@ describe('user profile', () => {
   let target;
 
   beforeEach(() => {
-    cy.target('profiles').then(($tgt) => {
-      target = $tgt
+    cy.target('profiles').then((tgt) => {
+      target = tgt
     })
   })
 
