@@ -31,14 +31,12 @@ const url = require('url');
 Cypress.Commands.add('target', (service) => {
   let hostUrl;
 
-  // implement a more portable configuration to facilitate
-  // running against a different installation
   switch(service) {
     case 'profiles':
-      hostUrl = 'https://localhost:3300';
+      hostUrl = Cypress.env('profilesUrl');
       break;
     case 'secure':
-      hostUrl = 'https://localhost:3400';
+      hostUrl = Cypress.env('secureUrl');
       break;
   }
   return url.parse(hostUrl);
