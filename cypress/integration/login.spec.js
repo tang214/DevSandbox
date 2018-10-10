@@ -1,8 +1,8 @@
 /// <reference types="Cypress" />
 
 describe('user login', () => {
-  
-  // target holds a parsed url for the testes host
+
+  // target holds a parsed url for the tested host
   let target;
   // object holds valid user credentials
   let user;
@@ -20,7 +20,6 @@ describe('user login', () => {
 
   context('Location', () => {
     beforeEach(() => {
-      
       cy.visit(target.href)
     })
 
@@ -51,7 +50,7 @@ describe('user login', () => {
 
     it('when submitting empty form', () => {
       cy.get('#login_main_form').children('button[type=submit]').click()
-        // there is no visible feedback that an error has occurred     
+        // there is no visible feedback that an error has occurred
       })
   })
 
@@ -69,46 +68,46 @@ describe('user login', () => {
       cy.get('#login-dialog').contains('Login')
     })
 
-    it('when submitting empty form', () => {    
+    it('when submitting empty form', () => {
       cy.get('a').contains('Login').click()
       cy.get('#login_dialog_form').children('button[type=submit]').click()
       cy.wait('@authenticate').then(function(xhr){
         expect(xhr.status).to.eq(403)
-        // there is no visible feedback that an error has occurred     
+        // there is no visible feedback that an error has occurred
       })
     })
 
-    it('form can be submitted by pressing the enter key', () => {    
+    it('form can be submitted by pressing the enter key', () => {
       cy.get('a').contains('Login').click()
       cy.get('#login_dialog_form').children('input[name=username]').type('me@example.com{enter}')
       cy.wait('@authenticate').then(function(xhr){
         expect(xhr.status).to.eq(403)
-        // there is no visible feedback that an error has occurred     
+        // there is no visible feedback that an error has occurred
       })
     })
 
-    it('when submitting incomplete credentials', () => {    
+    it('when submitting incomplete credentials', () => {
       cy.get('a').contains('Login').click()
       cy.get('#login_dialog_form').children('input[name=username]').type(user.username)
       cy.get('#login_dialog_form').children('button[type=submit]').click()
       cy.wait('@authenticate').then(function(xhr){
         expect(xhr.status).to.eq(403)
-        // there is no visible feedback that an error has occurred     
+        // there is no visible feedback that an error has occurred
       })
     })
 
-    it('when submitting invalid credentials', () => {    
+    it('when submitting invalid credentials', () => {
       cy.get('a').contains('Login').click()
       cy.get('#login_dialog_form').children('input[name=username]').type(user.username)
       cy.get('#login_dialog_form').children('input[name=password]').type('notmyrealpassword')
       cy.get('#login_dialog_form').children('button[type=submit]').click()
       cy.wait('@authenticate').then(function(xhr){
         expect(xhr.status).to.eq(403)
-        // there is no visible feedback that an error has occurred     
+        // there is no visible feedback that an error has occurred
       })
     })
 
-    it('allows login using username', () => {    
+    it('allows login using username', () => {
       cy.get('a').contains('Login').click()
       cy.get('#login_dialog_form').children('input[name=username]').type(user.username)
       cy.get('#login_dialog_form').children('input[name=password]').type(user.password)
@@ -122,7 +121,7 @@ describe('user login', () => {
       })
     })
 
-    it('allows login using email sddress', () => {    
+    it('allows login using email sddress', () => {
       cy.get('a').contains('Login').click()
       cy.get('#login_dialog_form').children('input[name=username]').type(user.email)
       cy.get('#login_dialog_form').children('input[name=password]').type(user.password)
